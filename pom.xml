@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.quyeying.charity</groupId>
   <artifactId>charity_sale</artifactId>
@@ -9,7 +9,7 @@
   <properties>
     <!-- 主要依赖库的版本定义 -->
     <spring.version>4.0.2.RELEASE</spring.version>
-    <spring-data-jpa.version>1.4.4.RELEASE</spring-data-jpa.version>
+    <spring-data-mongodb.version>1.5.0.RELEASE</spring-data-mongodb.version>
     <shiro.version>1.2.2</shiro.version>
     <cxf.version>2.7.10</cxf.version>
     <activemq.version>5.7.0</activemq.version>
@@ -61,15 +61,11 @@
 
 
     <!-- PERSISTENCE begin -->
-
-
-    <!-- spring data jpa -->
     <dependency>
       <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-jpa</artifactId>
-      <version>${spring-data-jpa.version}</version>
+      <artifactId>spring-data-mongodb</artifactId>
+      <version>${spring-data-mongodb.version}</version>
     </dependency>
-
     <!-- aop -->
     <dependency>
       <groupId>org.aspectj</groupId>
@@ -330,14 +326,6 @@
       <groupId>org.slf4j</groupId>
       <artifactId>jul-to-slf4j</artifactId>
       <version>${slf4j.version}</version>
-    </dependency>
-
-    <!-- log4jdbc -->
-    <dependency>
-      <groupId>com.googlecode.log4jdbc</groupId>
-      <artifactId>log4jdbc</artifactId>
-      <version>1.2</version>
-      <scope>runtime</scope>
     </dependency>
     <!-- LOGGING end -->
 
@@ -643,7 +631,8 @@
         <env>dev</env>
       </properties>
       <activation>
-        <activeByDefault>true</activeByDefault><!--默认启用的是dev环境配置-->
+        <activeByDefault>true</activeByDefault>
+        <!--默认启用的是dev环境配置-->
       </activation>
     </profile>
     <!-- 生产环境 -->
