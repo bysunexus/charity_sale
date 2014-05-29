@@ -10,7 +10,7 @@ import java.util.List;
  * User: bysun
  * Date: 2014/5/28 0028
  * Time: 11:01
- * 货物表
+ * 捐品表
  */
 @Document(collection = "goods")
 public class Goods{
@@ -20,6 +20,53 @@ public class Goods{
      */
     @Id
     private String pkid;
+
+    /**
+     * 捐品类型
+     */
+    private String goodsType;
+
+    public static enum GoodsType{
+        A("A","2元区"),
+        B("B","5元区"),
+        C("C","10元区"),
+        D("D","25元区"),
+        E("E","50元及以上区");
+
+        GoodsType(String code, String name) {
+            this.code = code;
+            this.name = name;
+        }
+
+        private String code;
+        private String name;
+
+        public String getCode() {
+            return code;
+        }
+
+        public void setCode(String code) {
+            this.code = code;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public static GoodsType getByCode(String code){
+
+            for (GoodsType type : GoodsType.values()) {
+                if(type.getCode().equals(code)){
+                    return type;
+                }
+            }
+            throw new NullPointerException("未知的捐品类型["+code+"]");
+        }
+    }
 
     /**
      * 单号
@@ -70,6 +117,14 @@ public class Goods{
 
     public void setPkid(String pkid) {
         this.pkid = pkid;
+    }
+
+    public String getGoodsType() {
+        return goodsType;
+    }
+
+    public void setGoodsType(String goodsType) {
+        this.goodsType = goodsType;
     }
 
     public String getGoodsNum() {

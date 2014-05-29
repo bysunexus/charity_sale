@@ -21,8 +21,9 @@ public class GoodsServiceTest {
     @Test
     public void testSave() throws Exception {
         Goods goods = new Goods();
+        goods.setPkid("be2a7c3b549143778c0f44f956b23727");
         goods.setGoodsCount(1);
-        goods.setGoodsName("test");
+        goods.setGoodsName("TTTT");
         goods.setGoodsNum("A001");
         goods.setGoodsPrice(10);
         goods.setPersonCode("admin");
