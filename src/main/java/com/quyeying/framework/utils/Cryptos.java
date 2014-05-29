@@ -16,7 +16,6 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.springside.modules.utils.Exceptions;
 
 /**
  * 支持HMAC-SHA1消息签名 及 DES/AES对称加密的工具类.

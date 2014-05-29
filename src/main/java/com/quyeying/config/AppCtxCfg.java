@@ -27,7 +27,7 @@ public class AppCtxCfg {
     @Bean(name={"appProperties"})
     public Properties appProperties() throws IOException {
         PropertiesFactoryBean pfb = new PropertiesFactoryBean();
-        pfb.setLocation(new ClassPathResource("classpath:application.properties"));
+        pfb.setLocation(new ClassPathResource("app.properties"));
         pfb.setSingleton(true);
         pfb.afterPropertiesSet();
         return pfb.getObject();
