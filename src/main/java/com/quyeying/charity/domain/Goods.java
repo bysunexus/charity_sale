@@ -13,7 +13,7 @@ import java.util.List;
  * 捐品表
  */
 @Document(collection = "goods")
-public class Goods{
+public class Goods {
 
     /**
      * 主键
@@ -26,45 +26,48 @@ public class Goods{
      */
     private String goodsType;
 
-    public static enum GoodsType{
-        A("A","2元区"),
-        B("B","5元区"),
-        C("C","10元区"),
-        D("D","25元区"),
-        E("E","50元及以上区");
+    public static enum GoodsType {
+        A("A", "2元区"),
+        B("B", "5元区"),
+        C("C", "10元区"),
+        D("D", "25元区"),
+        E("E", "50元及以上区",true);
 
         GoodsType(String code, String name) {
             this.code = code;
             this.name = name;
         }
 
+        GoodsType(String code, String name, boolean ext) {
+            this.code = code;
+            this.name = name;
+            this.ext = ext;
+        }
+
         private String code;
         private String name;
+        private boolean ext;
 
         public String getCode() {
             return code;
-        }
-
-        public void setCode(String code) {
-            this.code = code;
         }
 
         public String getName() {
             return name;
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public boolean isExt() {
+            return ext;
         }
 
-        public static GoodsType getByCode(String code){
+        public static GoodsType getByCode(String code) {
 
             for (GoodsType type : GoodsType.values()) {
-                if(type.getCode().equals(code)){
+                if (type.getCode().equalsIgnoreCase(code)) {
                     return type;
                 }
             }
-            throw new NullPointerException("未知的捐品类型["+code+"]");
+            throw new NullPointerException("未知的捐品类型[" + code + "]");
         }
     }
 

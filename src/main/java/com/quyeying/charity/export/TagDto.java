@@ -8,9 +8,6 @@ package com.quyeying.charity.export;
 public class TagDto {
     private String GoodsType;
     private Integer total;
-    private boolean horizontal = true;
-    private boolean vertical = true;
-    private boolean back;
 
     public String getGoodsType() {
         return GoodsType;
@@ -28,27 +25,4 @@ public class TagDto {
         this.total = total;
     }
 
-    public boolean isHorizontal() {
-        return horizontal;
-    }
-
-    public void setHorizontal(boolean horizontal) {
-        this.horizontal = horizontal;
-    }
-
-    public boolean isVertical() {
-        return vertical;
-    }
-
-    public void setVertical(boolean vertical) {
-        this.vertical = vertical;
-    }
-
-    public boolean isBack() {
-        return back;
-    }
-
-    public void setBack(boolean back) {
-        this.back = back;
-    }
 }
