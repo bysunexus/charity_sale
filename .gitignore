@@ -1,1 +1,4 @@
 target/
+/.project
+/charity_sale.iml
+/.idea/
