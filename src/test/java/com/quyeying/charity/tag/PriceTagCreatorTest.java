@@ -1,8 +1,6 @@
-package com.quyeying.charity.export;
+package com.quyeying.charity.tag;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class PriceTagCreatorTest {
 

@@ -21,7 +21,7 @@ public class GoodsService implements IGoodsService {
     @Autowired
     private MongoTemplate template;
 
-    public Serializable save(Goods goods){
+    public String save(Goods goods){
         if(StringUtils.isBlank(goods.getPkid()))
             goods.setPkid(Identities.uuid2());
 

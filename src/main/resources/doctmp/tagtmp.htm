@@ -109,9 +109,16 @@
                 </span>
               </p>
               <p class="MsoNormal" style='line-height:28.0pt'>
-                <span style='font-size:14.0pt;font-family:宋体'>数量：
-                  <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
+                <#if !ext>
+                <span style='font-size:14.0pt;font-family:宋体'>
+                  数量：<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
                 </span>
+                </#if><#if ext>
+                <span style='font-size:14.0pt;font-family:宋体'>
+                  价格：<u>&nbsp;&nbsp;&nbsp;&nbsp;</u>元&nbsp;&nbsp;&nbsp;
+                  数量：<u>&nbsp;&nbsp;&nbsp;&nbsp;</u>
+                </span>
+                </#if>
               </p>
               <p class="MsoNormal" style='line-height:28.0pt'>
                 <span style='font-size:14.0pt;font-family:宋体'>捐赠者：
@@ -119,11 +126,21 @@
                 </span>
               </p>
               <p class="MsoNormal" style='margin-top:4.0pt;line-height:18.0pt'>
+                <#if !ext>
                 <span style='font-size:12.0pt;font-family:宋体'>
                   本组物品如未售出，将捐赠给孤儿院，<br/>
                 </span>
                 <b><span style='font-size:12.0pt;font-family:黑体'>不再退回</span></b>
                 <span style='font-size:12.0pt;font-family:宋体'>，请您谨慎选择捐赠。</span>
+                </#if><#if ext>
+                <b><span style='font-size:12.0pt;font-family:黑体'>若未售出：</span></b>
+                <span style='font-size:12.0pt;font-family:宋体'>
+                  捐孤儿院（&nbsp;&nbsp;）&nbsp;&nbsp;退回（&nbsp;&nbsp;）<br/>
+                </span>
+                <span style='font-size:12.0pt;font-family:宋体'>
+                  如需退回，请留电话：<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
+                </span>
+                </#if>
               </p>
             </td>
           </tr>

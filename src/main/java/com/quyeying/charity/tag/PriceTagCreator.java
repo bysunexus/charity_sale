@@ -1,10 +1,9 @@
-package com.quyeying.charity.export;
+package com.quyeying.charity.tag;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.Pipeline;
 import com.itextpdf.tool.xml.XMLWorker;
-import com.itextpdf.tool.xml.XMLWorkerHelper;
 import com.itextpdf.tool.xml.css.CssFilesImpl;
 import com.itextpdf.tool.xml.css.StyleAttrCSSResolver;
 import com.itextpdf.tool.xml.html.Tags;

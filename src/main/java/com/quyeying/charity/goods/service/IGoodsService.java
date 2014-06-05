@@ -16,5 +16,5 @@ public interface IGoodsService {
      * @param goods 捐品
      * @return 捐品id
      */
-    Serializable save(Goods goods);
+    String save(Goods goods);
 }
