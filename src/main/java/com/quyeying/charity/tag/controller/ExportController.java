@@ -12,4 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/priceTag")
 public class ExportController {
 
+    @RequestMapping
+    public String main(){
+        return "tag/main";
+    }
 }

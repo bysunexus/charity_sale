@@ -6,15 +6,15 @@ package com.quyeying.charity.tag;
  * Time: 12:00
  */
 public class TagDto {
-    private String GoodsType;
+    private String goodsType;
     private Integer total;
 
     public String getGoodsType() {
-        return GoodsType;
+        return goodsType;
     }
 
     public void setGoodsType(String goodsType) {
-        GoodsType = goodsType;
+        this.goodsType = goodsType;
     }
 
     public Integer getTotal() {

@@ -3,6 +3,8 @@ Core script to handle the entire theme and core functions
 **/
 var App = function () {
 
+    var ctx = "";
+
     // IE mode
     var isRTL = false;
     var isIE8 = false;
@@ -36,7 +38,7 @@ var App = function () {
             width: e[a + 'Width'],
             height: e[a + 'Height']
         }
-    }
+    };
 
     // initializes main settings
     var handleInit = function () {
@@ -73,7 +75,7 @@ var App = function () {
                 $('.footer').show();
             });
         }
-    }
+    };
 
     var handleSidebarState = function () {
         // remove sidebar toggler if window width smaller than 992(for tablet and phone mode)
@@ -81,7 +83,7 @@ var App = function () {
         if (viewport.width < 992) {
             $('body').removeClass("page-sidebar-closed");
         }
-    }
+    };
 
     // runs callback functions set by App.addResponsiveHandler().
     var runResponsiveHandlers = function () {
@@ -90,7 +92,7 @@ var App = function () {
             var each = responsiveHandlers[i];
             each.call();
         }
-    }
+    };
 
     // reinitialize the laypot on window resize
     var handleResponsive = function () {
@@ -98,13 +100,13 @@ var App = function () {
         handleSidebarAndContentHeight();
         handleFixedSidebar();
         runResponsiveHandlers();
-    }
+    };
 
     // initialize the layout on page load
     var handleResponsiveOnInit = function () {
         handleSidebarState();
         handleSidebarAndContentHeight();
-    }
+    };
 
     // handle the layout reinitialization on window resize
     var handleResponsiveOnResize = function () {
@@ -133,7 +135,7 @@ var App = function () {
                 }, 50); // wait 50ms until window resize finishes.
             });
         }
-    }
+    };
 
     //* BEGIN:CORE HANDLERS *//
     // this function handles responsive layout on screen size resize or mobile device rotate.
@@ -160,7 +162,7 @@ var App = function () {
                 content.attr('style', 'min-height:' + height + 'px !important');
             }
         }
-    }
+    };
 
     // Handle sidebar menu
     var handleSidebarMenu = function () {
@@ -249,7 +251,7 @@ var App = function () {
                 async: false
             });
         });
-    }
+    };
 
     // Helper function to calculate sidebar height for fixed sidebar layout.
     var _calculateFixedSidebarViewportHeight = function () {
@@ -259,7 +261,7 @@ var App = function () {
         }
 
         return sidebarHeight;
-    }
+    };
 
     // Handles fixed sidebar
     var handleFixedSidebar = function () {
@@ -293,7 +295,7 @@ var App = function () {
             });
             handleSidebarAndContentHeight();
         }
-    }
+    };
 
     // Handles the sidebar menu hover effect for fixed sidebar.
     var handleFixedSidebarHoverable = function () {
@@ -332,7 +334,7 @@ var App = function () {
                 $(this).removeClass('page-sidebar-hovering');
             });
         });
-    }
+    };
 
     // Handles sidebar toggler to close/hide the sidebar.
     var handleSidebarToggler = function () {
@@ -400,7 +402,7 @@ var App = function () {
                 $('.sidebar-search').submit();
             }
         });
-    }
+    };
 
     // Handles the horizontal menu
     var handleHorizontalMenu = function () {
@@ -429,7 +431,7 @@ var App = function () {
                 return false;
             }
         });
-    }
+    };
 
     // Handles the go to top button at the footer
     var handleGoTop = function () {
@@ -438,7 +440,7 @@ var App = function () {
             App.scrollTo();
             e.preventDefault();
         });
-    }
+    };
 
     // Handles portlet tools & actions
     var handlePortletTools = function () {
@@ -467,7 +469,7 @@ var App = function () {
                 el.slideDown(200);
             }
         });
-    }
+    };
 
     // Handles custom checkboxes & radios using jQuery Uniform plugin
     var handleUniform = function () {
@@ -483,7 +485,7 @@ var App = function () {
                 }
             });
         }
-    }
+    };
 
     // Handles Bootstrap Accordions.
     var handleAccordions = function () {
@@ -498,7 +500,7 @@ var App = function () {
                 scrollTop: lastClicked.offset().top - 150
             }, 'slow');
         });
-    }
+    };
 
     // Handles Bootstrap Tabs.
     var handleTabs = function () {
@@ -516,7 +518,7 @@ var App = function () {
             });            
             $('a[href="#' + tabid + '"]').click();
         }
-    }
+    };
 
     // Handles Bootstrap Modals.
     var handleModals = function () {
@@ -538,12 +540,12 @@ var App = function () {
         $('body').on('hide.bs.modal', '.modal', function () {
             $('body').removeClass("modal-open-noscroll");
         });
-    }
+    };
 
     // Handles Bootstrap Tooltips.
     var handleTooltips = function () {
        jQuery('.tooltips').tooltip();
-    }
+    };
 
     // Handles Bootstrap Dropdowns
     var handleDropdowns = function () {
@@ -568,14 +570,14 @@ var App = function () {
     // Handle Hower Dropdowns
     var handleDropdownHover = function () {
         $('[data-hover="dropdown"]').dropdownHover();
-    }
+    };
 
     var handleAlerts = function () {
         $('body').on('click', '[data-close="alert"]', function(e){
             $(this).parent('.alert').hide();
             e.preventDefault();
         });
-    }
+    };
 
     // Handles Bootstrap Popovers
 
@@ -592,7 +594,7 @@ var App = function () {
                 lastPopedPopover.popover('hide');
             }
         });
-    }
+    };
 
     // Handles scrollable contents using jQuery SlimScroll plugin.
     var handleScrollers = function () {
@@ -614,7 +616,7 @@ var App = function () {
                 disableFadeOut: true
             });
         });
-    }
+    };
 
     // Handles Image Preview using jQuery Fancybox plugin
     var handleFancybox = function () {
@@ -635,7 +637,7 @@ var App = function () {
                 }
             });
         }
-    }
+    };
 
     // Fix input placeholder issue for IE8 and IE9
     var handleFixInputPlaceholderForIE = function () {
@@ -663,7 +665,7 @@ var App = function () {
                 });
             });
         }
-    }
+    };
 
     // Handle full screen mode toggle
     var handleFullScreenMode = function() {
@@ -694,7 +696,7 @@ var App = function () {
         $('#trigger_fullscreen').click(function() {
             toggleFullScreen();
         });
-    }
+    };
 
     // Handle Select2 Dropdowns
     var handleSelect2 = function() {
@@ -704,7 +706,7 @@ var App = function () {
                 allowClear: true
             });
         }
-    }
+    };
 
     // Handle Theme Settings
     var handleTheme = function () {
@@ -740,7 +742,7 @@ var App = function () {
             }
 
             $('body > .container').remove();
-        }
+        };
 
         var lastSelectedLayout = '';
 
@@ -811,13 +813,13 @@ var App = function () {
             handleSidebarAndContentHeight(); // fix content height            
             handleFixedSidebar(); // reinitialize fixed sidebar
             handleFixedSidebarHoverable(); // reinitialize fixed sidebar hover effect
-        }
+        };
 
         // handle theme colors
         var setColor = function (color) {
             $('#style_color').attr("href", "assets/css/themes/" + color + ".css");
             $.cookie('style_color', color);
-        }
+        };
 
         $('.toggler', panel).click(function () {
             $('.toggler').hide();
@@ -843,15 +845,15 @@ var App = function () {
         if ($.cookie('style_color')) {
             setColor($.cookie('style_color'));
         }
-    }
+    };
 
     //* END:CORE HANDLERS *//
 
     return {
 
         //main function to initiate the theme
-        init: function () {
-
+        init: function ( context) {
+            ctx = context;
             //IMPORTANT!!!: Do not modify the core handlers call order.
 
             //core handlers
@@ -944,7 +946,7 @@ var App = function () {
                 centerY = true;
             }
             el.block({
-                message: '<img src="./assets/img/ajax-loading.gif" align="">',
+                message: '<img src="'+ctx+'/assets/img/ajax-loading.gif" align="">',
                 centerY: centerY != undefined ? centerY : true,
                 css: {
                     top: '10%',
