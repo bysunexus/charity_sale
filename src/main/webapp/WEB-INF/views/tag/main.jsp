@@ -1,5 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/commons/commons.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="menu" content="priceTag">
+</head>
+<body>
 <!-- BEGIN PAGE HEADER-->
 <div class="row">
   <div class="col-md-12">
@@ -75,5 +81,8 @@
         $("#goodsType").val("A");
       }
     };
-  };
+  }();
 </script>
+</body>
+</html>
+

@@ -1,125 +1,38 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/commons/commons.jsp"%>
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="zh" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="zh" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!--> <html lang="zh" class="no-js"> <!--<![endif]-->
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <meta name="MobileOptimized" content="320">
-  <title>爱心义卖-管理后台</title>
-  <!-- 全局css -->
-  <link href="${ctx}/static/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-  <link href="${ctx}/static/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-  <link href="${ctx}/static/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-  <!-- 全局css -->
-  <!-- 页面css -->
-  <link href="${ctx}/static/assets/plugins/select2/select2_metro.css" rel="stylesheet" type="text/css" />
-  <!-- 页面css -->
-  <!-- 主题css -->
-  <link href="${ctx}/static/assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
-  <link href="${ctx}/static/assets/css/style.css" rel="stylesheet" type="text/css"/>
-  <link href="${ctx}/static/assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
-  <link href="${ctx}/static/assets/css/plugins.css" rel="stylesheet" type="text/css"/>
-  <link href="${ctx}/static/assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
-  <link href="${ctx}/static/assets/css/custom.css" rel="stylesheet" type="text/css"/>
-  <!-- 主题css -->
+  <meta name="menu" content="">
 </head>
-<body class="page-header-fixed">
-  <!-- 头条 -->
-  <div class="header navbar navbar-inverse navbar-fixed-top">
-    <!-- 顶部导航条 -->
-    <div class="header-inner">
-      <!-- logo -->
-      <a class="navbar-brand" href="${ctx}/">&nbsp;&nbsp;&nbsp;&nbsp;爱心义卖</a>
-      <!-- 相应菜单toggler -->
-      <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <img src="${ctx}/static/assets/img/menu-toggler.png" alt="" />
-      </a>
-      <!-- 导航条菜单 -->
-      <ul class="nav navbar-nav pull-right">
-      </ul>
-    </div>
+<body>
+<!-- BEGIN PAGE HEADER-->
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+    <h3 class="page-title">
+      爱心义卖
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <a href="${ctx}/">主页</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li><a href="#"></a></li>
+    </ul>
+    <!-- END PAGE TITLE & BREADCRUMB-->
   </div>
-  <div class="clearfix"></div>
-  <!-- 容器 -->
-  <div class="page-container">
-    <!-- 左侧导航条 -->
-    <div class="page-sidebar navbar-collapse collapse">
-      <!-- 导航条菜单 -->
-      <ul class="page-sidebar-menu">
-        <li>
-          <!-- 显隐按钮 -->
-          <div class="sidebar-toggler hidden-xs"></div>
-        </li>
-        <li class="start active">
-          <a href="${ctx}/main">
-            <i class="fa fa-home"></i>
-            <span class="title">首页</span>
-            <span class="selected"></span>
-          </a>
-        </li>
-        <li class="last">
-          <a href="javascript:;">
-            <i class="fa fa-cogs"></i>
-            <span class="title">系统功能</span>
-            <span class="selected"></span>
-            <span class="arrow open"></span>
-          </a>
-          <ul class="sub-menu">
-            <li>
-              <a href="${ctx}/priceTag">
-                生成价签
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <!-- 主页面显示区域 -->
-    <div class="page-content">
-
-    </div>
+</div>
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+  <div class="col-md-12">
+    <blockquote>
+      爱心义卖销售平台
+    </blockquote>
   </div>
-  <!-- 底条 -->
-  <div class="footer">
-    <div class="footer-inner">
-      2014 &copy; Charity by <a class="text-info" href="http://www.quyeying.com" target="_blank">QuYeYing</a>
-    </div>
-    <div class="footer-tools">
-			<span class="go-top">
-			<i class="fa fa-angle-up"></i>
-			</span>
-    </div>
-  </div>
-  <!-- 引入js文件 -->
-  <!-- 核心插件 -->
-  <!--[if lt IE 9]>
-  <script src="${ctx}/static/assets/plugins/respond.min.js"></script>
-  <script src="${ctx}/static/assets/plugins/excanvas.min.js"></script>
-  <![endif]-->
-  <script src="${ctx}/static/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript" ></script>
-  <script src="${ctx}/static/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
-  <!-- 页面插件 -->
-  <script type="text/javascript" src="${ctx}/static/assets/plugins/select2/select2.min.js"></script>
-  <script src="${ctx}/static/assets/scripts/app.js" type="text/javascript"></script>
-  <script>
-    jQuery(document).ready(function() {
-      // 页面初始化
-      App.init('${ctx}/static');
-      // 载入默认页
-      $('.page-sidebar .ajaxify.start').click();
-    });
-  </script>
-  <!-- END JAVASCRIPTS -->
+</div>
+<!-- END PAGE CONTENT-->
 </body>
 </html>

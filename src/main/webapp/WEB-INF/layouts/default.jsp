@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/WEB-INF/commons/commons.jsp"%>
 <%@ taglib prefix="sitemesh" uri="http://www.opensymphony.com/sitemesh/decorator" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
+<c:set var="menu" scope="page"><sitemesh:getProperty property="meta.menu"/></c:set>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="zh" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="zh" class="ie9 no-js"> <![endif]-->
@@ -28,6 +28,7 @@
   <link href="${ctx}/static/assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
   <link href="${ctx}/static/assets/css/custom.css" rel="stylesheet" type="text/css"/>
   <!-- 主题css -->
+  <sitemesh:head/>
 </head>
 <body class="page-header-fixed">
   <!-- 头条 -->
@@ -56,14 +57,14 @@
           <!-- 显隐按钮 -->
           <div class="sidebar-toggler hidden-xs"></div>
         </li>
-        <li class="start active">
-          <a href="${ctx}/main">
+        <li class="start ${menu==''?'active':''}">
+          <a href="${ctx}/">
             <i class="fa fa-home"></i>
             <span class="title">首页</span>
             <span class="selected"></span>
           </a>
         </li>
-        <li class="last">
+        <li class="last ${menu=='priceTag'?'active':''}">
           <a href="javascript:;">
             <i class="fa fa-cogs"></i>
             <span class="title">系统功能</span>
@@ -71,7 +72,7 @@
             <span class="arrow open"></span>
           </a>
           <ul class="sub-menu">
-            <li>
+            <li class="${menu=='priceTag'?'active':''}">
               <a href="${ctx}/priceTag">
                 生成价签
               </a>
@@ -82,7 +83,7 @@
     </div>
     <!-- 主页面显示区域 -->
     <div class="page-content">
-
+      <sitemesh:body/>
     </div>
   </div>
   <!-- 底条 -->
@@ -118,8 +119,7 @@
     jQuery(document).ready(function() {
       // 页面初始化
       App.init('${ctx}/static');
-      // 载入默认页
-      $('.page-sidebar .ajaxify.start').click();
+
     });
   </script>
   <!-- END JAVASCRIPTS -->
