@@ -35,8 +35,11 @@
   <div class="header navbar navbar-inverse navbar-fixed-top">
     <!-- 顶部导航条 -->
     <div class="header-inner">
-      <!-- logo -->
-      <a class="navbar-brand" href="${ctx}/">&nbsp;&nbsp;&nbsp;&nbsp;爱心义卖</a>
+      <!-- BEGIN LOGO -->
+      <a class="navbar-brand" href="${ctx}/">
+        <img src="${ctx}/static/assets/img/logo.png" alt="logo" class="img-responsive" />
+      </a>
+      <!-- END LOGO -->
       <!-- 相应菜单toggler -->
       <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <img src="${ctx}/static/assets/img/menu-toggler.png" alt="" />
