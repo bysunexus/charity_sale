@@ -852,7 +852,7 @@ var App = function () {
     return {
 
         //main function to initiate the theme
-        init: function ( context) {
+        init: function (context) {
             ctx = context;
             //IMPORTANT!!!: Do not modify the core handlers call order.
 

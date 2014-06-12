@@ -122,7 +122,6 @@
     jQuery(document).ready(function() {
       // 页面初始化
       App.init('${ctx}/static');
-
     });
   </script>
   <!-- END JAVASCRIPTS -->

@@ -1,16 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="/WEB-INF/commons/commons.jsp"%>
+<%@ include file="/WEB-INF/commons/commons.jsp" %>
 <!DOCTYPE html>
-<html>
 <!--[if IE 8]> <html lang="zh" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="zh" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!--> <html lang="zh" class="no-js"> <!--<![endif]-->
+<!--[if !IE]><!-->
+<html lang="zh" class="no-js"> <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-  <meta charset="utf-8" />
-  <title>爱心义卖--去野营</title>
+  <meta charset="utf-8"/>
+  <title>爱心义卖</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta name="MobileOptimized" content="320">
   <!-- BEGIN GLOBAL MANDATORY STYLES -->
   <link href="${ctx}/static/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -18,7 +18,7 @@
   <link href="${ctx}/static/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
   <!-- END GLOBAL MANDATORY STYLES -->
   <!-- BEGIN PAGE LEVEL STYLES -->
-  <link rel="stylesheet" type="text/css" href="${ctx}/static/assets/plugins/select2/select2_metro.css" />
+  <link rel="stylesheet" type="text/css" href="${ctx}/static/assets/plugins/select2/select2_metro.css"/>
   <!-- END PAGE LEVEL SCRIPTS -->
   <!-- BEGIN THEME STYLES -->
   <link href="${ctx}/static/assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
@@ -30,108 +30,121 @@
   <link href="${ctx}/static/assets/css/custom.css" rel="stylesheet" type="text/css"/>
   <!-- END THEME STYLES -->
 </head>
-<body>
-
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="login">
 <!-- BEGIN LOGO -->
 <div class="logo">
-  <img src="${ctx}/static/assets/img/logo-big.png" alt="" />
+  <img src="${ctx}/static/assets/img/logo-big.png" alt=""/>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
 <div class="content">
 <!-- BEGIN LOGIN FORM -->
-<form class="login-form" action="index.html" method="post">
-  <h3 class="form-title">Login to your account</h3>
+<form class="login-form" action="${ctx}/checkLogin" method="post">
+  <h3 class="form-title">请登录您的账号</h3>
+
   <div class="alert alert-danger display-hide">
     <button class="close" data-close="alert"></button>
-    <span>Enter any username and password.</span>
+    <span>请输入您的账号密码.</span>
   </div>
   <div class="form-group">
     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-    <label class="control-label visible-ie8 visible-ie9">Username</label>
+    <label class="control-label visible-ie8 visible-ie9">账号</label>
+
     <div class="input-icon">
       <i class="fa fa-user"></i>
-      <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/>
+      <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="账号" name="userName"/>
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label visible-ie8 visible-ie9">Password</label>
+    <label class="control-label visible-ie8 visible-ie9">密码</label>
+
     <div class="input-icon">
       <i class="fa fa-lock"></i>
-      <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password"/>
+      <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="passWord"/>
     </div>
   </div>
   <div class="form-actions">
     <label class="checkbox">
-      <input type="checkbox" name="remember" value="1"/> Remember me
+      <input type="checkbox" name="remember" value="1"/> 记住我
     </label>
     <button type="submit" class="btn blue pull-right">
-      Login <i class="m-icon-swapright m-icon-white"></i>
+      登录 <i class="m-icon-swapright m-icon-white"></i>
     </button>
   </div>
   <div class="forget-password">
-    <h4>Forgot your password ?</h4>
+    <h4>忘记密码 ?</h4>
+
     <p>
-      no worries, click <a href="javascript:;"  id="forget-password">here</a>
-      to reset your password.
+      不用烦恼, 点击 <a href="javascript:;" id="forget-password">这里</a>
+      重置你的密码.
     </p>
   </div>
   <div class="create-account">
     <p>
-      Don't have an account yet ?&nbsp;
-      <a href="javascript:;" id="register-btn" >Create an account</a>
+      还没有帐号吗 ?&nbsp;
+      <a href="javascript:;" id="register-btn">创建账号</a>
     </p>
   </div>
 </form>
 <!-- END LOGIN FORM -->
 <!-- BEGIN FORGOT PASSWORD FORM -->
 <form class="forget-form" action="index.html" method="post">
-  <h3 >Forget Password ?</h3>
-  <p>Enter your e-mail address below to reset your password.</p>
+  <h3>忘记密码 ?</h3>
+
+  <p>在下面输入您的电子邮件地址来重设密码。</p>
+
   <div class="form-group">
     <div class="input-icon">
       <i class="fa fa-envelope"></i>
-      <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" />
+      <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="电子邮件地址" name="email"/>
     </div>
   </div>
   <div class="form-actions">
     <button type="button" id="back-btn" class="btn">
-      <i class="m-icon-swapleft"></i> Back
+      <i class="m-icon-swapleft"></i> 返回
     </button>
     <button type="submit" class="btn blue pull-right">
-      Submit <i class="m-icon-swapright m-icon-white"></i>
+      提交 <i class="m-icon-swapright m-icon-white"></i>
     </button>
   </div>
 </form>
 <!-- END FORGOT PASSWORD FORM -->
 <!-- BEGIN REGISTRATION FORM -->
 <form class="register-form" action="index.html" method="post">
-<h3 >Sign Up</h3>
-<p>Enter your personal details below:</p>
+<h3>创建账号</h3>
+
+<p>在下面输入您的个人信息:</p>
+
 <div class="form-group">
-  <label class="control-label visible-ie8 visible-ie9">Full Name</label>
+  <label class="control-label visible-ie8 visible-ie9">全名</label>
+
   <div class="input-icon">
     <i class="fa fa-font"></i>
-    <input class="form-control placeholder-no-fix" type="text" placeholder="Full Name" name="fullname"/>
+    <input class="form-control placeholder-no-fix" type="text" placeholder="全名" name="fullname"/>
   </div>
 </div>
 <div class="form-group">
   <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-  <label class="control-label visible-ie8 visible-ie9">Email</label>
+  <label class="control-label visible-ie8 visible-ie9">电子邮箱</label>
+
   <div class="input-icon">
     <i class="fa fa-envelope"></i>
-    <input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email"/>
+    <input class="form-control placeholder-no-fix" type="text" placeholder="电子邮箱" name="email"/>
   </div>
 </div>
 <div class="form-group">
-  <label class="control-label visible-ie8 visible-ie9">Address</label>
+  <label class="control-label visible-ie8 visible-ie9">地址</label>
+
   <div class="input-icon">
     <i class="fa fa-check"></i>
-    <input class="form-control placeholder-no-fix" type="text" placeholder="Address" name="address"/>
+    <input class="form-control placeholder-no-fix" type="text" placeholder="地址" name="address"/>
   </div>
 </div>
 <div class="form-group">
   <label class="control-label visible-ie8 visible-ie9">City/Town</label>
+
   <div class="input-icon">
     <i class="fa fa-location-arrow"></i>
     <input class="form-control placeholder-no-fix" type="text" placeholder="City/Town" name="city"/>
@@ -378,42 +391,47 @@
 <option value="ZW">Zimbabwe</option>
 </select>
 </div>
-<p>Enter your account details below:</p>
+<p>在下面输入您的帐户信息:</p>
+
 <div class="form-group">
-  <label class="control-label visible-ie8 visible-ie9">Username</label>
+  <label class="control-label visible-ie8 visible-ie9">用户名</label>
+
   <div class="input-icon">
     <i class="fa fa-user"></i>
-    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/>
+    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名" name="username"/>
   </div>
 </div>
 <div class="form-group">
-  <label class="control-label visible-ie8 visible-ie9">Password</label>
+  <label class="control-label visible-ie8 visible-ie9">密码</label>
+
   <div class="input-icon">
     <i class="fa fa-lock"></i>
-    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Password" name="password"/>
+    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="密码" name="password"/>
   </div>
 </div>
 <div class="form-group">
-  <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
+  <label class="control-label visible-ie8 visible-ie9">重新输入您的密码</label>
+
   <div class="controls">
     <div class="input-icon">
       <i class="fa fa-check"></i>
-      <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="rpassword"/>
+      <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="重新输入您的密码" name="rpassword"/>
     </div>
   </div>
 </div>
 <div class="form-group">
   <label>
-    <input type="checkbox" name="tnc"/> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+    <input type="checkbox" name="tnc"/> 我同意 <a href="#">服务</a> 和 <a href="#">隐私政策条款</a>
   </label>
+
   <div id="register_tnc_error"></div>
 </div>
 <div class="form-actions">
   <button id="register-back-btn" type="button" class="btn">
-    <i class="m-icon-swapleft"></i>  Back
+    <i class="m-icon-swapleft"></i> 返回
   </button>
   <button type="submit" id="register-submit-btn" class="btn blue pull-right">
-    Sign Up <i class="m-icon-swapright m-icon-white"></i>
+    创建 <i class="m-icon-swapright m-icon-white"></i>
   </button>
 </div>
 </form>
@@ -422,7 +440,7 @@
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
 <div class="copyright">
-  2013 &copy; Metronic - Admin Dashboard Template.
+  2014 &copy; Charity by <a class="text-info" href="http://www.quyeying.com" target="_blank">QuYeYing</a>
 </div>
 <!-- END COPYRIGHT -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
@@ -433,22 +451,29 @@
 <![endif]-->
 <script src="${ctx}/static/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${ctx}/static/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript" ></script>
+<script src="${ctx}/static/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
-<script src="${ctx}/static/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
+<script src="${ctx}/static/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="${ctx}/static/assets/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="${ctx}/static/assets/plugins/select2/select2.min.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="${ctx}/static/assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/scripts/app.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/scripts/login-soft.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
-
+<script>
+  jQuery(document).ready(function () {
+    App.init('${ctx}/static');
+    Login.init('${ctx}/static');
+  });
+</script>
 <!-- END JAVASCRIPTS -->
 </body>
-</html>
+<!-- END BODY -->

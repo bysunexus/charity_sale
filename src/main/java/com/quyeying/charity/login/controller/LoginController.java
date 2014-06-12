@@ -24,20 +24,20 @@ public class LoginController {
      *
      * @return 返回首页
      */
-    @RequestMapping(value = "login", method = RequestMethod.POST)
+    @RequestMapping(value = "checkLogin", method = RequestMethod.POST)
     public ModelAndView login(String userName, String passWord) {
         if (this.checkParams(new String[]{userName, passWord})) {
             ModelAndView mav = new ModelAndView("index");
-            mav.addObject("username",userName);
-            mav.addObject("password", passWord);
+//            mav.addObject("userName",userName);
+//            mav.addObject("passWord", passWord);
             return mav;
         }
-        return new ModelAndView("login");
+        return new ModelAndView("login/login");
     }
 
-    @RequestMapping(value = "toLogin")
+    @RequestMapping(value = "login")
     public ModelAndView toLogin() {
-        return new ModelAndView("login");
+        return new ModelAndView("login/login");
     }
 
     /**
