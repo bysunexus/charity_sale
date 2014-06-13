@@ -67,6 +67,21 @@
             <span class="selected"></span>
           </a>
         </li>
+        <li class="last ${menu=='adminAccountManager'?'active':''}">
+          <a href="javascript:;">
+            <i class="fa fa-wrench"></i>
+            <span class="title">管理员功能</span>
+            <span class="selected"></span>
+            <span class="arrow open"></span>
+          </a>
+          <ul class="sub-menu">
+            <li class="${menu=='adminAccountManager'?'active':''}">
+              <a href="${ctx}/goAdminAccountManager">
+                账号管理
+              </a>
+            </li>
+          </ul>
+        </li>
         <li class="last ${menu=='priceTag'?'active':''}">
           <a href="javascript:;">
             <i class="fa fa-cogs"></i>
@@ -84,6 +99,33 @@
         </li>
       </ul>
     </div>
+
+    <!-- 引入js文件 -->
+    <!-- 核心插件 -->
+    <!--[if lt IE 9]>
+    <script src="${ctx}/static/assets/plugins/respond.min.js"></script>
+    <script src="${ctx}/static/assets/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="${ctx}/static/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="${ctx}/static/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <script src="${ctx}/static/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+    <script src="${ctx}/static/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${ctx}/static/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript" ></script>
+    <script src="${ctx}/static/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="${ctx}/static/assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="${ctx}/static/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
+    <script src="${ctx}/static/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
+    <!-- 页面插件 -->
+    <script type="text/javascript" src="${ctx}/static/assets/plugins/select2/select2.min.js"></script>
+    <script src="${ctx}/static/assets/scripts/app.js" type="text/javascript"></script>
+    <script>
+      jQuery(document).ready(function() {
+        // 页面初始化
+        App.init('${ctx}/static');
+      });
+    </script>
+    <!-- END JAVASCRIPTS -->
+
     <!-- 主页面显示区域 -->
     <div class="page-content">
       <sitemesh:body/>
@@ -100,30 +142,5 @@
 			</span>
     </div>
   </div>
-  <!-- 引入js文件 -->
-  <!-- 核心插件 -->
-  <!--[if lt IE 9]>
-  <script src="${ctx}/static/assets/plugins/respond.min.js"></script>
-  <script src="${ctx}/static/assets/plugins/excanvas.min.js"></script>
-  <![endif]-->
-  <script src="${ctx}/static/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript" ></script>
-  <script src="${ctx}/static/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
-  <!-- 页面插件 -->
-  <script type="text/javascript" src="${ctx}/static/assets/plugins/select2/select2.min.js"></script>
-  <script src="${ctx}/static/assets/scripts/app.js" type="text/javascript"></script>
-  <script>
-    jQuery(document).ready(function() {
-      // 页面初始化
-      App.init('${ctx}/static');
-    });
-  </script>
-  <!-- END JAVASCRIPTS -->
 </body>
 </html>
