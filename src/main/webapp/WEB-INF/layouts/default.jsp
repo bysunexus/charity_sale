@@ -46,7 +46,13 @@
   <!-- 页面插件 -->
   <script src="${ctx}/static/assets/scripts/app.js" type="text/javascript"></script>
   <sitemesh:head/>
-  <script type="text/javascript">var ctx = '${ctx}';</script>
+  <script type="text/javascript">
+    var ctx = '${ctx}';
+    jQuery(document).ready(function() {
+      // 页面初始化
+      App.init('${ctx}/static');
+    });
+  </script>
 </head>
 <body class="page-header-fixed">
   <!-- 头条 -->
