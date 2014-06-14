@@ -42,7 +42,7 @@ import java.util.TreeMap;
 public class PriceTagCreator {
     private final static Logger log = LoggerFactory.getLogger(PriceTagCreator.class);
     public final static String BASE_PATH = PriceTagCreator.class.getClassLoader().getResource("doctmp/").getFile();
-    public final static String PDF_PATH = BASE_PATH + "pdf/";
+
     private TagDto dto;
 
     public PriceTagCreator(TagDto dto) {
@@ -50,9 +50,14 @@ public class PriceTagCreator {
     }
 
     private void createBarcodeImg() {
+        File imgPath = new File(dto.getBase() + "images/");
+
         // clean image dir
         try {
-            FileUtils.cleanDirectory(new File(BASE_PATH + "images/"));
+            if(!imgPath.exists())
+                FileUtils.forceMkdir(imgPath);
+            else
+                FileUtils.cleanDirectory(imgPath);
         } catch (IOException e) {
             log.info("清理条码目录的时候发生了错误", e);
             throw Exceptions.unchecked(e);
@@ -70,7 +75,7 @@ public class PriceTagCreator {
         bean.setBarHeight(10);
         bean.setModuleWidth(0.4);
         bean.setMsgPosition(HumanReadablePlacement.HRP_NONE);
-        File outputFile = new File(BASE_PATH + "images/" + code + ".png");
+        File outputFile = new File(dto.getBase() + "images/" + code + ".png");
         OutputStream out = null;
         try {
             out = new FileOutputStream(outputFile);
@@ -127,8 +132,9 @@ public class PriceTagCreator {
         OutputStream file = null;
         Document document = null;
         try {
-            FileUtils.forceMkdir(new File(PDF_PATH));
-            String pdfFile = PDF_PATH + dto.getGoodsType() + "-" + System.currentTimeMillis() + ".pdf";
+            FileUtils.forceMkdir(new File(dto.getBase()+"pdf/"));
+            String fileName = "pdf/" +dto.getGoodsType() + "-" + System.currentTimeMillis() + ".pdf";
+            String pdfFile = dto.getBase()+ fileName;
             file = new FileOutputStream(new File(pdfFile));
             document = new Document();
             PdfWriter writer = PdfWriter.getInstance(document, file);
@@ -141,7 +147,7 @@ public class PriceTagCreator {
 
                 @Override
                 public String getImageRootPath() {
-                    return BASE_PATH;
+                    return dto.getBase();
                 }
             });
 
@@ -155,7 +161,7 @@ public class PriceTagCreator {
             p.addListener(worker);
             p.parse(new StringReader(createHtml()));
 
-            return pdfFile;
+            return fileName;
         } catch (Throwable e) {
             log.info("生成PDF时发生了错误", e);
             throw Exceptions.unchecked(e);

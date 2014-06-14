@@ -24,7 +24,11 @@
     <property name="maxUploadSize" value="10485760"/>
     <property name="maxInMemorySize" value="40960"/>
   </bean>
-  <mvc:annotation-driven conversion-service="conversionService">
+  <!-- bean 校验器 -->
+  <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+    <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+  </bean>
+  <mvc:annotation-driven conversion-service="conversionService" validator="validator">
     <mvc:message-converters register-defaults="true">
       <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
       <!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->

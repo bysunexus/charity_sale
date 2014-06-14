@@ -39,7 +39,7 @@
       </div>
       <div class="portlet-body form">
         <div class="form-horizontal" role="form">
-          <div class="form-body">
+          <div id="tagForm" class="form-body">
             <div class="form-group">
               <label class="col-lg-3 control-label">数量</label>
 
@@ -63,12 +63,24 @@
           </div>
           <div class="form-actions right">
             <button type="button" class="btn default" onclick="TagMain.cancel();">取消</button>
-            <button type="submit" class="btn green">确定</button>
+            <button type="submit" class="btn green" onclick="TagMain.create();">确定</button>
           </div>
         </div>
       </div>
     </div>
     <!-- END SAMPLE FORM PORTLET-->
+
+    <div class="portlet box yellow">
+      <div class="portlet-title">
+        <div class="caption"><i class="fa fa-reorder"></i>下载文件(请先生成后再下载)</div>
+      </div>
+      <div class="portlet-body">
+        <table class="table table-hover table-striped table-bordered">
+          <tbody id="fileResult">
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 <!-- END PAGE CONTENT-->
@@ -79,6 +91,31 @@
       cancel:function(){
         $("#total").val(200);
         $("#goodsType").val("A");
+      },
+      create:function(){
+
+        $.ajax({
+          type: "POST",
+          url:ctx+'/priceTag/export',
+          data:$('#tagForm').serializeForm(),
+          beforeSend: function(){
+            //AJAX请求完成时显示提示，防止表单重复提交
+            App.blockUI($("body"));
+          },
+          complete: function(){
+            //AJAX请求完成时隐藏loading提示
+            App.unblockUI($("body"));
+          },
+          success: function (data) {
+            if(data.success){
+              var file = data.data;
+              var fileName = file.split("/")[1];
+              $("#fileResult").append('<tr><td>'+fileName+'&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn green" target="_blank" href="'+ctx+'/download/'+file+'"><i class="fa fa-cloud-download"></i>下载</a></td></tr>');
+            }else{
+              bootbox.alert(data.msg);
+            }
+          }
+        });
       }
     };
   }();

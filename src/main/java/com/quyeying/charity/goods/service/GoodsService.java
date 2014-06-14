@@ -24,7 +24,6 @@ public class GoodsService implements IGoodsService {
     public String save(Goods goods){
         if(StringUtils.isBlank(goods.getPkid()))
             goods.setPkid(Identities.uuid2());
-
         template.save(goods);
         return goods.getPkid();
     }

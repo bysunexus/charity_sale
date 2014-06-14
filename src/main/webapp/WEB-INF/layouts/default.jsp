@@ -29,6 +29,7 @@
   <link href="${ctx}/static/assets/css/custom.css" rel="stylesheet" type="text/css"/>
   <!-- 主题css -->
   <sitemesh:head/>
+  <script type="text/javascript">var ctx = '${ctx}';</script>
 </head>
 <body class="page-header-fixed">
   <!-- 头条 -->
@@ -108,6 +109,7 @@
   <![endif]-->
   <script src="${ctx}/static/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+  <script src="${ctx}/static/jquery/jquery-serializeForm.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript" ></script>
@@ -116,7 +118,8 @@
   <script src="${ctx}/static/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
   <!-- 页面插件 -->
-  <script type="text/javascript" src="${ctx}/static/assets/plugins/select2/select2.min.js"></script>
+  <script src="${ctx}/static/assets/plugins/select2/select2.min.js" type="text/javascript"></script>
+  <script src="${ctx}/static/assets/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/scripts/app.js" type="text/javascript"></script>
   <script>
     jQuery(document).ready(function() {
