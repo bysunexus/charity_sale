@@ -4,6 +4,7 @@
 <html>
 <head>
   <meta name="menu" content="priceTag">
+  <script src="${ctx}/static/assets/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
 </head>
 <body>
 <!-- BEGIN PAGE HEADER-->
