@@ -105,6 +105,7 @@ var AdminAccountManagerTable = function () {
 
       var nEditing = null;
 
+      //TODO: 添加两条后取消会报错  这里看下是否限制只允许同时添加一条数据
       $('#sample_editable_1_new').click(function (e) {
         e.preventDefault();
         var aiNew = oTable.fnAddData(['', '', '', '',
