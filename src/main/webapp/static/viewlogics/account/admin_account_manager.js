@@ -4,13 +4,6 @@
  * Date: 2014/6/13
  * Time: 14:21
  */
-
-
-
-
-
-
-
 var AdminAccountManagerTable = function () {
 
   return {

@@ -91,6 +91,21 @@
             <span class="selected"></span>
           </a>
         </li>
+        <li class="last ${menu=='storage'?'active':''}">
+          <a href="javascript:;">
+            <i class="fa fa-table"></i>
+            <span class="title">业务功能</span>
+            <span class="selected"></span>
+            <span class="arrow open"></span>
+          </a>
+          <ul class="sub-menu">
+            <li class="${menu=='storage'?'active':''}">
+              <a href="${ctx}/goStorage">
+                商品录入
+              </a>
+            </li>
+          </ul>
+        </li>
         <li class="last ${menu=='adminAccountManager'?'active':''}">
           <a href="javascript:;">
             <i class="fa fa-wrench"></i>
@@ -102,6 +117,11 @@
             <li class="${menu=='adminAccountManager'?'active':''}">
               <a href="${ctx}/goAdminAccountManager">
                 账号管理
+              </a>
+            </li>
+            <li class="${menu=='totalReport'?'active':''}">
+              <a href="${ctx}/goTotalReport">
+                总报表查询
               </a>
             </li>
           </ul>
