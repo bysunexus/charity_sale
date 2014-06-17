@@ -59,25 +59,20 @@
             <label><input type="checkbox" checked data-column="4">CSS grade</label>
           </div>
         </div>
+        <div class="btn-group">
+          <a class="btn default" href="#" data-toggle="dropdown">
+            工具
+            <i class="fa fa-angle-down"></i>
+          </a>
+          <div id="sample_2_column_toggler_tools" class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
+            <label><a href="#">打印</a></label>
+            <label><a href="#">保存为 PDF</a></label>
+            <label><a href="#">保存为 Excel</a></label>
+          </div>
+        </div>
       </div>
     </div>
     <div class="portlet-body">
-      <div class="table-toolbar">
-        <div class="btn-group" style="visibility: hidden;">
-          <button id="sample_editable_1_new" class="btn green" style="visibility: hidden;">
-            &nbsp;<i class="fa fa-plus" style="visibility: hidden;"></i>
-          </button>
-        </div>
-        <div class="btn-group pull-right">
-          <button class="btn dropdown-toggle" data-toggle="dropdown">工具 <i class="fa fa-angle-down"></i>
-          </button>
-          <ul class="dropdown-menu pull-right">
-            <li><a href="#">打印</a></li>
-            <li><a href="#">保存为 PDF</a></li>
-            <li><a href="#">保存为 Excel</a></li>
-          </ul>
-        </div>
-      </div>
       <table class="table table-striped table-bordered table-hover table-full-width" id="sample_2">
       <thead>
         <tr>

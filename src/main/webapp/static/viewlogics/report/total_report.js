@@ -17,7 +17,7 @@ var TotalReport = function () {
         [5, 15, 20, "All"] // change per page values here
       ],
       // set the initial value
-      "iDisplayLength": 10,
+      "iDisplayLength": 10
     });
 
     jQuery('#sample_2_wrapper .dataTables_filter input').addClass("form-control input-small"); // modify table search input
