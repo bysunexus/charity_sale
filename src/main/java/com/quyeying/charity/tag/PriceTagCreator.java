@@ -1,6 +1,8 @@
 package com.quyeying.charity.tag;
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.Pipeline;
 import com.itextpdf.tool.xml.XMLWorker;
@@ -136,7 +138,7 @@ public class PriceTagCreator {
             String fileName = "pdf/" +dto.getGoodsType() + "-" + System.currentTimeMillis() + ".pdf";
             String pdfFile = dto.getBase()+ fileName;
             file = new FileOutputStream(new File(pdfFile));
-            document = new Document();
+            document = new Document(PageSize.A4);
             PdfWriter writer = PdfWriter.getInstance(document, file);
             document.open();
 
@@ -150,7 +152,6 @@ public class PriceTagCreator {
                     return dto.getBase();
                 }
             });
-
             hpc.setAcceptUnknown(true).autoBookmark(true).setTagFactory(Tags.getHtmlTagProcessorFactory());
             Pipeline<?> pipeline = new CssResolverPipeline(
                 cssResolver,

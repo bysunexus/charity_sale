@@ -8,6 +8,7 @@ import org.springframework.data.authentication.UserCredentials;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.core.MongoFactoryBean;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import javax.annotation.Resource;
 import java.util.Properties;
@@ -19,6 +20,7 @@ import java.util.Properties;
  * Time: 16:27
  */
 @Configuration
+@EnableMongoRepositories("com.quyeying.charity")
 public class AppCtxCfgMongo extends AbstractMongoConfiguration {
 
     @Resource(name="appProperties")
@@ -38,8 +40,6 @@ public class AppCtxCfgMongo extends AbstractMongoConfiguration {
         mfb.afterPropertiesSet();
         return mfb.getObject();
     }
-
-
 
     @Override
     protected UserCredentials getUserCredentials() {

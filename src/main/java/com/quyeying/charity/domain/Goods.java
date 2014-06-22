@@ -31,7 +31,7 @@ public class Goods {
         B("B", "5元区"),
         C("C", "10元区"),
         D("D", "25元区"),
-        E("E", "50元及以上区",true);
+        E("E", "50元及以上",true);
 
         GoodsType(String code, String name) {
             this.code = code;
