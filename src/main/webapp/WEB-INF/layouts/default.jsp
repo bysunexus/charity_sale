@@ -104,6 +104,11 @@
                 商品录入
               </a>
             </li>
+            <li class="${menu=='groupReport'?'active':''}">
+              <a href="${ctx}/goGroupReport">
+                组内销售查询
+              </a>
+            </li>
           </ul>
         </li>
         <li class="last ${menu=='adminAccountManager'?'active':''}">
@@ -120,7 +125,7 @@
               </a>
             </li>
             <li class="${menu=='totalReport'?'active':''}">
-              <a href="${ctx}/goTotalReport">
+              <a href="${ctx}/totalReport">
                 总报表查询
               </a>
             </li>
