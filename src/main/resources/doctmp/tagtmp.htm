@@ -1,10 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-  <meta http-equiv=Content-Type content="text/html; charset=utf-8"/>
-  <meta name=Generator content="Microsoft Word 15 (filtered)"/>
-  <title>A1</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title></title>
   <style>
     <!--
     /* Font Definitions */
@@ -20,7 +17,7 @@
 
     @font-face {
       font-family: "Cambria Math";
-      panose-1: 2 4 5 3 5 4 6 3 2 4;
+      panose-1: 0 0 0 0 0 0 0 0 0 0;
     }
 
     @font-face {
@@ -83,82 +80,94 @@
 </head>
 
 <body lang="ZH-CN" style='text-justify-trim:punctuation'>
-<table cellpadding="0" cellspacing="0" style="width: 100%;">
 <#list 1..total as i>
+<#if i%8=1>
+<div class="WordSection1" style='layout-grid:15.6pt'>
+<table cellpadding="0" cellspacing="0">
+</#if>
 <#if i%2=1>
   <tr>
-    <td style="width: 50%;">
 </#if>
-<#if i%2=0>
-    <td style="width: 50%;">
+    <td>
+      <table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" style='border-collapse:collapse;border:none'>
+        <tr>
+          <td valign="top" style='width:320px;border:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt'>
+            <p class="MsoNormal">
+              <span lang="EN-US" style='font-size:14.0pt'>${codePrefix}${i}</span>
+              <span lang="EN-US"><img width="138" height="31" src="images/${codePrefix}${i}.png"/></span>
+              <span style='font-size:14.0pt;font-family:宋体'>${codePrefix}组${desc}</span>
+            </p>
+            <p class="MsoNormal" style='margin-right:-5.4pt;line-height:28.0pt'>
+              <span style='font-size:14.0pt;font-family:宋体'>名称：
+                <u><span lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></u>
+              </span>
+            </p>
+<#if !ext>
+            <p class="MsoNormal" style='line-height:28.0pt'>
+              <span style='font-size:14.0pt; font-family:宋体'>数量：
+                <u><span lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></u>
+              </span>
+            </p>
 </#if>
-      <div class="WordSection1" style='layout-grid:15.6pt'>
-        <table class="MsoTableGrid" cellspacing=0 cellpadding=0 style='margin-left:-.25pt;border-collapse:collapse;border:1px solid black;'>
-          <tr>
-            <td width=297 valign=top style='width:223.1pt;border:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt'>
-              <p class="MsoNormal">
-                <span style='font-size:14.0pt;font-family:宋体;'>
-                  ${codePrefix}${i}
-                  <img width=138 height=31 src="images/${codePrefix}${i}.png"/>
-                  ${codePrefix}组${desc}
-                </span>
-              </p>
-              <p class="MsoNormal" style='margin-right:-5.4pt;line-height:28.0pt'>
-                <span style='font-size:14.0pt;font-family:宋体;'>名称：
-                  <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
-                </span>
-              </p>
-              <p class="MsoNormal" style='line-height:28.0pt'>
-                <#if !ext>
-                <span style='font-size:14.0pt;font-family:宋体'>
-                  数量：<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
-                </span>
-                </#if><#if ext>
-                <span style='font-size:14.0pt;font-family:宋体'>
-                  价格：<u>&nbsp;&nbsp;&nbsp;&nbsp;</u>元&nbsp;&nbsp;&nbsp;
-                  数量：<u>&nbsp;&nbsp;&nbsp;&nbsp;</u>
-                </span>
-                </#if>
-              </p>
-              <p class="MsoNormal" style='line-height:28.0pt'>
-                <span style='font-size:14.0pt;font-family:宋体'>捐赠者：
-                  <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
-                </span>
-              </p>
-              <p class="MsoNormal" style='margin-top:4.0pt;line-height:18.0pt'>
-                <#if !ext>
-                <span style='font-size:12.0pt;font-family:宋体'>
-                  本组物品如未售出，将捐赠给孤儿院，<br/>
-                </span>
-                <b><span style='font-size:12.0pt;font-family:黑体'>不再退回</span></b>
-                <span style='font-size:12.0pt;font-family:宋体'>，请您谨慎选择捐赠。</span>
-                </#if><#if ext>
-                <b><span style='font-size:12.0pt;font-family:黑体'>若未售出：</span></b>
-                <span style='font-size:12.0pt;font-family:宋体'>
-                  捐孤儿院（&nbsp;&nbsp;）&nbsp;&nbsp;退回（&nbsp;&nbsp;）<br/>
-                </span>
-                <span style='font-size:12.0pt;font-family:宋体'>
-                  如需退回，请留电话：<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
-                </span>
-                </#if>
-              </p>
-            </td>
-          </tr>
-        </table>
-      </div>
+<#if ext>
+            <p class="MsoNormal" style='line-height:28.0pt'>
+            <span style='font-size:14.0pt; font-family:宋体'>价格：
+              <u><span lang="EN-US">&nbsp;&nbsp;&nbsp;</span></u>元&nbsp;&nbsp;
+              数量：<u><span lang="EN-US">&nbsp;&nbsp;</span></u>
+            </span>
+            </p>
+</#if>
+            <p class="MsoNormal" style='line-height:28.0pt'>
+              <span style='font-size:14.0pt; font-family:宋体'>捐赠者：
+                <u><span lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></u>
+              </span>
+            </p>
+<#if !ext>
+            <p class="MsoNormal" style='margin-top:4.0pt;line-height:18.0pt'>
+              <span style='font-size:12.0pt;font-family:宋体'>本组物品如未售出，将捐赠给孤儿院，
+                <span lang="EN-US"><br/></span>
+              </span>
+              <b><span style='font-size:12.0pt;font-family:黑体'>不再退回</span></b>
+              <span style='font-size:12.0pt;font-family:宋体'>，请您谨慎选择捐赠。</span>
+            </p>
+</#if>
+<#if ext>
+            <p class="MsoNormal" style='margin-top:4.0pt;line-height:18.0pt'>
+              <b><span style='font-size:12.0pt;font-family:宋体'>若未售出：</span></b>
+              <span style='font-size:12.0pt;font-family:宋体'>捐孤儿院（&nbsp;）&nbsp;退回（&nbsp;）
+                <span lang="EN-US"><br/></span>
+              </span>
+              <span style='font-size:12.0pt;font-family:宋体'>如需退回，请留电话：
+                <u><span lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></u>
+              </span>
+            </p>
+</#if>
+          </td>
+        </tr>
+      </table>
+    </td>
 <#if i%2=1>
-    </td>
+  <td><span  style='font-size:35.0pt;font-family:宋体'>&nbsp;</span></td>
 </#if>
 <#if i%2=0>
-    </td>
   </tr>
-  <tr><td colspan="2"><span  style='font-size:35.0pt;font-family:宋体'>&nbsp;</span></td></tr>
+  <tr><td colspan="3"><span  style='font-size:35.0pt;font-family:宋体'>&nbsp;</span></td></tr>
 </#if>
-<#if total%2=1>
+<#if i%8=0>
+  </table>
+  </div>
+</#if>
+<#if total=i>
+<#if total%2!=0>
     <td></td>
   </tr>
+  <tr><td colspan="3"><span  style='font-size:35.0pt;font-family:宋体'>&nbsp;</span></td></tr>
+</#if>
+<#if total%8!=0>
+</table>
+</div>
+</#if>
 </#if>
 </#list>
-</table>
 </body>
 </html>
