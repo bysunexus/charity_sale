@@ -27,8 +27,6 @@ public class GoodsServiceTest {
         goods.setGoodsName("TTTT");
         goods.setGoodsNum("A001");
         goods.setGoodsPrice(10);
-        goods.setPersonCode("admin");
-        goods.setPersonCode("testPerson");
         goods.setPersonPhone("13000000000");
         goods.setRemark("test");
         goodsRepository.save(goods);

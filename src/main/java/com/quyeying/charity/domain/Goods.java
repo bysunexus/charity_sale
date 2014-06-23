@@ -72,14 +72,14 @@ public class Goods {
     }
 
     /**
-     * 单号
+     * 捐品编号
      */
     private String goodsNum;
 
     /**
-     * 捐赠者id
+     * 捐赠者
      */
-    private String personCode;
+    private String personName;
 
     /**
      * 捐赠者联系电话
@@ -100,6 +100,11 @@ public class Goods {
      * 捐品单价
      */
     private Integer goodsPrice;
+
+    /**
+     * 是否退回  0-不退回  1-退回
+     */
+    private Integer goodsReturn = 0;
 
     /**
      * 售货信息
@@ -138,12 +143,12 @@ public class Goods {
         this.goodsNum = goodsNum;
     }
 
-    public String getPersonCode() {
-        return personCode;
+    public String getPersonName() {
+        return personName;
     }
 
-    public void setPersonCode(String personCode) {
-        this.personCode = personCode;
+    public void setPersonName(String personName) {
+        this.personName = personName;
     }
 
     public String getPersonPhone() {
@@ -194,53 +199,12 @@ public class Goods {
         this.remark = remark;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Goods)) return false;
-
-        Goods goods = (Goods) o;
-
-        if (goodsCount != null ? !goodsCount.equals(goods.goodsCount) : goods.goodsCount != null) return false;
-        if (goodsName != null ? !goodsName.equals(goods.goodsName) : goods.goodsName != null) return false;
-        if (goodsNum != null ? !goodsNum.equals(goods.goodsNum) : goods.goodsNum != null) return false;
-        if (goodsPrice != null ? !goodsPrice.equals(goods.goodsPrice) : goods.goodsPrice != null) return false;
-        if (personCode != null ? !personCode.equals(goods.personCode) : goods.personCode != null) return false;
-        if (personPhone != null ? !personPhone.equals(goods.personPhone) : goods.personPhone != null) return false;
-        if (pkid != null ? !pkid.equals(goods.pkid) : goods.pkid != null) return false;
-        if (remark != null ? !remark.equals(goods.remark) : goods.remark != null) return false;
-        if (saleInfos != null ? !saleInfos.equals(goods.saleInfos) : goods.saleInfos != null) return false;
-
-        return true;
+    public Integer getGoodsReturn() {
+        return goodsReturn;
     }
 
-    @Override
-    public String toString() {
-        return "Goods{" +
-            "pkid='" + pkid + '\'' +
-            ", goodsNum='" + goodsNum + '\'' +
-            ", personCode='" + personCode + '\'' +
-            ", personPhone='" + personPhone + '\'' +
-            ", goodsName='" + goodsName + '\'' +
-            ", goodsCount=" + goodsCount +
-            ", goodsPrice=" + goodsPrice +
-            ", saleInfos=" + saleInfos +
-            ", remark='" + remark + '\'' +
-            '}';
-    }
-
-    @Override
-    public int hashCode() {
-        int result = pkid != null ? pkid.hashCode() : 0;
-        result = 31 * result + (goodsNum != null ? goodsNum.hashCode() : 0);
-        result = 31 * result + (personCode != null ? personCode.hashCode() : 0);
-        result = 31 * result + (personPhone != null ? personPhone.hashCode() : 0);
-        result = 31 * result + (goodsName != null ? goodsName.hashCode() : 0);
-        result = 31 * result + (goodsCount != null ? goodsCount.hashCode() : 0);
-        result = 31 * result + (goodsPrice != null ? goodsPrice.hashCode() : 0);
-        result = 31 * result + (saleInfos != null ? saleInfos.hashCode() : 0);
-        result = 31 * result + (remark != null ? remark.hashCode() : 0);
-        return result;
+    public void setGoodsReturn(Integer goodsReturn) {
+        this.goodsReturn = goodsReturn;
     }
 
     /**
@@ -261,6 +225,16 @@ public class Goods {
          */
         private Integer saleMoney;
 
+        /**
+         * 0-补差订单   1-正常订单
+         */
+        private Integer saleType = 1;
+
+        /**
+         * 备注
+         */
+        private String remark;
+
         public Integer getSaleCount() {
             return saleCount;
         }
@@ -277,33 +251,38 @@ public class Goods {
             this.saleMoney = saleMoney;
         }
 
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof SaleInfo)) return false;
-
-            SaleInfo saleInfo = (SaleInfo) o;
-
-            if (saleCount != null ? !saleCount.equals(saleInfo.saleCount) : saleInfo.saleCount != null) return false;
-            if (saleMoney != null ? !saleMoney.equals(saleInfo.saleMoney) : saleInfo.saleMoney != null) return false;
-
-            return true;
+        public Integer getSaleType() {
+            return saleType;
         }
 
-        @Override
-        public int hashCode() {
-            int result = saleCount != null ? saleCount.hashCode() : 0;
-            result = 31 * result + (saleMoney != null ? saleMoney.hashCode() : 0);
-            return result;
+        public void setSaleType(Integer saleType) {
+            this.saleType = saleType;
         }
 
-        @Override
-        public String toString() {
-            return "SaleInfo{" +
-                "saleCount=" + saleCount +
-                ", saleMoney=" + saleMoney +
-                '}';
+        public String getRemark() {
+            return remark;
         }
+
+        public void setRemark(String remark) {
+            this.remark = remark;
+        }
+
+
     }
 
+    /**
+     * 订单类型
+     */
+    public static enum SaleType{
+        NORMAL(1),MAKEUP(0);
+        private int value;
+
+        SaleType(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
 }
