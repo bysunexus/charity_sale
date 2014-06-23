@@ -5,7 +5,7 @@ package com.quyeying.charity.commons;
  * Date: 2014/6/5 0005
  * Time: 16:29
  */
-public class ResultDto {
+public class ResultDto implements IResultDto<Object> {
     //是否成功
     private boolean success;
     // 描述信息
@@ -95,4 +95,5 @@ public class ResultDto {
     public static ResultDto get(boolean success,String msg,Object data){
         return new ResultDto(success,msg,data);
     }
+
 }

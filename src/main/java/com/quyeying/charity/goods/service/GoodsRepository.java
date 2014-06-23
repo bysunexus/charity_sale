@@ -15,4 +15,6 @@ import java.util.List;
 @Repository("goodsRepository")
 public interface GoodsRepository extends MongoRepository<Goods,String> {
 
+    @Query("{'goodsNum':?0}")
+    Goods findByNum(String num);
 }
