@@ -49,26 +49,42 @@
               <!-- BEGIN FORM-->
               <form action="#" class="form-horizontal" id="storage">
                 <div class="form-body">
+                  <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button>
+                    有错误请检查.
+                  </div>
+                  <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button>
+                    校验成功.
+                  </div>
                   <div class="form-group">
                     <label class="col-md-3 control-label">商品编号:<span class="required">*</span></label>
 
                     <div class="col-md-4">
-                      <input id="goodsNum" name="goodsNum" type="text" class="form-control" placeholder="如:A01">
-                      <span class="help-block">可选择扫描(选择扫描方式,直接将条码对准摄像头即可.)或手动录入.</span>
+                      <div class="input-icon right">
+                        <i class="fa"></i>
+                        <input id="goodsNum" name="goodsNum" type="text" class="form-control" placeholder="如:A01">
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-md-3 control-label">商品数量:<span class="required">*</span></label>
 
                     <div class="col-md-4">
-                      <input id="goodsCount" name="goodsCount" type="text" class="form-control" placeholder="只能为数字">
+                      <div class="input-icon right">
+                        <i class="fa"></i>
+                        <input id="goodsCount" name="goodsCount" type="text" class="form-control" placeholder="只能为数字">
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-md-3 control-label">商品单价:<span class="required">*</span></label>
 
                     <div class="col-md-4">
-                      <input id="goodsPrice" name="goodsPrice" type="text" class="form-control" placeholder="以元为单位">
+                      <div class="input-icon right">
+                        <i class="fa"></i>
+                        <input id="goodsPrice" name="goodsPrice" type="text" class="form-control" placeholder="以元为单位">
+                      </div>
                     </div>
                   </div>
                   <div class="form-actions fluid">
@@ -90,6 +106,10 @@
 </div>
 <script src="${ctx}/static/assets/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/jquery/jquery-serializeForm.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/assets/plugins/jquery-validation/dist/additional-methods.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/assets/plugins/jquery-validation/src/localization/messages_zh.js" type="text/javascript"></script>
+
 <script src="${ctx}/static/viewlogics/storage/storage.js" type="text/javascript"></script>
 
 <!-- END PAGE CONTENT-->

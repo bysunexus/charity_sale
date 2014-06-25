@@ -4,7 +4,7 @@ var parts = document.location.search.slice( 1 ).split( "&" ),
 	length = parts.length,
 	i = 0,
 	current,
-	version = "1.9.0",
+	version = "1.9.1",
 	file = "http://code.jquery.com/jquery-git.js";
 
 for ( ; i < length; i++ ) {
@@ -15,11 +15,11 @@ for ( ; i < length; i++ ) {
 	}
 }
 
-if (version != "git") {
+if (version !== "git") {
 	file = "../lib/jquery-" + version + ".js";
 }
 
-
+//jshint -W060
 document.write( "<script src='" + file + "'></script>" );
 
 })();

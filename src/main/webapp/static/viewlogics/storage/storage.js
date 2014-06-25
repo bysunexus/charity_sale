@@ -6,6 +6,82 @@
  */
 var Storage = function () {
 
+  var handleValidation = function() {
+    // for more info visit the official plugin documentation:
+    // http://docs.jquery.com/Plugins/Validation
+
+    var form = $('#storage');
+    var err = $('.alert-danger', form);
+    var success = $('.alert-success', form);
+
+    form.validate({
+      errorElement: 'span',
+      errorClass: 'help-block',
+      focusInvalid: false,
+      ignore: "",
+      rules: {
+        goodsNum: {
+          minlength: 2,
+          maxlength: 4,
+          required: true
+        },
+        goodsCount: {
+          required: true,
+          digits: true
+        },
+        goodsPrice: {
+          required: true,
+          digits: true
+        }
+      },
+
+      invalidHandler: function (event, validator) { //display error alert on form submit
+        success.hide();
+        err.show();
+        App.scrollTo(err, -200);
+      },
+
+      errorPlacement: function (error, element) { // render error placement for each input type
+        var icon = $(element).parent('.input-icon').children('i');
+        icon.removeClass('fa-check').addClass("fa-warning");
+        icon.attr("data-original-title", error.text()).tooltip({'container': 'body'});
+      },
+
+      highlight: function (element) { // hightlight error inputs
+        $(element)
+          .closest('.form-group').addClass('has-error'); // set error class to the control group
+      },
+
+      unhighlight: function (element) { // revert the change done by hightlight
+
+      },
+
+      success: function (label, element) {
+        var icon = $(element).parent('.input-icon').children('i');
+        $(element).closest('.form-group').removeClass('has-error').addClass('has-success'); // set success class to the control group
+        icon.removeClass("fa-warning").addClass("fa-check");
+      },
+
+      submitHandler: function (form) {
+        success.show();
+        err.hide();
+      }
+    });
+  };
+
+  var handleWysihtml5 = function() {
+    if (!jQuery().wysihtml5) {
+
+      return;
+    }
+
+    if ($('.wysihtml5').size() > 0) {
+      $('.wysihtml5').wysihtml5({
+        "stylesheets": [ctx+"/static/assets/plugins/bootstrap-wysihtml5/wysiwyg-color.css"]
+      });
+    }
+  };
+
   return {
     check: function () {
       //noinspection JSUnresolvedVariable
@@ -37,6 +113,9 @@ var Storage = function () {
     },
 
     save: function () {
+      if(!$("#storage").valid())
+        return;
+
       //noinspection JSUnresolvedVariable
       var saveUrl = ctx + "/storage/save";
       $.ajax({
@@ -63,7 +142,16 @@ var Storage = function () {
           }
         }
       });
+    },
+
+    init:function(){
+      handleWysihtml5();
+      handleValidation();
     }
 
   };
 }();
+
+$(function(){
+  Storage.init();
+});
