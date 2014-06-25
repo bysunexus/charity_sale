@@ -1,9 +1,12 @@
 package com.quyeying.charity.storage.dto;
 
 import com.quyeying.charity.domain.Goods;
+import com.quyeying.framework.utils.BeanMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 /**
@@ -22,15 +25,18 @@ public class GoodsSaveDto {
     /**
      * 捐品单价
      */
-    @NotBlank(message = "单价不能为空")
-    @Pattern(regexp="^(2|5|10|25|\\d{3,}|5[0-9]|[6-9]\\d)$",message = "单价必须为2,5,10,25或50以上(含50)")
+    @NotNull(message = "单价不能为空")
+//    @Pattern(regexp="^(2|5|10|25|\\d{3,}|5[0-9]|[6-9]\\d)$",message = "单价必须为2,5,10,25或50以上(含50)")
+    @Min(value = 1,message = "价格必须为正整数")
     private Integer goodsPrice;
     /**
      * 捐品数量
      */
-    @NotBlank(message = "数量不能为空")
+    @NotNull(message = "数量不能为空")
     @Min(value = 1,message = "数量至少为1")
     private Integer goodsCount;
+
+    private String pkid;
 
     public String getGoodsNum() {
         return goodsNum;
@@ -56,12 +62,22 @@ public class GoodsSaveDto {
         this.goodsCount = goodsCount;
     }
 
+    public String getPkid() {
+        return pkid;
+    }
+
+    public void setPkid(String pkid) {
+        this.pkid = pkid;
+    }
+
     public Goods build(){
         Goods g = new Goods();
-        g.setGoodsCount(this.goodsCount);
-        g.setGoodsNum(this.goodsNum.toUpperCase());
+
+        if(StringUtils.isBlank(this.pkid))
+            this.pkid = null;
+
+        BeanMapper.copy(this,g);
         g.setGoodsType(this.goodsNum.toUpperCase().substring(0,1));
-        g.setGoodsPrice(this.goodsPrice);
         return g;
     }
 
@@ -71,6 +87,7 @@ public class GoodsSaveDto {
             "goodsNum='" + goodsNum + '\'' +
             ", goodsPrice=" + goodsPrice +
             ", goodsCount=" + goodsCount +
+            ", pkid='" + pkid + '\'' +
             '}';
     }
 }

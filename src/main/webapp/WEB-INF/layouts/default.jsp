@@ -100,7 +100,7 @@
           </a>
           <ul class="sub-menu">
             <li class="${menu=='storage'?'active':''}">
-              <a href="${ctx}/goStorage">
+              <a href="${ctx}/storage">
                 商品录入
               </a>
             </li>

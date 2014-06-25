@@ -11,7 +11,6 @@
 <html>
 <head>
   <meta name="menu" content="storage">
-  <script src="${ctx}/static/assets/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
 </head>
 <body>
 <!-- BEGIN PAGE HEADER-->
@@ -28,7 +27,7 @@
         <i class="fa fa-angle-right"></i>
         <a>业务功能</a>
         <i class="fa fa-angle-right"></i>
-        <a href="${ctx}/goStorage">商品入库</a>
+        <a href="${ctx}/storage">商品录入</a>
       </li>
       <li><a href="#"></a></li>
     </ul>
@@ -39,51 +38,60 @@
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
   <div class="col-md-12">
-    <!-- BEGIN SAMPLE FORM PORTLET-->
-    <div class="portlet box purple">
-      <div class="portlet-title">
-        <div class="caption">
-          <i class="fa fa-reorder"></i>商品入库
-        </div>
-      </div>
-      <div class="portlet-body form">
-        <div class="form-horizontal" role="form">
-          <div id="tagForm" class="form-body">
-            <div class="form-group">
-              <label class="col-lg-3 control-label">商品编号</label>
-
-              <div class="col-lg-9">
-                <input id="commodityNumber" name="commodityNumber" type="text" class="form-control input-lg" placeholder="商品编号此处采用手动录入为了防备手机客户端故障." value="">
-              </div>
+    <div class="tabbable tabbable-custom boxless">
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab_0">
+          <div class="portlet box green">
+            <div class="portlet-title">
+              <div class="caption"><i class="fa fa-reorder"></i>商品录入</div>
             </div>
-            <div class="form-group">
-              <label class="col-lg-3 control-label">商品数量</label>
+            <div class="portlet-body form">
+              <!-- BEGIN FORM-->
+              <form action="#" class="form-horizontal" id="storage">
+                <div class="form-body">
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">商品编号:<span class="required">*</span></label>
 
-              <div class="col-lg-9">
-                <input id="commodityQuantity" name="commodityQuantity" type="text" class="form-control input-lg" placeholder="商品个数总量." value="">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-lg-3 control-label">商品单价</label>
+                    <div class="col-md-4">
+                      <input id="goodsNum" name="goodsNum" type="text" class="form-control" placeholder="如:A01">
+                      <span class="help-block">可选择扫描(选择扫描方式,直接将条码对准摄像头即可.)或手动录入.</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">商品数量:<span class="required">*</span></label>
 
-              <div class="col-lg-9">
-                <input id="commodityPrice" name="commodityPrice" type="text" class="form-control input-lg" placeholder="商品单价." value="">
-              </div>
+                    <div class="col-md-4">
+                      <input id="goodsCount" name="goodsCount" type="text" class="form-control" placeholder="只能为数字">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">商品单价:<span class="required">*</span></label>
+
+                    <div class="col-md-4">
+                      <input id="goodsPrice" name="goodsPrice" type="text" class="form-control" placeholder="以元为单位">
+                    </div>
+                  </div>
+                  <div class="form-actions fluid">
+                    <div class="col-md-offset-3 col-md-9">
+                      <button type="button" class="btn green" onclick="Storage.check();">保存</button>
+                      <button type="reset" class="btn yellow">重置</button>
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" id="pkid" name="pkid" >
+              </form>
+              <!-- END FORM-->
             </div>
-          </div>
-          <div class="form-actions right">
-            <button type="button" class="btn default" onclick="TagMain.cancel();">取消</button>
-            <button type="submit" class="btn green" onclick="TagMain.create();">确定</button>
           </div>
         </div>
       </div>
     </div>
-    <!-- END SAMPLE FORM PORTLET-->
   </div>
 </div>
-<!-- END PAGE CONTENT-->
-<script type="text/javascript">
+<script src="${ctx}/static/assets/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/jquery/jquery-serializeForm.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/viewlogics/storage/storage.js" type="text/javascript"></script>
 
-</script>
+<!-- END PAGE CONTENT-->
 </body>
 </html>
