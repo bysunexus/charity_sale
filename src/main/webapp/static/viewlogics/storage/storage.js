@@ -127,9 +127,9 @@ var Storage = function () {
     },
 
     checkVW: function () {
-      if (!$("#storage").valid())
-        return;
+      console.log(JSON_USER.group);
 
+      console.log($("#goodsNum").val());
       //noinspection JSUnresolvedVariable
       var checkUrl = ctx + "/storage/check/" + JSON_USER.group + $("#goodsNum").val();
       $.ajax({
@@ -261,7 +261,11 @@ var Cart = function () {
       $(my).remove();
     },
     toOrder:function(){
-      $("#salesStr").val(JSON.stringify(cart));
+      var data = [];
+      $.each(cart,function(k,v){
+        data.push(v);
+      });
+      $("#salesStr").val(JSON.stringify(data));
       $("#orderForm").submit();
     }
   };

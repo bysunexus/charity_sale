@@ -27,15 +27,16 @@ public class Goods {
     private String goodsType;
 
     public static enum GoodsType {
-        A("A", "2元区"),
-        B("B", "5元区"),
-        C("C", "10元区"),
-        D("D", "25元区"),
+        A("A", "2元区",2),
+        B("B", "5元区",5),
+        C("C", "10元区",10),
+        D("D", "25元区",25),
         E("E", "50元及以上",true);
 
-        GoodsType(String code, String name) {
+        GoodsType(String code, String name,int price) {
             this.code = code;
             this.name = name;
+            this.price = price;
         }
 
         GoodsType(String code, String name, boolean ext) {
@@ -46,6 +47,7 @@ public class Goods {
 
         private String code;
         private String name;
+        private int price = 0;
         private boolean ext;
 
         public String getCode() {
@@ -54,6 +56,10 @@ public class Goods {
 
         public String getName() {
             return name;
+        }
+
+        public int getPrice() {
+            return price;
         }
 
         public boolean isExt() {

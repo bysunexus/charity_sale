@@ -13,6 +13,8 @@ public class GoodsSaleDto {
     private Integer saleCount;
     private Integer saleMoney;
     private String remark;
+    private Goods goods;
+
     public String getId() {
         return id;
     }
@@ -43,6 +45,14 @@ public class GoodsSaleDto {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public Goods getGoods() {
+        return goods;
+    }
+
+    public void setGoods(Goods goods) {
+        this.goods = goods;
     }
 
     public Goods.SaleInfo toSaleInfo(){

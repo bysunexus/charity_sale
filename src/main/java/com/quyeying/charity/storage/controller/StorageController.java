@@ -71,7 +71,12 @@ public class StorageController {
         }
         ResultDto resultDto;
         try {
-            resultDto = ResultDto.getSuccess(repository.save(dto.build()));
+            Goods goods = dto.build();
+            Goods.GoodsType goodsType =Goods.GoodsType.getByCode(goods.getGoodsType());
+            if(!Goods.GoodsType.E.equals(goodsType))
+                goods.setGoodsPrice(goodsType.getPrice());
+
+            resultDto = ResultDto.getSuccess(repository.save(goods));
 
         } catch (Exception e) {
             logger.info("保存捐品信息时发生错误["+dto.toString()+"]",e);

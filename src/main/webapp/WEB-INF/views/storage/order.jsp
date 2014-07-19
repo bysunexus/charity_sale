@@ -51,9 +51,20 @@
             </div>
             <div class="portlet-body form">
               <!-- BEGIN FORM-->
-              <form action="#" class="form-horizontal" id="storage">
-                <!-- TODO:this is a table -->
-              </form>
+              <table class="table table-striped table-bordered table-advance table-hover">
+                <thead>
+                <tr>
+                  <th>编号</th>
+                  <th>名称</th>
+                  <th>单价</th>
+                  <th>数量</th>
+                  <th>金额</th>
+                </tr>
+                </thead>
+                <tbody id="salesTable">
+
+                </tbody>
+              </table>
               <!-- END FORM-->
             </div>
           </div>
@@ -67,9 +78,27 @@
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script id="initTable" type="text/html">
+  {{#goods}}
+  <tr>
+    <td class="highlight">
+      <div class="success"></div>
+      {{goods.goodsNum}}
+    </td>
+    <td>{{goods.goodsName}}</td>
+    <td>{{goods.goodsPrice}}</td>
+    <td>
+      <input type="text" class="form-control sale_id" value="{{id}}" />
+      <input type="text" class="form-control sale_count" value="{{saleCount}}" />
+    </td>
+    <td><input type="text" class="form-control sale_price" value="{{price}}" /></td>
+  </tr>
+  {{/goods}}
+</script>
 <script src="${ctx}/static/viewlogics/storage/orderTable.js"></script>
 <script>
-  jQuery(document).ready(function () {
+  var SALES_DATA = eval('(${salesJson})')||[];
+  $(function(){
     OrderTable.init();
   });
 </script>

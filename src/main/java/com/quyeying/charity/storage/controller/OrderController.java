@@ -24,7 +24,7 @@ public class OrderController {
     protected Logger logger = LoggerFactory.getLogger(OrderController.class);
 
     @Resource(name = "goodsRepository")
-    private GoodsRepository repository;
+    private GoodsRepository repo;
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView sale(String salesStr) {
@@ -33,8 +33,11 @@ public class OrderController {
             salesStr,
             mapper.contructCollectionType(List.class, GoodsSaleDto.class)
         );
+        for (GoodsSaleDto sale : sales) {
+            sale.setGoods(repo.findOne(sale.getId()));
+        }
         ModelAndView result = new ModelAndView("storage/order");
-        result.addObject("salesJson",JsonMapper.nonDefaultMapper().toJson(sales));
+        result.addObject("salesJson", JsonMapper.nonDefaultMapper().toJson(sales));
         result.addObject("sales",sales);
         return result;
     }

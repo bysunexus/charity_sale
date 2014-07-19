@@ -25,9 +25,9 @@ public class GoodsSaveDto {
     /**
      * 捐品单价
      */
-    @NotNull(message = "单价不能为空")
+//    @NotNull(message = "单价不能为空")
 //    @Pattern(regexp="^(2|5|10|25|\\d{3,}|5[0-9]|[6-9]\\d)$",message = "单价必须为2,5,10,25或50以上(含50)")
-    @Min(value = 1,message = "价格必须为正整数")
+//    @Min(value = 1,message = "价格必须为正整数")
     private Integer goodsPrice;
     /**
      * 捐品数量

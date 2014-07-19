@@ -20,8 +20,25 @@ var OrderTable = function () {
       }
 
       initTable();
-    }
 
+      debugger
+
+
+      $("#salesTable").html(
+        ich.initTable({
+          goods: SALES_DATA,
+          price: function () {
+            return this.saleCount * this.goods.goodsPrice;
+          }
+        })
+      );
+      $("#salesTable input").blur(function(){
+
+      });
+    },
+    calculateTotal: function () {
+
+    }
   };
 
 }();
