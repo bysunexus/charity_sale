@@ -6,7 +6,7 @@
  */
 var Storage = function () {
 
-  var handleValidation = function() {
+  var handleValidation = function () {
     // for more info visit the official plugin documentation:
     // http://docs.jquery.com/Plugins/Validation
 
@@ -69,7 +69,7 @@ var Storage = function () {
     });
   };
 
-  var handleWysihtml5 = function() {
+  var handleWysihtml5 = function () {
     if (!jQuery().wysihtml5) {
 
       return;
@@ -77,7 +77,7 @@ var Storage = function () {
 
     if ($('.wysihtml5').size() > 0) {
       $('.wysihtml5').wysihtml5({
-        "stylesheets": [ctx+"/static/assets/plugins/bootstrap-wysihtml5/wysiwyg-color.css"]
+        "stylesheets": [ctx + "/static/assets/plugins/bootstrap-wysihtml5/wysiwyg-color.css"]
       });
     }
   };
@@ -99,13 +99,13 @@ var Storage = function () {
           App.unblockUI($("body"));
         },
         success: function (data) {
-          if(data.data) {
+          if (data.data) {
             //noinspection JSUnresolvedVariable
             $("#pkid").val(data.data.pkid);
-            bootbox.confirm("此商品信息已存在,是否要更新?", function() {
+            bootbox.confirm("此商品信息已存在,是否要更新?", function () {
               Storage.save();
             });
-          }else {
+          } else {
             Storage.save();
           }
         }
@@ -113,7 +113,7 @@ var Storage = function () {
     },
 
     save: function () {
-      if(!$("#storage").valid())
+      if (!$("#storage").valid())
         return;
 
       //noinspection JSUnresolvedVariable
@@ -131,20 +131,20 @@ var Storage = function () {
           App.unblockUI($("body"));
         },
         success: function (data) {
-          if(data.success) {
+          if (data.success) {
             bootbox.alert("保存成功");
             $('#storage')[0].reset();
           }
-          if(data.data == null) {
+          if (data.data == null) {
             bootbox.alert(data.msg);
-          }else {
+          } else {
             bootbox.alert(data.msg);
           }
         }
       });
     },
 
-    init:function(){
+    init: function () {
       handleWysihtml5();
       handleValidation();
     }
@@ -152,6 +152,21 @@ var Storage = function () {
   };
 }();
 
-$(function(){
+/**
+ * 创建摄像头解码监听
+ * @param msg
+ */
+function callfromAs (msg) {
+  alert($("#goodsNum").length);
+  if($("#goodsNum").length) {
+    bootbox.confirm("是否确定更新商品编号?", function () {
+      //TODO:这里看下需不需要清空表单
+      $("#goodsNum").val(msg);
+    });
+  }
+}
+
+$(function () {
   Storage.init();
+  CameraBarcodeResolve.init("#goodsNum");
 });

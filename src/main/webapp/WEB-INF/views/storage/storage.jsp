@@ -44,6 +44,21 @@
           <div class="portlet box green">
             <div class="portlet-title">
               <div class="caption"><i class="fa fa-reorder"></i>商品录入</div>
+              <div>
+                <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+                        id="swf" width="100%" height="100%"
+                        codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab">
+                  <param name="movie" value="${ctx}/static/assets/plugins/camera-barcode-resolve/decode.swf" />
+                  <param name="quality" value="high" />
+                  <param name="allowScriptAccess" value="always" />
+                  <embed src="${ctx}/static/assets/plugins/camera-barcode-resolve/decode.swf" quality="high" bgcolor="#869ca7"
+                         width="500" height="500" name="swf" align="middle"
+                         play="true" loop="false" quality="high" allowScriptAccess="always"
+                         type="application/x-shockwave-flash"
+                         pluginspage="http://www.macromedia.com/go/getflashplayer">
+                  </embed>
+                </object>
+              </div>
             </div>
             <div class="portlet-body form">
               <!-- BEGIN FORM-->
@@ -109,6 +124,7 @@
 <script src="${ctx}/static/assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/plugins/jquery-validation/dist/additional-methods.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/plugins/jquery-validation/src/localization/messages_zh.js" type="text/javascript"></script>
+<script src="${ctx}/static/assets/plugins/camera-barcode-resolve/camera-barcode-resolve.js" type="text/javascript"></script>
 
 <script src="${ctx}/static/viewlogics/storage/storage.js" type="text/javascript"></script>
 
