@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
  */
 @ControllerAdvice
 public class ControllerPrepare {
-    @ModelAttribute
+    @ModelAttribute("CURRENT_USER")
     public User prepareCurrentUser(){
         User user = new User();
         user.setGroup(Goods.GoodsType.A.getCode());
