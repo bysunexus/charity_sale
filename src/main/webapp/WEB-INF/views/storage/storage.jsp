@@ -147,7 +147,8 @@
   <div class="tile {{tileStyle}}" id="cart_{{id}}">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
     <div class="tile-body">
-      <h3>{{code}}[{{name}}]</h3>
+      <h3>{{code}}</h3>
+      <h4>{{name}}</h4>
       <p>
         购买数量:{{saleCount}}
       </p>
