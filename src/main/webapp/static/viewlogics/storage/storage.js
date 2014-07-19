@@ -102,8 +102,13 @@ var Storage = function () {
           if (data.data) {
             //noinspection JSUnresolvedVariable
             $("#pkid").val(data.data.pkid);
-            bootbox.confirm("此商品信息已存在,是否要更新?", function () {
-              Storage.save();
+            bootbox.confirm("此商品信息已存在,是否要更新?", function (result) {
+              if(result) {
+                Storage.save();
+              }else {
+                $("#goodsCount").val(data.data.goodsCount);
+                $("#goodsPrice").val(data.data.goodsPrice);
+              }
             });
           } else {
             Storage.save();
