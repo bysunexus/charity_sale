@@ -22,7 +22,7 @@ var Storage = function () {
       ignore: "",
       rules: {
         goodsNum: {
-          minlength: 2,
+          minlength: 1,
           maxlength: 4,
           required: true
         },

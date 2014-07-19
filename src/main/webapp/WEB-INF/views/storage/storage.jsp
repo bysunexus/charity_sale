@@ -78,7 +78,7 @@
                       <div class="input-icon right input-group">
                         <span class="input-group-addon">${CURRENT_USER.group}</span>
                         <i class="fa"></i>
-                        <input id="goodsNum" onblur="Storage.checkVW();" name="goodsNum" type="text" class="form-control" placeholder="如:A01">
+                        <input id="goodsNum" onkeyup="Storage.checkVW();" name="goodsNum" type="text" class="form-control" placeholder="如:A01">
                       </div>
                     </div>
                   </div>
