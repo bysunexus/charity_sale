@@ -91,7 +91,8 @@
                         <input id="goodsCount" name="goodsCount" type="text" class="form-control" placeholder="只能为数字">
                       </div>
                       <div class="input-icon right btn-toolbar" style="display: none;" id="soldCount">
-                        <div class="btn-group" id="soldCountGroup">
+                        <div class="btn-group" id="soldCountGroup" data-toggle="buttons">
+
                         </div>
                       </div>
                     </div>
@@ -117,8 +118,6 @@
                     </div>
                   </div>
                 </div>
-                <input type="hidden" id="pkid" name="pkid" >
-                <input type="hidden" id="goodsName" name="goodsName" >
               </form>
               <!-- END FORM-->
             </div>
@@ -153,6 +152,12 @@
       </p>
     </div>
   </div>
+</script>
+
+<script id="countButton" type="text/html">
+  <label class="btn btn-default">
+    <input type="radio" value="{{countButtonTxt}}" class="toggle"> {{countButtonTxt}}
+  </label>
 </script>
 <script src="${ctx}/static/viewlogics/storage/storage.js" type="text/javascript"></script>
 

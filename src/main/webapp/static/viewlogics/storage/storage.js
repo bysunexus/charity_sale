@@ -110,9 +110,9 @@ var Storage = function () {
             //noinspection JSUnresolvedVariable
             $("#pkid").val(data.data.pkid);
             bootbox.confirm("此商品信息已存在,是否要更新?", function (result) {
-              if(result) {
+              if (result) {
                 Storage.save();
-              }else {
+              } else {
                 $("#goodsCount").val(data.data.goodsCount);
                 $("#goodsPrice").val(data.data.goodsPrice);
               }
@@ -135,55 +135,32 @@ var Storage = function () {
           if (data.data) {
             $("#soldVW").show();
             $("#entryVW").hide();
-            $("#goodsPrice").val(data.data.goodsPrice);
-            $("#goodsName").val(data.data.goodsName);
-            //noinspection JSUnresolvedVariable
-            $("#pkid").val(data.data.pkid);
 
-            //noinspection JSUnresolvedVariable
-            if(data.data.saleInfos == null || data.data.saleInfos == "") {
-              $("#entryCount").hide();
-              //noinspection JSJQueryEfficiency
-              $("#soldCount").show();
+            var total = data.data.goodsCount||0;
+            $.each(data.data.saleInfos||[], function (idx, item) {
+              total -= item.saleCount||0;
+            });
 
-              $($("#soldCount").parent()).removeClass("col-md-4").addClass("col-md-7");
+            $("#entryCount").hide();
+            //noinspection JSJQueryEfficiency
+            $("#soldCount").show();
 
-              if(data.data.goodsCount == "" || data.data.goodsCount == null) {
-                bootbox.alert("请求错误,请刷新后重试!");
-              }else {
-                //noinspection JSDuplicatedDeclaration
-                var html = new StringBuffer();
-                //noinspection JSDuplicatedDeclaration
-                for (var i = 0; i < data.data.goodsCount; i++) {
-                  html.append('<button onclick="Storage.tocart();" type="button" class="btn btn-default">');
-                  html.append(i + 1);
-                  html.append('</button>');
-                }
-                $("#soldCountGroup").html(html.toString());
-              }
-            }else {
-              var totalCount = 0;
-              //noinspection JSUnresolvedVariable
-              $.each(data.data.saleInfos, function(idx, item) {
-                //noinspection JSUnresolvedVariable
-                totalCount = totalCount + parseInt(item.saleCount);
-              });
+            $($("#soldCount").parent()).removeClass("col-md-4").addClass("col-md-7");
 
-              if(totalCount == 0) {
-                bootbox.alert("请求错误,请刷新后重试!");
-              }else {
-                //noinspection JSDuplicatedDeclaration
-                var html = new StringBuffer();
-                //noinspection JSDuplicatedDeclaration
-                for (var i = 0; i < totalCount; i++) {
-                  html.append('<button onclick="Storage.tocart();" type="button" class="btn btn-default">');
-                  html.append(i + 1);
-                  html.append('</button>');
-                }
-                $("#soldCountGroup").html(html.toString());
-              }
+            for (var i = 0; i < total; i++) {
+              $("#soldCountGroup").append(ich.countButton({countButtonTxt: i + 1}));
+
             }
-
+            $("#soldCountGroup").data("goods", data.data);
+            $("#soldCountGroup label").click(function(){
+              var data = $($(this).parent()).data("goods");
+              Cart.addCart({
+                id: data.pkid,
+                code: data.goodsNum,
+                name: data.goodsName,
+                saleCount: $(this).find("input")[0].value
+              });
+            });
           } else {
             $("#entryVW").show();
             $("#soldVW").hide();
@@ -195,19 +172,6 @@ var Storage = function () {
           }
         }
       });
-    },
-
-    tocart: function () {
-      //noinspection JSPrimitiveTypeWrapperUsage
-      var item = new Object();
-      //noinspection JSJQueryEfficiency
-      item.id = $("#pkid").val();
-      item.code = $("#goodsNum").val();
-      item.saleCount = $(this).text();
-      item.name = $("#goodsName").val();
-
-      Cart.addCart(item);
-
     },
 
     save: function () {
@@ -232,9 +196,9 @@ var Storage = function () {
           if (data.success) {
             bootbox.alert("保存成功");
             $('#storage')[0].reset();
-          }else{
+          } else {
             bootbox.alert("数据错误保存失败");
-            COMMONS.validFail("storage",data);
+            COMMONS.validFail("storage", data);
           }
         }
       });
@@ -249,14 +213,14 @@ var Storage = function () {
   };
 }();
 
-var Cart = function(){
+var Cart = function () {
   var cart = {};
 
-  var initCart = function(data){
-    $("#cart_"+data.id).remove();
+  var initCart = function (data) {
+    $("#cart_" + data.id).remove();
     $("#cartDiv").append(ich.addCart(data));
-    $("#cart_"+data.id).data("goods",data);
-    $("#cart_"+data.id+" button").click(function(){
+    $("#cart_" + data.id).data("goods", data);
+    $("#cart_" + data.id + " button").click(function () {
       Cart.removeCart($(this).parent());
     });
   };
@@ -265,13 +229,13 @@ var Cart = function(){
     /**
      * {id:,name:,code:,saleCount:}
      */
-    addCart:function(good){
-      if(!good) return;
-      var data = {id:good.id,name:good.name,code:good.code,saleCount:good.saleCount};
+    addCart: function (good) {
+      if (!good) return;
+      var data = {id: good.id, name: good.name, code: good.code, saleCount: good.saleCount};
       cart[data.id] = data;
       initCart(data);
     },
-    removeCart:function(my){
+    removeCart: function (my) {
       var data = $(my).data("goods");
       delete cart[data.id];
       $(my).remove();
