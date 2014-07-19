@@ -52,7 +52,7 @@
                   <param name="quality" value="high" />
                   <param name="allowScriptAccess" value="always" />
                   <embed src="${ctx}/static/assets/plugins/camera-barcode-resolve/decode.swf" quality="high" bgcolor="#869ca7"
-                         width="500" height="500" name="swf" align="middle"
+                         width="1" height="1" name="swf" align="middle"
                          play="true" loop="false" quality="high" allowScriptAccess="always"
                          type="application/x-shockwave-flash"
                          pluginspage="http://www.macromedia.com/go/getflashplayer">
@@ -78,7 +78,7 @@
                     <div class="col-md-4">
                       <div class="input-icon right">
                         <i class="fa"></i>
-                        <input id="goodsNum" onblur="Storage.check();" name="goodsNum" type="text" class="form-control" placeholder="如:A01">
+                        <input id="goodsNum" onchange="Storage.checkVW();" name="goodsNum" type="text" class="form-control" placeholder="如:A01">
                       </div>
                     </div>
                   </div>
@@ -86,9 +86,13 @@
                     <label class="col-md-3 control-label">商品数量:<span class="required">*</span></label>
 
                     <div class="col-md-4">
-                      <div class="input-icon right">
+                      <div class="input-icon right" id="entryCount">
                         <i class="fa"></i>
                         <input id="goodsCount" name="goodsCount" type="text" class="form-control" placeholder="只能为数字">
+                      </div>
+                      <div class="input-icon right btn-toolbar" style="display: none;" id="soldCount">
+                        <div class="btn-group" id="soldCountGroup">
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -103,13 +107,18 @@
                     </div>
                   </div>
                   <div class="form-actions fluid">
-                    <div class="col-md-offset-3 col-md-9">
-                      <button type="button" class="btn green" onclick="Storage.save();">保存</button>
-                      <button type="reset" class="btn yellow">重置</button>
+                    <div class="col-md-offset-3 col-md-9" style="display: none;" id="entryVW">
+                      <button type="button" class="btn green" onclick="Storage.check();">保存</button>
+                      <button type="reset" name="reset" class="btn yellow">重置</button>
+                    </div>
+                    <div class="col-md-offset-3 col-md-9" style="display: none;" id="soldVW">
+                      <button type="button" class="btn green" onclick="Storage.save();">结算</button>
+                      <button type="reset" name="reset" class="btn yellow">重置</button>
                     </div>
                   </div>
                 </div>
                 <input type="hidden" id="pkid" name="pkid" >
+                <input type="hidden" id="goodsName" name="goodsName" >
               </form>
               <!-- END FORM-->
             </div>
@@ -128,6 +137,7 @@
 </div>
 <script src="${ctx}/static/assets/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/jquery/jquery-serializeForm.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/jquery/jquery.stringbuffer.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/plugins/jquery-validation/dist/additional-methods.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/plugins/jquery-validation/src/localization/messages_zh.js" type="text/javascript"></script>
