@@ -45,6 +45,7 @@
   <script src="${ctx}/static/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
   <!-- 页面插件 -->
   <script src="${ctx}/static/assets/scripts/app.js" type="text/javascript"></script>
+  <script src="${ctx}/static/commons/commons.js" type="application/javascript"></script>
   <sitemesh:head/>
   <script type="text/javascript">
     var ctx = '${ctx}';

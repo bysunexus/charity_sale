@@ -13,7 +13,7 @@ import java.util.Set;
  * 非线程安全对象
  */
 public class ValidResultDto implements IResultDto<Map<String,Set<String>>> {
-
+    private boolean validResult = true;
     // 描述信息
     private String msg;
     // 返回数据
@@ -37,6 +37,10 @@ public class ValidResultDto implements IResultDto<Map<String,Set<String>>> {
 
     public Map<String,Set<String>> getData() {
         return data;
+    }
+
+    public boolean isValidResult() {
+        return validResult;
     }
 
     /**

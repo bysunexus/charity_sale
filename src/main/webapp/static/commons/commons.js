@@ -48,3 +48,17 @@
   };
 
 })(jQuery);
+
+var COMMONS = function(){
+  return {
+    validFail:function(formId,data){
+      if(data.validResult){
+        var errs = {};
+        $(data.data).each(function(k,v){
+          errs[k]= v.join(",");
+        });
+        $( "#"+formId ).validate().showErrors(errs);
+      }
+    }
+  };
+}();

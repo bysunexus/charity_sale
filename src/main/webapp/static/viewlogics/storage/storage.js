@@ -134,11 +134,9 @@ var Storage = function () {
           if (data.success) {
             bootbox.alert("保存成功");
             $('#storage')[0].reset();
-          }
-          if (data.data == null) {
-            bootbox.alert(data.msg);
-          } else {
-            bootbox.alert(data.msg);
+          }else{
+            bootbox.alert("数据错误保存失败");
+            COMMONS.validFail("storage",data);
           }
         }
       });
