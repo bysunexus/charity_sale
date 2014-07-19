@@ -78,7 +78,7 @@
                     <div class="col-md-4">
                       <div class="input-icon right">
                         <i class="fa"></i>
-                        <input id="goodsNum" name="goodsNum" type="text" class="form-control" placeholder="如:A01">
+                        <input id="goodsNum" onblur="Storage.check();" name="goodsNum" type="text" class="form-control" placeholder="如:A01">
                       </div>
                     </div>
                   </div>
@@ -104,7 +104,7 @@
                   </div>
                   <div class="form-actions fluid">
                     <div class="col-md-offset-3 col-md-9">
-                      <button type="button" class="btn green" onclick="Storage.check();">保存</button>
+                      <button type="button" class="btn green" onclick="Storage.save();">保存</button>
                       <button type="reset" class="btn yellow">重置</button>
                     </div>
                   </div>
