@@ -90,8 +90,9 @@
                         <i class="fa"></i>
                         <input id="goodsCount" name="goodsCount" type="text" class="form-control" placeholder="只能为数字">
                       </div>
-                      <div class="input-icon right" style="display: none;" id="soldCount">
-
+                      <div class="input-icon right btn-toolbar" style="display: none;" id="soldCount">
+                        <div class="btn-group" id="soldCountGroup">
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -112,12 +113,12 @@
                     </div>
                     <div class="col-md-offset-3 col-md-9" style="display: none;" id="soldVW">
                       <button type="button" class="btn green" onclick="Storage.save();">结算</button>
-                      <button type="button" class="btn green" onclick="Storage.tocart();">加入购物车</button>
                       <button type="reset" name="reset" class="btn yellow">重置</button>
                     </div>
                   </div>
                 </div>
                 <input type="hidden" id="pkid" name="pkid" >
+                <input type="hidden" id="goodsName" name="goodsName" >
               </form>
               <!-- END FORM-->
             </div>

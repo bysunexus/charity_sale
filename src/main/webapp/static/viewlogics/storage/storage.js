@@ -136,15 +136,17 @@ var Storage = function () {
             $("#soldVW").show();
             $("#entryVW").hide();
             $("#goodsPrice").val(data.data.goodsPrice);
+            $("#goodsName").val(data.data.goodsName);
             //noinspection JSUnresolvedVariable
             $("#pkid").val(data.data.pkid);
 
-            //data.saleInfos
             //noinspection JSUnresolvedVariable
             if(data.data.saleInfos == null || data.data.saleInfos == "") {
               $("#entryCount").hide();
               //noinspection JSJQueryEfficiency
               $("#soldCount").show();
+
+              $($("#soldCount").parent()).removeClass("col-md-4").addClass("col-md-7");
 
               if(data.data.goodsCount == "" || data.data.goodsCount == null) {
                 bootbox.alert("请求错误,请刷新后重试!");
@@ -153,11 +155,11 @@ var Storage = function () {
                 var html = new StringBuffer();
                 //noinspection JSDuplicatedDeclaration
                 for (var i = 0; i < data.data.goodsCount; i++) {
-                  html.append('<a href="#" class="btn default blue-stripe">');
+                  html.append('<button onclick="Storage.tocart();" type="button" class="btn btn-default">');
                   html.append(i + 1);
-                  html.append('</a>');
+                  html.append('</button>');
                 }
-                $("#soldCount").html(html.toString());
+                $("#soldCountGroup").html(html.toString());
               }
             }else {
               var totalCount = 0;
@@ -173,12 +175,12 @@ var Storage = function () {
                 //noinspection JSDuplicatedDeclaration
                 var html = new StringBuffer();
                 //noinspection JSDuplicatedDeclaration
-                for (var i = 0; i < data.data.goodsCount; i++) {
-                  html.append('<a href="#" class="btn default blue-stripe">');
+                for (var i = 0; i < totalCount; i++) {
+                  html.append('<button onclick="Storage.tocart();" type="button" class="btn btn-default">');
                   html.append(i + 1);
-                  html.append('</a>');
+                  html.append('</button>');
                 }
-                $("#soldCount").html(html.toString());
+                $("#soldCountGroup").html(html.toString());
               }
             }
 
@@ -196,20 +198,15 @@ var Storage = function () {
     },
 
     tocart: function () {
-      if (!$("#storage").valid())
-        return;
-
       //noinspection JSPrimitiveTypeWrapperUsage
       var item = new Object();
-      item.goodsNum = $("#goodsNum").val();
-      item.goodsCount = $("#goodsCount").val();
-      item.goodsPrice = $("#goodsPrice").val();
-
       //noinspection JSJQueryEfficiency
-      item.pkid = $("#pkid").val();
-      //noinspection JSJQueryEfficiency
-      cartCollection.put($("#pkid").val(), item);
+      item.id = $("#pkid").val();
+      item.code = $("#goodsNum").val();
+      item.saleCount = $(this).text();
+      item.name = $("#goodsName").val();
 
+      Cart.addCart(item);
 
     },
 
@@ -260,7 +257,7 @@ var Cart = function(){
     $("#cartDiv").append(ich.addCart(data));
     $("#cart_"+data.id).data("goods",data);
     $("#cart_"+data.id+" button").click(function(){
-      Cart.removeCart($(this).parent);
+      Cart.removeCart($(this).parent());
     });
   };
 
