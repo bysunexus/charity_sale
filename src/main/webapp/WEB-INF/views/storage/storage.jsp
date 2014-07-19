@@ -113,7 +113,7 @@
                       <button type="reset" name="reset" class="btn yellow">重置</button>
                     </div>
                     <div class="col-md-offset-3 col-md-9" style="display: none;" id="soldVW">
-                      <button type="button" class="btn green" onclick="Storage.save();">结算</button>
+                      <button type="button" class="btn green" onclick="Cart.toOrder();">结算</button>
                       <button type="reset" name="reset" class="btn yellow">重置</button>
                     </div>
                   </div>
@@ -128,6 +128,9 @@
   </div>
 </div>
 <div class="row">
+  <form action="/order" method="post" id="orderForm">
+    <input type="hidden" name="salesStr" id="salesStr" />
+  </form>
   <div class="col-md-12">
     <div class="tiles" id="cartDiv">
 

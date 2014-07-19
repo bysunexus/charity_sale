@@ -249,6 +249,10 @@ var Cart = function () {
       var data = $(my).data("goods");
       delete cart[data.id];
       $(my).remove();
+    },
+    toOrder:function(){
+      $("#salesStr").val(JSON.stringify(cart));
+      $("#orderForm").submit();
     }
   };
 }();
