@@ -14,7 +14,6 @@
 </head>
 <body>
 <!-- BEGIN PAGE HEADER-->
-${CURRENT_USER.nickName}
 <div class="row">
   <div class="col-md-12">
     <!-- BEGIN PAGE TITLE & BREADCRUMB-->
