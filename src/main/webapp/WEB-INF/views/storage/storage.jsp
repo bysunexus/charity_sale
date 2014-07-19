@@ -18,7 +18,7 @@
   <div class="col-md-12">
     <!-- BEGIN PAGE TITLE & BREADCRUMB-->
     <h3 class="page-title">
-      生成价签
+      商品出入库
     </h3>
     <ul class="page-breadcrumb breadcrumb">
       <li>
@@ -27,7 +27,7 @@
         <i class="fa fa-angle-right"></i>
         <a>业务功能</a>
         <i class="fa fa-angle-right"></i>
-        <a href="${ctx}/storage">商品录入</a>
+        <a href="${ctx}/storage">商品出入库</a>
       </li>
       <li><a href="#"></a></li>
     </ul>
@@ -43,7 +43,7 @@
         <div class="tab-pane active" id="tab_0">
           <div class="portlet box green">
             <div class="portlet-title">
-              <div class="caption"><i class="fa fa-reorder"></i>商品录入</div>
+              <div class="caption"><i class="fa fa-reorder"></i>商品出入库</div>
               <div>
                 <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
                         id="swf" width="100%" height="100%"
@@ -78,7 +78,7 @@
                       <div class="input-icon right input-group">
                         <span class="input-group-addon">${CURRENT_USER.group}</span>
                         <i class="fa"></i>
-                        <input id="goodsNum" onchange="Storage.checkVW();" name="goodsNum" type="text" class="form-control" placeholder="如:A01">
+                        <input id="goodsNum" onblur="Storage.checkVW();" name="goodsNum" type="text" class="form-control" placeholder="如:A01">
                       </div>
                     </div>
                   </div>
@@ -111,7 +111,7 @@
                   </c:if>
                   <div class="form-actions fluid">
                     <div class="col-md-offset-3 col-md-9" style="display: none;" id="entryVW">
-                      <button type="button" class="btn green" onclick="Storage.check();">保存</button>
+                      <button type="button" class="btn green" onclick="Storage.check();">入库</button>
                       <button type="reset" name="reset" class="btn yellow">重置</button>
                     </div>
                     <div class="col-md-offset-3 col-md-9" style="display: none;" id="soldVW">

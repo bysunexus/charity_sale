@@ -103,7 +103,7 @@
           <ul class="sub-menu">
             <li class="${menu=='storage'?'active':''}">
               <a href="${ctx}/storage">
-                商品录入
+                商品出入库
               </a>
             </li>
             <li class="${menu=='groupReport'?'active':''}">
