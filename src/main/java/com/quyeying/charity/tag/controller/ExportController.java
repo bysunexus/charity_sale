@@ -5,6 +5,8 @@ import com.quyeying.charity.tag.PriceTagCreator;
 import com.quyeying.charity.tag.TagDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -25,8 +27,8 @@ import java.util.Properties;
 public class ExportController {
     protected final static Logger log = LoggerFactory.getLogger(ExportController.class);
 
-    @Resource(name = "appProperties")
-    private Properties appProperties;
+    @Autowired
+    private Environment appProperties;
 
     @RequestMapping
     public String main() {

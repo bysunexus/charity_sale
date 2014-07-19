@@ -2,8 +2,10 @@ package com.quyeying.config;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.data.authentication.UserCredentials;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
@@ -23,8 +25,8 @@ import java.util.Properties;
 @EnableMongoRepositories("com.quyeying.charity")
 public class AppCtxCfgMongo extends AbstractMongoConfiguration {
 
-    @Resource(name="appProperties")
-    private Properties appProperties;
+    @Autowired
+    private Environment appProperties;
     @Override
     @Bean
     protected String getDatabaseName() {
