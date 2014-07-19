@@ -41,7 +41,26 @@
 <!-- END PAGE HEADER-->
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
-
+  <div class="col-md-12">
+    <div class="tabbable tabbable-custom boxless">
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab_0">
+          <div class="portlet box green">
+            <div class="portlet-title">
+              <div class="caption"><i class="fa fa-reorder"></i>购物车</div>
+            </div>
+            <div class="portlet-body form">
+              <!-- BEGIN FORM-->
+              <form action="#" class="form-horizontal" id="storage">
+                <!-- TODO:this is a table -->
+              </form>
+              <!-- END FORM-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- END EXAMPLE TABLE PORTLET-->
 
