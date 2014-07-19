@@ -46,7 +46,7 @@ public class GoodsSaleDto {
     }
 
     public Goods.SaleInfo toSaleInfo(){
-        Goods.SaleInfo  saleInfo = new Goods.SaleInfo()
+        Goods.SaleInfo  saleInfo = new Goods.SaleInfo();
         BeanMapper.copy(this,saleInfo);
         saleInfo.setSaleType(1);
         return saleInfo;

@@ -6,16 +6,20 @@ import com.quyeying.charity.commons.ValidResultDto;
 import com.quyeying.charity.domain.Goods;
 import com.quyeying.charity.domain.User;
 import com.quyeying.charity.goods.service.GoodsRepository;
+import com.quyeying.charity.storage.dto.GoodsSaleDto;
 import com.quyeying.charity.storage.dto.GoodsSaveDto;
+import com.quyeying.framework.utils.JsonMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * charity_sale
@@ -76,5 +80,9 @@ public class StorageController {
 
         return resultDto;
     }
+
+
+
+
 
 }
