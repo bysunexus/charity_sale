@@ -6,8 +6,6 @@
  */
 var Storage = function () {
 
-  var cartCollection = new Map();
-
   var handleValidation = function () {
     // for more info visit the official plugin documentation:
     // http://docs.jquery.com/Plugins/Validation
@@ -237,11 +235,9 @@ var Storage = function () {
           if (data.success) {
             bootbox.alert("保存成功");
             $('#storage')[0].reset();
-          }
-          if (data.data == null) {
-            bootbox.alert(data.msg);
-          } else {
-            bootbox.alert(data.msg);
+          }else{
+            bootbox.alert("数据错误保存失败");
+            COMMONS.validFail("storage",data);
           }
         }
       });
@@ -253,6 +249,36 @@ var Storage = function () {
       jsresetform();
     }
 
+  };
+}();
+
+var Cart = function(){
+  var cart = {};
+
+  var initCart = function(data){
+    $("#cart_"+data.id).remove();
+    $("#cartDiv").append(ich.addCart(data));
+    $("#cart_"+data.id).data("goods",data);
+    $("#cart_"+data.id+" button").click(function(){
+      Cart.removeCart($(this).parent);
+    });
+  };
+
+  return {
+    /**
+     * {id:,name:,code:,saleCount:}
+     */
+    addCart:function(good){
+      if(!good) return;
+      var data = {id:good.id,name:good.name,code:good.code,saleCount:good.saleCount};
+      cart[data.id] = data;
+      initCart(data);
+    },
+    removeCart:function(my){
+      var data = $(my).data("goods");
+      delete cart[data.id];
+      $(my).remove();
+    }
   };
 }();
 

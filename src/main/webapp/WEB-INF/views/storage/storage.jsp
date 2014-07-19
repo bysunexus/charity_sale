@@ -127,6 +127,13 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="tiles" id="cartDiv">
+
+    </div>
+  </div>
+</div>
 <script src="${ctx}/static/assets/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/jquery/jquery-serializeForm.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/jquery/jquery.stringbuffer.js" type="text/javascript"></script>
@@ -135,6 +142,17 @@
 <script src="${ctx}/static/assets/plugins/jquery-validation/src/localization/messages_zh.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/plugins/camera-barcode-resolve/camera-barcode-resolve.js" type="text/javascript"></script>
 
+<script id="addCart" type="text/html">
+  <div class="tile {{tileStyle}}" id="cart_{{id}}">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+    <div class="tile-body">
+      <h3>{{code}}[{{name}}]</h3>
+      <p>
+        购买数量:{{saleCount}}
+      </p>
+    </div>
+  </div>
+</script>
 <script src="${ctx}/static/viewlogics/storage/storage.js" type="text/javascript"></script>
 
 <!-- END PAGE CONTENT-->
