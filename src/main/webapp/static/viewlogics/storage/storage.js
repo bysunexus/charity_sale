@@ -135,24 +135,29 @@ var Storage = function () {
           if (data.data) {
             $("#soldVW").show();
             $("#entryVW").hide();
-
-            var total = data.data.goodsCount||0;
-            $.each(data.data.saleInfos||[], function (idx, item) {
-              total -= item.saleCount||0;
-            });
-
+            //noinspection JSJQueryEfficiency
+            $("#soldCountGroup").html("");
             $("#entryCount").hide();
             //noinspection JSJQueryEfficiency
             $("#soldCount").show();
-
+            //noinspection JSJQueryEfficiency
             $($("#soldCount").parent()).removeClass("col-md-4").addClass("col-md-7");
+
+            var total = data.data.goodsCount || 0;
+            //noinspection JSUnresolvedVariable
+            $.each(data.data.saleInfos || [], function (idx, item) {
+              total -= item.saleCount || 0;
+            });
 
             for (var i = 0; i < total; i++) {
               $("#soldCountGroup").append(ich.countButton({countButtonTxt: i + 1}));
-
             }
+
+            //noinspection JSJQueryEfficiency
             $("#soldCountGroup").data("goods", data.data);
-            $("#soldCountGroup label").click(function(){
+
+            //noinspection JSJQueryEfficiency
+            $("#soldCountGroup label").click(function () {
               var data = $($(this).parent()).data("goods");
               Cart.addCart({
                 id: data.pkid,
@@ -161,14 +166,18 @@ var Storage = function () {
                 saleCount: $(this).find("input")[0].value
               });
             });
+
           } else {
+
             $("#entryVW").show();
             $("#soldVW").hide();
             $("#entryCount").show();
+            //noinspection JSJQueryEfficiency
             $("#soldCount").hide();
-            $("#goodsPrice").val("");
-            $("#goodsCount").val("");
-            $("#pkid").val("");
+            //noinspection JSJQueryEfficiency
+            $($("#soldCount").parent()).removeClass("col-md-7").addClass("col-md-4");
+            $("#soldCountGroup").html("");
+
           }
         }
       });
@@ -195,7 +204,7 @@ var Storage = function () {
         success: function (data) {
           if (data.success) {
             bootbox.alert("保存成功");
-            $('#storage')[0].reset();
+            jsresetform();
           } else {
             bootbox.alert("数据错误保存失败");
             COMMONS.validFail("storage", data);
@@ -232,11 +241,7 @@ var Cart = function () {
     addCart: function (good) {
       if (!good) return;
       var data = {id: good.id, name: good.name, code: good.code, saleCount: good.saleCount};
-    addCart:function(good){
-      if(!good) return;
-      var data = {id:good.id,name:good.name,code:good.code,saleCount:good.saleCount};
-
-      data.tileStyle =COMMONS.randomColorStyle()
+      data.tileStyle = COMMONS.randomColorStyle();
       cart[data.id] = data;
       initCart(data);
     },
