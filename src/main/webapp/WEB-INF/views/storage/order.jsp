@@ -49,7 +49,7 @@
             <div class="portlet-title">
               <div class="caption"><i class="fa fa-reorder"></i>购物车</div>
             </div>
-            <div class="portlet-body form">
+            <div class="table-responsive">
               <!-- BEGIN FORM-->
               <table class="table table-striped table-bordered table-advance table-hover">
                 <thead>
@@ -83,22 +83,22 @@
   <tr>
     <td class="highlight">
       <div class="success"></div>
-      {{goods.goodsNum}}
+      <label style="margin-left: 15px;">{{goods.goodsNum}}</label>
     </td>
     <td>{{goods.goodsName}}</td>
     <td>{{goods.goodsPrice}}</td>
-    <td>
-      <input type="text" class="form-control sale_id" value="{{id}}" />
-      <input type="text" class="form-control sale_count" value="{{saleCount}}" />
+    <td style="padding: 0;vertical-align: middle;">
+      <input type="hidden" class="form-control sale_id" value="{{id}}" />
+      <input style="border: 0;" type="text" class="form-control sale_count" value="{{saleCount}}" />
     </td>
-    <td><input type="text" class="form-control sale_price" value="{{price}}" /></td>
+    <td style="padding: 0;vertical-align: middle;"><input style="border: 0;" type="text" class="form-control sale_price" value="{{price}}" /></td>
   </tr>
   {{/goods}}
 </script>
 <script src="${ctx}/static/viewlogics/storage/orderTable.js"></script>
 <script>
-  var SALES_DATA = eval('(${salesJson})')||[];
-  $(function(){
+  var SALES_DATA = eval('(${salesJson})') || [];
+  $(function () {
     OrderTable.init();
   });
 </script>
