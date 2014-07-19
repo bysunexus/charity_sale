@@ -155,6 +155,36 @@ var Storage = function () {
   };
 }();
 
+var Cart = function(){
+  var cart = {};
+
+  var initCart = function(data){
+    $("#cart_"+data.id).remove();
+    $("#cartDiv").append(ich.addCart(data));
+    $("#cart_"+data.id).data("goods",data);
+    $("#cart_"+data.id+" button").click(function(){
+      Cart.removeCart($(this).parent);
+    });
+  };
+
+  return {
+    /**
+     * {id:,name:,code:,saleCount:}
+     */
+    addCart:function(good){
+      if(!good) return;
+      var data = {id:good.id,name:good.name,code:good.code,saleCount:good.saleCount};
+      cart[data.id] = data;
+      initCart(data);
+    },
+    removeCart:function(my){
+      var data = $(my).data("goods");
+      delete cart[data.id];
+      $(my).remove();
+    }
+  };
+}();
+
 /**
  * 创建摄像头解码监听
  * @param msg

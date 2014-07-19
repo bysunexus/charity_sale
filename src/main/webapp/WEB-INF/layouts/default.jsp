@@ -43,6 +43,7 @@
   <script src="${ctx}/static/assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
+  <script src="${ctx}/static/jquery/ICanHaz.min.js" type="text/javascript" ></script>
   <!-- 页面插件 -->
   <script src="${ctx}/static/assets/scripts/app.js" type="text/javascript"></script>
   <script src="${ctx}/static/commons/commons.js" type="application/javascript"></script>
