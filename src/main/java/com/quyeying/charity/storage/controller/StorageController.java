@@ -4,6 +4,7 @@ import com.quyeying.charity.commons.IResultDto;
 import com.quyeying.charity.commons.ResultDto;
 import com.quyeying.charity.commons.ValidResultDto;
 import com.quyeying.charity.domain.Goods;
+import com.quyeying.charity.domain.User;
 import com.quyeying.charity.goods.service.GoodsRepository;
 import com.quyeying.charity.storage.dto.GoodsSaveDto;
 import org.slf4j.Logger;
@@ -11,10 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -43,7 +41,7 @@ public class StorageController {
 
     @RequestMapping(value = "/check/{goodsNum}", method = RequestMethod.POST)
     @ResponseBody
-    public IResultDto check(@PathVariable("goodsNum") String goodsNum) {
+    public IResultDto check(@PathVariable("goodsNum") String goodsNum,User user) {
         ResultDto result;
 
         try {
@@ -58,7 +56,7 @@ public class StorageController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public IResultDto save(@Valid GoodsSaveDto dto, BindingResult result) {
+    public IResultDto save(@Valid GoodsSaveDto dto, BindingResult result, User user) {
         // 校验数据对象
         if (result.hasErrors()) {
             ValidResultDto resultDto = ValidResultDto.get("校验失败");
