@@ -174,6 +174,8 @@ var Cart = function(){
     addCart:function(good){
       if(!good) return;
       var data = {id:good.id,name:good.name,code:good.code,saleCount:good.saleCount};
+
+      data.tileStyle =COMMONS.randomColorStyle()
       cart[data.id] = data;
       initCart(data);
     },

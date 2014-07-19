@@ -50,6 +50,7 @@
 })(jQuery);
 
 var COMMONS = function(){
+  var colors = ["bg-blue","bg-red","bg-green","bg-purple","bg-yellow"];
   return {
     validFail:function(formId,data){
       if(data.validResult){
@@ -59,6 +60,15 @@ var COMMONS = function(){
         });
         $( "#"+formId ).validate().showErrors(errs);
       }
+    },
+    randomEle:function(arr){
+      var len = arr.length;
+      var idx = Math.floor(Math.random()*len); //0-len
+
+      return arr[idx];
+    },
+    randomColorStyle:function(){
+      return COMMONS.randomEle(colors);
     }
   };
 }();
