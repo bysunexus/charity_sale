@@ -40,36 +40,47 @@
 </div>
 <!-- END PAGE HEADER-->
 <!-- BEGIN PAGE CONTENT-->
+
+
+
+
 <div class="row">
   <div class="col-md-12">
-    <div class="tabbable tabbable-custom boxless">
-      <div class="tab-content">
-        <div class="tab-pane active" id="tab_0">
-          <div class="portlet box green">
-            <div class="portlet-title">
-              <div class="caption"><i class="fa fa-reorder"></i>购物车</div>
-            </div>
-            <div class="table-responsive">
-              <!-- BEGIN FORM-->
-              <table class="table table-striped table-bordered table-advance table-hover">
-                <thead>
-                <tr>
-                  <th>编号</th>
-                  <th>名称</th>
-                  <th>单价</th>
-                  <th>数量</th>
-                  <th>金额</th>
-                </tr>
-                </thead>
-                <tbody id="salesTable">
 
-                </tbody>
-              </table>
-              <!-- END FORM-->
-            </div>
-          </div>
+    <div class="portlet box red">
+      <div class="portlet-title">
+        <div class="caption"><i class="fa fa-shopping-cart"></i>购物车</div>
+      </div>
+      <div class="portlet-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered table-advance table-hover">
+            <thead>
+            <tr>
+              <th>编号</th>
+              <th class="hidden-xs">名称</th>
+              <th>单价</th>
+              <th>库存</th>
+              <th>数量</th>
+              <th>金额</th>
+            </tr>
+            </thead>
+            <tbody id="salesTable">
+
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="6" style="text-align: right;" id="totalPrice"></td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
       </div>
+    </div>
+  </div>
+  <div>
+    <div class="col-md-offset-3 col-md-9">
+      <button type="button" class="btn green" onclick="OrderTable.sale();">确认提交</button>
+      <button type="button" class="btn yellow" onclick="OrderTable.back();">放弃</button>
     </div>
   </div>
 </div>
@@ -82,19 +93,26 @@
   {{#goods}}
   <tr>
     <td class="highlight">
-      <div class="success"></div>
-      <label style="margin-left: 15px;">{{goods.goodsNum}}</label>
+      <a>{{goods.goodsNum}}</a>
     </td>
-    <td>{{goods.goodsName}}</td>
+    <td class="hidden-xs">{{goods.goodsName}}</td>
     <td>{{goods.goodsPrice}}</td>
+    <td>{{stock}}</td>
     <td style="padding: 0;vertical-align: middle;">
       <input type="hidden" class="form-control sale_id" value="{{id}}" />
+      <input type="hidden" class="form-control sale_singlePrice" value="{{goods.goodsPrice}}" />
       <input style="border: 0;" type="text" class="form-control sale_count" value="{{saleCount}}" />
     </td>
-    <td style="padding: 0;vertical-align: middle;"><input style="border: 0;" type="text" class="form-control sale_price" value="{{price}}" /></td>
+    <td style="padding: 0;vertical-align: middle;">
+      <input style="border: 0;" type="text" class="form-control sale_price" value="{{price}}" />
+    </td>
   </tr>
   {{/goods}}
 </script>
+<script src="${ctx}/static/assets/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/assets/plugins/jquery-validation/dist/additional-methods.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/assets/plugins/jquery-validation/src/localization/messages_zh.js" type="text/javascript"></script>
 <script src="${ctx}/static/viewlogics/storage/orderTable.js"></script>
 <script>
   var SALES_DATA = eval('(${salesJson})') || [];

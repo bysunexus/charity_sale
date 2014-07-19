@@ -141,7 +141,6 @@
 </div>
 <script src="${ctx}/static/assets/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/jquery/jquery-serializeForm.min.js" type="text/javascript"></script>
-<script src="${ctx}/static/jquery/jquery.stringbuffer.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/plugins/jquery-validation/dist/additional-methods.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/plugins/jquery-validation/src/localization/messages_zh.js" type="text/javascript"></script>
