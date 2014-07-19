@@ -91,6 +91,9 @@ var Storage = function () {
 
   return {
     check: function () {
+      if (!$("#storage").valid())
+        return;
+
       //noinspection JSUnresolvedVariable
       var checkUrl = ctx + "/storage/check/" + JSON_USER.group + $("#goodsNum").val();
       $.ajax({
@@ -124,6 +127,9 @@ var Storage = function () {
     },
 
     checkVW: function () {
+      if (!$("#storage").valid())
+        return;
+
       //noinspection JSUnresolvedVariable
       var checkUrl = ctx + "/storage/check/" + JSON_USER.group + $("#goodsNum").val();
       $.ajax({
