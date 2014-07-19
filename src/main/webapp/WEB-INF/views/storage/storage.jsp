@@ -74,9 +74,9 @@
                   </div>
                   <div class="form-group">
                     <label class="col-md-3 control-label">商品编号:<span class="required">*</span></label>
-
                     <div class="col-md-4">
-                      <div class="input-icon right">
+                      <div class="input-icon right input-group">
+                        <span class="input-group-addon">${CURRENT_USER.group}</span>
                         <i class="fa"></i>
                         <input id="goodsNum" onchange="Storage.checkVW();" name="goodsNum" type="text" class="form-control" placeholder="如:A01">
                       </div>
@@ -97,6 +97,7 @@
                       </div>
                     </div>
                   </div>
+                  <c:if test="${CURRENT_USER.group eq 'E'}">
                   <div class="form-group">
                     <label class="col-md-3 control-label">商品单价:<span class="required">*</span></label>
 
@@ -107,6 +108,7 @@
                       </div>
                     </div>
                   </div>
+                  </c:if>
                   <div class="form-actions fluid">
                     <div class="col-md-offset-3 col-md-9" style="display: none;" id="entryVW">
                       <button type="button" class="btn green" onclick="Storage.check();">保存</button>

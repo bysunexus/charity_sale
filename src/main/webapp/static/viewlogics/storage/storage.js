@@ -92,11 +92,10 @@ var Storage = function () {
   return {
     check: function () {
       //noinspection JSUnresolvedVariable
-      var checkUrl = ctx + "/storage/check/" + $("#goodsNum").val();
+      var checkUrl = ctx + "/storage/check/" + JSON_USER.group + $("#goodsNum").val();
       $.ajax({
         type: "POST",
         url: checkUrl,
-        data: $('#storage').serializeForm(),
         beforeSend: function () {
           //AJAX请求完成时显示提示，防止表单重复提交
           App.blockUI($("body"));
@@ -126,11 +125,10 @@ var Storage = function () {
 
     checkVW: function () {
       //noinspection JSUnresolvedVariable
-      var checkUrl = ctx + "/storage/check/" + $("#goodsNum").val();
+      var checkUrl = ctx + "/storage/check/" + JSON_USER.group + $("#goodsNum").val();
       $.ajax({
         type: "POST",
         url: checkUrl,
-        data: $('#storage').serializeForm(),
         success: function (data) {
           if (data.data) {
             $("#soldVW").show();
@@ -150,6 +148,7 @@ var Storage = function () {
             });
 
             for (var i = 0; i < total; i++) {
+              //noinspection JSUnresolvedFunction
               $("#soldCountGroup").append(ich.countButton({countButtonTxt: i + 1}));
             }
 
@@ -187,12 +186,15 @@ var Storage = function () {
       if (!$("#storage").valid())
         return;
 
+      var dataForm = $('#storage').serializeForm();
+      //noinspection JSUnresolvedVariable
+      dataForm.goodsNum = JSON_USER.group + dataForm.goodsNum;
       //noinspection JSUnresolvedVariable
       var saveUrl = ctx + "/storage/save";
       $.ajax({
         type: "POST",
         url: saveUrl,
-        data: $('#storage').serializeForm(),
+        data: dataForm,
         beforeSend: function () {
           //AJAX请求完成时显示提示，防止表单重复提交
           App.blockUI($("body"));
@@ -226,8 +228,10 @@ var Cart = function () {
   var cart = {};
 
   var initCart = function (data) {
+    //noinspection JSJQueryEfficiency
     $("#cart_" + data.id).remove();
     $("#cartDiv").append(ich.addCart(data));
+    //noinspection JSJQueryEfficiency
     $("#cart_" + data.id).data("goods", data);
     $("#cart_" + data.id + " button").click(function () {
       Cart.removeCart($(this).parent());
@@ -257,3 +261,4 @@ $(function () {
   Storage.init();
   CameraBarcodeResolve.init("#goodsNum");
 });
+
