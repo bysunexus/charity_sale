@@ -49,7 +49,7 @@ public class OrderController {
         return result;
     }
 
-    @RequestMapping(value = "/sale",method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.PUT)
     public @ResponseBody IResultDto confirm(@RequestBody List<GoodsSaleDto> datas) {
 
         for (GoodsSaleDto data : datas) {

@@ -2,7 +2,10 @@ package com.quyeying.charity.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Set;
 
 /**
  * User: bysun
@@ -101,6 +104,4 @@ public class User {
     public void setLevel(String level) {
         this.level = level;
     }
-
-
 }

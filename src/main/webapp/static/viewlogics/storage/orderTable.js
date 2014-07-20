@@ -62,9 +62,9 @@ var OrderTable = function () {
         datas.push(data);
       });
 
-      var saveUrl = ctx + "/order/sale";
+      var saveUrl = ctx + "/order";
       $.ajax({
-        type: "POST",
+        type: "PUT",
         url: saveUrl,
         data: JSON.stringify(datas),
         contentType:"application/json; charset=UTF-8",
