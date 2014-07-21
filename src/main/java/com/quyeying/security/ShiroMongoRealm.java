@@ -37,6 +37,7 @@ public class ShiroMongoRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         User user = repo.findUserByUserName(token.getUsername());
+        CharitySecurityUtils.setCurrentUser(user);
         if (user != null) {
             return new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), getName());
         } else {

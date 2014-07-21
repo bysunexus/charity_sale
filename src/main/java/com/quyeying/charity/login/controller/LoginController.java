@@ -7,6 +7,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.session.HttpServletSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,9 +41,11 @@ public class LoginController {
         token.setRememberMe(true);
         try {
             subject.login(token);
+
             return "redirect:/";
         } catch (AuthenticationException e) {
-            attr.addFlashAttribute("dto",dto);
+            CharitySecurityUtils.removeCurrentUser();
+            attr.addFlashAttribute("dto", dto);
             return "redirect:/login";
         }
     }

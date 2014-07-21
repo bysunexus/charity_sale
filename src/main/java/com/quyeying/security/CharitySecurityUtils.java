@@ -45,6 +45,20 @@ public class CharitySecurityUtils {
         return null;
     }
 
+    /**
+     * 移除当前登录用户
+     *
+     * @param user 用户
+     */
+    public static void removeCurrentUser() {
+        Subject currentUser = SecurityUtils.getSubject();
+        if (null != currentUser) {
+            Session session = currentUser.getSession();
+            session.removeAttribute(CURRENT_USER);
+        }
+    }
+
+
 
     /**
      * 将一些数据放到ShiroSession中,以便于其它地方使用

@@ -1,7 +1,11 @@
 package com.quyeying.charity.main.controller;
 
+import org.apache.shiro.authz.UnauthorizedException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * User: bysun
@@ -17,5 +21,7 @@ public class MainController {
         return "index";
     }
 
-
+    @RequestMapping("/unauthorized")
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public String unauthorized(){return "unauthorized";}
 }

@@ -30,7 +30,7 @@ public class ShiroMetaSource implements FactoryBean<Ini.Section> {
         for (Menu menu : list) {
             section.put(menu.getPath(), MessageFormat.format(PREMISSION_STRING, menu.getSign()));
         }
-        //section.put("/**", "authc");
+        section.put("/**", "authc,roles[**]");
         return section;
     }
 
