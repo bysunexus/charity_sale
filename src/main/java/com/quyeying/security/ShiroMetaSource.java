@@ -5,6 +5,7 @@ import org.apache.shiro.config.Ini;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 /**
@@ -13,6 +14,7 @@ import java.util.List;
  * Time: 22:29
  */
 public class ShiroMetaSource implements FactoryBean<Ini.Section> {
+    public static final String PREMISSION_STRING="authc,perms[\"{0}\"]";
     @Autowired
     private IShiroUserService repo;
 
@@ -26,7 +28,7 @@ public class ShiroMetaSource implements FactoryBean<Ini.Section> {
         ini.load("/static/**=anon\n/login=anon\n/logout=anon\n/unauthorized=user\n");
         Ini.Section section = ini.getSection(Ini.DEFAULT_SECTION_NAME);
         for (Menu menu : list) {
-            section.put(menu.getPath(),menu.getPath());
+            section.put(menu.getPath(), MessageFormat.format(PREMISSION_STRING, menu.getPath()));
         }
         section.put("/**", "authc");
         return section;

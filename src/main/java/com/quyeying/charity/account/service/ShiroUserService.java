@@ -52,6 +52,14 @@ public class ShiroUserService implements IShiroUserService {
 
     @Override
     public List<Menu> findAllMenu() {
-        return mongoTemplate.findAll(Menu.class);
+        return mongoTemplate.find(
+            new Query(
+                new Criteria().andOperator(
+                    Criteria.where("path").ne(null),
+                    Criteria.where("path").ne("")
+                )
+            ),
+            Menu.class
+        );
     }
 }
