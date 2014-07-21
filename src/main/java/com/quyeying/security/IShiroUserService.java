@@ -10,7 +10,7 @@ import java.util.List;
  * Date: 2014/7/20
  * Time: 21:39
  */
-public interface UserMongoRepository {
+public interface IShiroUserService {
 
     /**
      * 根据用户与名获取获取用户

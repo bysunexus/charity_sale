@@ -1,6 +1,6 @@
 package com.quyeying.config;
 
-import com.quyeying.security.UserMongoRepository;
+
 import com.quyeying.security.ShiroMetaSource;
 import com.quyeying.security.ShiroMongoRealm;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -8,9 +8,11 @@ import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
+
 
 
 /**
@@ -22,23 +24,21 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppCtxCfgShiro{
 
-    @Autowired
-    UserMongoRepository userMongoRepository;
-
-
-    private ShiroMongoRealm getShiroMongoRealm(){
+    @Bean
+    public ShiroMongoRealm getShiroMongoRealm(){
         ShiroMongoRealm bean = new ShiroMongoRealm();
-        bean.setRepo(userMongoRepository);
         return bean;
     }
 
-    private EhCacheManager getEhCacheManager(){
+    @Bean
+    public EhCacheManager getEhCacheManager(){
         EhCacheManager bean = new EhCacheManager();
         bean.setCacheManagerConfigFile("classpath:ehcache-shiro.xml");
         return bean;
     }
 
-    private DefaultWebSecurityManager getDefaultWebSecurityManager(){
+    @Bean
+    public DefaultWebSecurityManager getDefaultWebSecurityManager(){
         DefaultWebSecurityManager bean = new DefaultWebSecurityManager();
 
         bean.setRealm(getShiroMongoRealm());
@@ -46,9 +46,9 @@ public class AppCtxCfgShiro{
         return bean;
     }
 
-    private ShiroMetaSource getShiroMetaSource(){
+    @Bean
+    public ShiroMetaSource getShiroMetaSource(){
         ShiroMetaSource bean = new ShiroMetaSource();
-        bean.setRepo(userMongoRepository);
         return bean;
     }
 
@@ -64,8 +64,14 @@ public class AppCtxCfgShiro{
         return (AbstractShiroFilter)factoryBean.getObject();
     }
 
-    @Bean
+    @Bean(name = "lifecycleBeanPostProcessor")
     public LifecycleBeanPostProcessor getLifecycleBeanPostProcessor(){
         return new LifecycleBeanPostProcessor();
+    }
+
+    @Bean
+    @DependsOn(value="lifecycleBeanPostProcessor")
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){
+        return new DefaultAdvisorAutoProxyCreator();
     }
 }

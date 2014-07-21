@@ -3,10 +3,12 @@ package com.quyeying.charity.account.service;
 import com.quyeying.charity.domain.Menu;
 import com.quyeying.charity.domain.User;
 import com.quyeying.charity.domain.UserMenu;
+import com.quyeying.security.IShiroUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,8 @@ import java.util.List;
  * Date: 2014/7/20
  * Time: 22:55
  */
-public class UserRepositoryImpl implements UserRepositoryCustom {
+@Service("shiroUserService")
+public class ShiroUserService implements IShiroUserService {
 
     @Autowired
     private MongoTemplate mongoTemplate;

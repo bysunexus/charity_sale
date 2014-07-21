@@ -6,6 +6,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -15,7 +16,8 @@ import java.util.List;
  * Time: 21:36
  */
 public class ShiroMongoRealm extends AuthorizingRealm {
-    UserMongoRepository repo;
+    @Autowired
+    IShiroUserService repo;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -42,7 +44,4 @@ public class ShiroMongoRealm extends AuthorizingRealm {
         }
     }
 
-    public void setRepo(UserMongoRepository repo) {
-        this.repo = repo;
-    }
 }

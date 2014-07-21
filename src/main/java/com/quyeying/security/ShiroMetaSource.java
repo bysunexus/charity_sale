@@ -3,6 +3,7 @@ package com.quyeying.security;
 import com.quyeying.charity.domain.Menu;
 import org.apache.shiro.config.Ini;
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -12,8 +13,8 @@ import java.util.List;
  * Time: 22:29
  */
 public class ShiroMetaSource implements FactoryBean<Ini.Section> {
-    private static final String PREMISSION_STRING="authc,perms[\"{0}\"]";
-    private UserMongoRepository repo;
+    @Autowired
+    private IShiroUserService repo;
 
     @Override
     public Ini.Section getObject() throws Exception {
@@ -41,7 +42,4 @@ public class ShiroMetaSource implements FactoryBean<Ini.Section> {
         return true;
     }
 
-    public void setRepo(UserMongoRepository repo) {
-        this.repo = repo;
-    }
 }
