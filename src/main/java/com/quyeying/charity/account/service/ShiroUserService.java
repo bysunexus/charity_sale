@@ -44,7 +44,7 @@ public class ShiroUserService implements IShiroUserService {
         List<String> result = new ArrayList<>();
         if (null != userMenu && null != userMenu.getMenus()) {
             for (Menu menu : userMenu.getMenus()) {
-                result.add(menu.getPath());
+                result.add(menu.getSign());
             }
         }
         return result;

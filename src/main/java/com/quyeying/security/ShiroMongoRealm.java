@@ -27,7 +27,7 @@ public class ShiroMongoRealm extends AuthorizingRealm {
         if (null != se) {
             // 用户的的角色信息
             List<String> permissions = repo.findPermissionsByUserId(se.getPkid());
-            simpleAuthorInfo.addStringPermissions(permissions);
+            simpleAuthorInfo.addRoles(permissions);
             // 获取权限
         }
         return simpleAuthorInfo;

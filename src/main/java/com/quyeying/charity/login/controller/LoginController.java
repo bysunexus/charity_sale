@@ -21,7 +21,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * Date: 2014/6/12
  * Time: 10:56
  */
-@Controller("/login")
+@Controller
+@RequestMapping("/login")
 public class LoginController {
 
     /**
@@ -39,9 +40,9 @@ public class LoginController {
         token.setRememberMe(true);
         try {
             subject.login(token);
-            return "index";
+            return "redirect:/";
         } catch (AuthenticationException e) {
-            attr.addAttribute("dto",dto);
+            attr.addFlashAttribute("dto",dto);
             return "redirect:/login";
         }
     }

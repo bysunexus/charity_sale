@@ -62,7 +62,7 @@
 
         <div class="input-icon">
           <i class="fa fa-lock"></i>
-          <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="passWord"/>
+          <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="password"/>
         </div>
       </div>
       <div class="form-actions">
