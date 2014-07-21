@@ -1,9 +1,17 @@
 package com.quyeying.charity.login.controller;
 
+import com.quyeying.charity.domain.User;
+import com.quyeying.charity.login.dto.LoginDto;
+import com.quyeying.security.CharitySecurityUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * charity_sale
@@ -13,47 +21,35 @@ import org.springframework.web.servlet.ModelAndView;
  * Date: 2014/6/12
  * Time: 10:56
  */
-@Controller
+@Controller("/login")
 public class LoginController {
 
     /**
      * 登录方法
      *
-     * @param userName 用户名
-     * @param passWord 密码
+     * @param dto dto
      *
      * @return 返回首页
      */
-    @RequestMapping(value = "checkLogin", method = RequestMethod.POST)
-    public ModelAndView login(String userName, String passWord) {
-        if (this.checkParams(new String[]{userName, passWord})) {
-            ModelAndView mav = new ModelAndView("index");
-//            mav.addObject("userName",userName);
-//            mav.addObject("passWord", passWord);
-            return mav;
+    @RequestMapping(method = RequestMethod.POST)
+    public String login(LoginDto dto , RedirectAttributes attr) {
+
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(dto.getUserName(), dto.getPassword());
+        token.setRememberMe(true);
+        try {
+            subject.login(token);
+            return "index";
+        } catch (AuthenticationException e) {
+            attr.addAttribute("dto",dto);
+            return "redirect:/login";
         }
-        return new ModelAndView("login/login");
     }
 
-    @RequestMapping(value = "login")
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView toLogin() {
         return new ModelAndView("login/login");
     }
 
-    /**
-     * 验证参数是否为空
-     *
-     * @param params 校验参数
-     *
-     * @return 失败返回false 成功返回true
-     */
-    private boolean checkParams(String[] params) {
-        for (String param : params) {
-            if (param.equals("") || param.isEmpty()) {
-                return false;
-            }
-        }
-        return true;
-    }
 
 }

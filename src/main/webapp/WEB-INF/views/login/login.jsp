@@ -41,7 +41,7 @@
   <!-- BEGIN LOGIN -->
   <div class="content">
     <!-- BEGIN LOGIN FORM -->
-    <form class="login-form" action="${ctx}/checkLogin" method="post">
+    <form class="login-form" action="${ctx}/login" method="post">
       <h3 class="form-title">请登录您的账号</h3>
 
       <div class="alert alert-danger display-hide">
@@ -101,13 +101,8 @@
   <!-- BEGIN PAGE LEVEL SCRIPTS -->
   <script src="${ctx}/static/assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/scripts/app.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/scripts/login-soft.js" type="text/javascript"></script>
+  <script src="${ctx}/static/viewlogics/login/login.js" type="text/javascript"></script>
   <!-- END PAGE LEVEL SCRIPTS -->
-  <script>
-    jQuery(document).ready(function () {
-      Login.init('${ctx}/static');
-    });
-  </script>
   <!-- END JAVASCRIPTS -->
 </body>
 <!-- END BODY -->
