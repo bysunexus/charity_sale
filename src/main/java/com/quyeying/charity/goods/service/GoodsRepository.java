@@ -1,6 +1,8 @@
 package com.quyeying.charity.goods.service;
 
 import com.quyeying.charity.domain.Goods;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -17,4 +19,8 @@ public interface GoodsRepository extends MongoRepository<Goods,String> {
 
     @Query("{'goodsNum':?0}")
     Goods findByNum(String num);
+
+    @Query("{'goodsType':?0}")
+    Page<Goods> findByGoodsType(String goodsType, Pageable pageable);
+
 }

@@ -107,7 +107,7 @@
               </a>
             </li>
             <li class="${menu=='groupReport'?'active':''}">
-              <a href="${ctx}/goGroupReport">
+              <a href="${ctx}/groupReport">
                 组内销售查询
               </a>
             </li>

@@ -29,6 +29,9 @@
   <link href="${ctx}/static/assets/css/pages/login-soft.css" rel="stylesheet" type="text/css"/>
   <link href="${ctx}/static/assets/css/custom.css" rel="stylesheet" type="text/css"/>
   <!-- END THEME STYLES -->
+  <script type="text/javascript">
+    var ctx = '${ctx}';
+  </script>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -85,6 +88,7 @@
   <script src="${ctx}/static/assets/plugins/respond.min.js"></script>
   <script src="${ctx}/static/assets/plugins/excanvas.min.js"></script>
   <![endif]-->
+  <script src="${ctx}/static/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
