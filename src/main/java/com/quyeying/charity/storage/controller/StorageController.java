@@ -45,7 +45,7 @@ public class StorageController {
 
     @RequestMapping(value = "/check/{goodsNum}", method = RequestMethod.POST)
     @ResponseBody
-    public IResultDto check(@PathVariable("goodsNum") String goodsNum,User user) {
+    public IResultDto check(@PathVariable("goodsNum") String goodsNum,@ModelAttribute("CURRENT_USER") User user) {
         ResultDto result;
 
         try {
@@ -60,7 +60,7 @@ public class StorageController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public IResultDto save(@Valid GoodsSaveDto dto, BindingResult result, User user) {
+    public IResultDto save(@Valid GoodsSaveDto dto, BindingResult result,@ModelAttribute("CURRENT_USER") User user) {
         // 校验数据对象
         if (result.hasErrors()) {
             ValidResultDto resultDto = ValidResultDto.get("校验失败");
