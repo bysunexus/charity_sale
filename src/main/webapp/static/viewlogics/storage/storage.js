@@ -127,9 +127,6 @@ var Storage = function () {
     },
 
     checkVW: function () {
-      console.log(JSON_USER.group);
-
-      console.log($("#goodsNum").val());
       //noinspection JSUnresolvedVariable
       var checkUrl = ctx + "/storage/check/" + JSON_USER.group + $("#goodsNum").val();
       $.ajax({
