@@ -122,7 +122,7 @@
           </a>
           <ul class="sub-menu">
             <li class="${menu=='adminAccountManager'?'active':''}">
-              <a href="${ctx}/goAdminAccountManager">
+              <a href="${ctx}/user">
                 账号管理
               </a>
             </li>
