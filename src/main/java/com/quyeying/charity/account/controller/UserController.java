@@ -95,8 +95,12 @@ public class UserController {
             userMenu.setUserId(u.getPkid());
             if(null == userMenu.getMenus())
                 userMenu.setMenus(new ArrayList<Menu>());
-            Menu menu = new Menu();
-            menu.setPkid(dto.getMenuId());
+
+            Menu menu = template.findOne(
+                new Query(Criteria.where("pkid").is(dto.getMenuId())),
+                Menu.class
+            );
+
             userMenu.getMenus().add(menu);
             template.save(userMenu);
             return ResultDto.getSuccess(userMenu);

@@ -25,6 +25,8 @@ public class ShiroMongoRealm extends AuthorizingRealm {
         // 为当前用户设置角色和权限
         SimpleAuthorizationInfo simpleAuthorInfo = new SimpleAuthorizationInfo();
         if (null != se) {
+            if("admin".equals(se.getUserName()))
+                simpleAuthorInfo.addRole("SUPER_ADMIN");
             // 用户的的角色信息
             List<String> permissions = repo.findPermissionsByUserId(se.getPkid());
             simpleAuthorInfo.addRoles(permissions);

@@ -14,7 +14,7 @@ import java.util.List;
  * Time: 22:29
  */
 public class ShiroMetaSource implements FactoryBean<Ini.Section> {
-    public static final String PREMISSION_STRING="authc,roles[{0}]";
+    public static final String PREMISSION_STRING="authc,roleOr[{0},SUPER_ADMIN]";
     @Autowired
     private IShiroUserService repo;
 
@@ -25,12 +25,11 @@ public class ShiroMetaSource implements FactoryBean<Ini.Section> {
 
         Ini ini = new Ini();
         //加载默认的url
-        ini.load("/static/**=anon\n/login=anon\n/logout=anon\n/unauthorized=authc\n/=authc\n");
+        ini.load("/static/**=anon\n/static/**=anon\n/login=anon\n/logout=anon\n/unauthorized=authc\n/=authc\n");
         Ini.Section section = ini.getSection(Ini.DEFAULT_SECTION_NAME);
         for (Menu menu : list) {
             section.put(menu.getPath(), MessageFormat.format(PREMISSION_STRING, menu.getSign()));
         }
-        section.put("/**", "authc,roles[**]");
         return section;
     }
 

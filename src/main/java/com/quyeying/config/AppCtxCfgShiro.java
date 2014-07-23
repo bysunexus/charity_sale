@@ -1,6 +1,8 @@
 package com.quyeying.config;
 
 
+import com.quyeying.charity.domain.Menu;
+import com.quyeying.security.RolesFilter;
 import com.quyeying.security.ShiroMetaSource;
 import com.quyeying.security.ShiroMongoRealm;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -13,6 +15,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
+import javax.servlet.Filter;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -23,6 +28,11 @@ import org.springframework.context.annotation.DependsOn;
  */
 @Configuration
 public class AppCtxCfgShiro{
+
+    @Bean
+    public RolesFilter getRolesFilter(){
+        return new RolesFilter();
+    }
 
     @Bean
     public ShiroMongoRealm getShiroMongoRealm(){
@@ -59,7 +69,9 @@ public class AppCtxCfgShiro{
         factoryBean.setLoginUrl("/login");
         factoryBean.setUnauthorizedUrl("/unauthorized");
         factoryBean.setFilterChainDefinitionMap(getShiroMetaSource().getObject());
-
+        Map<String ,Filter> filters = new HashMap<>();
+        filters.put("roleOr",getRolesFilter());
+        factoryBean.setFilters(filters);
 
         return (AbstractShiroFilter)factoryBean.getObject();
     }

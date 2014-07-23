@@ -1,6 +1,6 @@
 var Account = function(){
 
-  var initTree = function(treeId,inpId,data){
+  var initTree = function(treeId,mouseFn,data){
     var tree = $.fn.zTree.init($("#"+treeId), {
       data: {
         simpleData: {
@@ -11,9 +11,7 @@ var Account = function(){
         }
       },
       callback: {
-        onMouseDown: function(event, treeId, treeNode){
-          $("#"+inpId).val(treeNode.pkid);
-        }
+        onMouseDown: mouseFn
       }
     }, data);
     tree.expandAll(true);
@@ -34,8 +32,13 @@ var Account = function(){
       },
       success: function (resp) {
         if(resp.success){
-          initTree("menuTreeDiv","menu_pid",resp.data);
-          initTree("userMenuTreeDiv","MenuForm_menuId",resp.data);
+          initTree("menuTreeDiv",function(event, treeId, treeNode){
+            $("#menu_pid").val(treeNode.pkid);
+          },resp.data);
+          initTree("userMenuTreeDiv",function(event, treeId, treeNode){
+            if(treeNode.path)
+              $("#MenuForm_menuId").val(treeNode.pkid);
+          },resp.data);
         }else{
           bootbox.alert(data.msg||"操作失败,请重试或联系管理员!");
         }
