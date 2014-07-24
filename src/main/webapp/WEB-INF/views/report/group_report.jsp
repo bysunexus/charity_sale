@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="menu" content="groupReport">
+  <meta name="menu" content="BIZ_OPT_STORAGE_GROUPREPORT">
   <!-- BEGIN PAGE LEVEL STYLES -->
   <link rel="stylesheet" type="text/css" href="${ctx}/static/assets/plugins/select2/select2_metro.css"/>
   <link rel="stylesheet" href="${ctx}/static/assets/plugins/data-tables/DT_bootstrap.css"/>

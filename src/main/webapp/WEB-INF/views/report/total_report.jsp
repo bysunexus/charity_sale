@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="menu" content="totalReport">
+  <meta name="menu" content="MAIN_REPORT_LIST">
   <!-- BEGIN PAGE LEVEL STYLES -->
   <link rel="stylesheet" type="text/css" href="${ctx}/static/assets/plugins/select2/select2_metro.css"/>
   <link rel="stylesheet" href="${ctx}/static/assets/plugins/data-tables/DT_bootstrap.css"/>

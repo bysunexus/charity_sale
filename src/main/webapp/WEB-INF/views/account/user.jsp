@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="menu" content="adminAccountManager">
+  <meta name="menu" content="BIZ_OPT_USER">
   <link href="${ctx}/static/ztree/css/zTreeStyle/metro.css" rel="stylesheet" type="text/css">
 </head>
 <body>

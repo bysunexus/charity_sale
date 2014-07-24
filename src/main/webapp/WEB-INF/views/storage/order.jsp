@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="menu" content="orderTable">
+  <meta name="menu" content="BIZ_OPT_STORAGE">
   <!-- BEGIN PAGE LEVEL STYLES -->
   <!-- END PAGE LEVEL STYLES -->
 </head>

@@ -12,6 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="menu" content="">
 	<title>500 - 系统内部错误</title>
 </head>
 

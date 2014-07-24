@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="menu" content="storage">
+  <meta name="menu" content="BIZ_OPT_STORAGE">
 </head>
 <body>
 <!-- BEGIN PAGE HEADER-->

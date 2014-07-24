@@ -49,11 +49,27 @@
   <script src="${ctx}/static/commons/commons.js" type="application/javascript"></script>
   <sitemesh:head/>
   <script type="text/javascript">
-    var ctx = '${ctx}';
+    var ctx = '${ctx}',CTX = '${ctx}';
+    var ACTIVE_MENU = '${menu}';
     jQuery(document).ready(function() {
       // 页面初始化
       App.init('${ctx}/static');
     });
+  </script>
+  <script id="addParentMenu" type="text/html">
+    <li class="{{style}}">
+      <a href="javascript:;">
+        <i class="fa fa-cogs"></i>
+        <span class="title">{{title}}</span>
+        <span class="arrow"></span>
+      </a>
+      <ul class="sub-menu" id="SUB_MENU_{{menuid}}"></ul>
+    </li>
+  </script>
+  <script id="addSubMenu" type="text/html">
+    <li class="{{style}}">
+      <a href="{{path}}">{{title}}</a>
+    </li>
   </script>
 </head>
 <body class="page-header-fixed">
@@ -81,72 +97,18 @@
     <!-- 左侧导航条 -->
     <div class="page-sidebar navbar-collapse collapse">
       <!-- 导航条菜单 -->
-      <ul class="page-sidebar-menu">
+
+      <ul class="page-sidebar-menu" id="main_menu">
         <li>
           <!-- 显隐按钮 -->
           <div class="sidebar-toggler hidden-xs"></div>
         </li>
-        <li class="start ${menu==''?'active':''}">
+        <li class="start">
           <a href="${ctx}/">
             <i class="fa fa-home"></i>
             <span class="title">首页</span>
             <span class="selected"></span>
           </a>
-        </li>
-        <li class="last ${menu=='storage'?'active':''}">
-          <a href="javascript:;">
-            <i class="fa fa-table"></i>
-            <span class="title">业务功能</span>
-            <span class="selected"></span>
-            <span class="arrow open"></span>
-          </a>
-          <ul class="sub-menu">
-            <li class="${menu=='storage'?'active':''}">
-              <a href="${ctx}/storage">
-                商品出入库
-              </a>
-            </li>
-            <li class="${menu=='groupReport'?'active':''}">
-              <a href="${ctx}/groupReport">
-                组内销售查询
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="last ${menu=='adminAccountManager'?'active':''}">
-          <a href="javascript:;">
-            <i class="fa fa-wrench"></i>
-            <span class="title">管理员功能</span>
-            <span class="selected"></span>
-            <span class="arrow open"></span>
-          </a>
-          <ul class="sub-menu">
-            <li class="${menu=='adminAccountManager'?'active':''}">
-              <a href="${ctx}/user">
-                账号管理
-              </a>
-            </li>
-            <li class="${menu=='totalReport'?'active':''}">
-              <a href="${ctx}/totalReport">
-                总报表查询
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="last ${menu=='priceTag'?'active':''}">
-          <a href="javascript:;">
-            <i class="fa fa-cogs"></i>
-            <span class="title">系统功能</span>
-            <span class="selected"></span>
-            <span class="arrow open"></span>
-          </a>
-          <ul class="sub-menu">
-            <li class="${menu=='priceTag'?'active':''}">
-              <a href="${ctx}/priceTag">
-                生成价签
-              </a>
-            </li>
-          </ul>
         </li>
       </ul>
     </div>

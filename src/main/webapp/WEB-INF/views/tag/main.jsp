@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="menu" content="priceTag">
+  <meta name="menu" content="SYS_OPTS_PT">
 </head>
 <body>
 <!-- BEGIN PAGE HEADER-->

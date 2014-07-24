@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="menu" content="">
 	<title>404 - 页面不存在</title>
 </head>
 

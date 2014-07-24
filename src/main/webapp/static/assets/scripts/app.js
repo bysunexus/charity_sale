@@ -27,6 +27,57 @@ var App = function () {
     'yellow': '#ffb848'
   };
 
+  var initMenuDatas = function(){
+    var url = CTX + "/user/menu";
+    $.ajax({
+      type: "GET",
+      url: url,
+      contentType: "application/json; charset=UTF-8",
+      beforeSend: function () {
+        //AJAX请求完成时显示提示，防止表单重复提交
+        App.blockUI($("body"));
+      },
+      complete: function () {
+        //AJAX请求完成时隐藏loading提示
+        App.unblockUI($("body"));
+      },
+      success: function (resp) {
+
+        if (resp.success) {
+          // 迭代一级菜单
+          $.each(resp.data,function(idx,menu){
+            if(!menu.pid){
+              $("#main_menu").append(ich.addParentMenu({
+                title:menu.name,
+                menuid:menu.pkid,
+                style:ACTIVE_MENU===menu.sign?"active":""
+              }));
+            }
+          });
+          // 迭代二级菜单
+          $.each(resp.data,function(idx,menu){
+            if(menu.pid&&$("#SUB_MENU_"+menu.pid).length > 0){
+              $("#SUB_MENU_"+menu.pid).append(ich.addSubMenu({
+                title:menu.name,
+                path:CTX+menu.path,
+                style:ACTIVE_MENU===menu.sign?"active":""
+              }));
+
+              if(ACTIVE_MENU===menu.sign)
+                $($("#SUB_MENU_"+menu.pid).parent()).addClass("active");
+
+            }
+          });
+
+          if(!ACTIVE_MENU)
+            $("#main_menu li:first").next().addClass("active");
+          $("#main_menu li:last").addClass("last");
+
+        }
+      }
+    });
+  };
+
   // To get the correct viewport width based on  http://andylangton.co.uk/articles/javascript/get-viewport-size-javascript/
   var _getViewPort = function () {
     var e = window, a = 'inner';
@@ -885,6 +936,8 @@ var App = function () {
       handleAccordions(); //handles accordions
       handleModals(); // handle modals
       handleFullScreenMode(); // handles full screen
+
+      initMenuDatas();// init menus
     },
 
     //main function to initiate core javascript after ajax complete
