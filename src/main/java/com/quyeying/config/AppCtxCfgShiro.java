@@ -1,15 +1,18 @@
 package com.quyeying.config;
 
 
-import com.quyeying.charity.domain.Menu;
 import com.quyeying.security.RolesFilter;
 import com.quyeying.security.ShiroMetaSource;
 import com.quyeying.security.ShiroMongoRealm;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler;
+import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.apache.shiro.web.session.mgt.ServletContainerSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,37 +30,36 @@ import java.util.Map;
  * spring 主配置文件
  */
 @Configuration
-public class AppCtxCfgShiro{
+public class AppCtxCfgShiro {
 
     @Bean
-    public RolesFilter getRolesFilter(){
+    public RolesFilter getRolesFilter() {
         return new RolesFilter();
     }
 
     @Bean
-    public ShiroMongoRealm getShiroMongoRealm(){
+    public ShiroMongoRealm getShiroMongoRealm() {
         ShiroMongoRealm bean = new ShiroMongoRealm();
         return bean;
     }
 
     @Bean
-    public EhCacheManager getEhCacheManager(){
+    public EhCacheManager getEhCacheManager() {
         EhCacheManager bean = new EhCacheManager();
         bean.setCacheManagerConfigFile("classpath:ehcache-shiro.xml");
         return bean;
     }
 
     @Bean
-    public DefaultWebSecurityManager getDefaultWebSecurityManager(){
+    public DefaultWebSecurityManager getDefaultWebSecurityManager() {
         DefaultWebSecurityManager bean = new DefaultWebSecurityManager();
-
         bean.setRealm(getShiroMongoRealm());
         bean.setCacheManager(getEhCacheManager());
         return bean;
     }
 
     @Bean
-    public ShiroMetaSource getShiroMetaSource(){
+    public ShiroMetaSource getShiroMetaSource() {
         ShiroMetaSource bean = new ShiroMetaSource();
         return bean;
     }
@@ -69,21 +71,21 @@ public class AppCtxCfgShiro{
         factoryBean.setLoginUrl("/login");
         factoryBean.setUnauthorizedUrl("/unauthorized");
         factoryBean.setFilterChainDefinitionMap(getShiroMetaSource().getObject());
-        Map<String ,Filter> filters = new HashMap<>();
-        filters.put("roleOr",getRolesFilter());
+        Map<String, Filter> filters = new HashMap<>();
+        filters.put("roleOr", getRolesFilter());
         factoryBean.setFilters(filters);
 
-        return (AbstractShiroFilter)factoryBean.getObject();
+        return (AbstractShiroFilter) factoryBean.getObject();
     }
 
     @Bean(name = "lifecycleBeanPostProcessor")
-    public LifecycleBeanPostProcessor getLifecycleBeanPostProcessor(){
+    public LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
     }
 
     @Bean
-    @DependsOn(value="lifecycleBeanPostProcessor")
-    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){
+    @DependsOn(value = "lifecycleBeanPostProcessor")
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
         return new DefaultAdvisorAutoProxyCreator();
     }
 }

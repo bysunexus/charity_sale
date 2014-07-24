@@ -1,7 +1,7 @@
-var Account = function(){
+var Account = function () {
 
-  var initTree = function(treeId,mouseFn,data){
-    var tree = $.fn.zTree.init($("#"+treeId), {
+  var initTree = function (treeId, mouseFn, data, check) {
+    var tree = $.fn.zTree.init($("#" + treeId), {
       data: {
         simpleData: {
           enable: true,
@@ -12,16 +12,17 @@ var Account = function(){
       },
       callback: {
         onMouseDown: mouseFn
-      }
+      },
+      check: check
     }, data);
     tree.expandAll(true);
   }
 
-  var loadTreeData = function(){
+  var loadTreeData = function () {
     $.ajax({
       type: "GET",
-      url: ctx+"/user/menu",
-      contentType:"application/json; charset=UTF-8",
+      url: ctx + "/user/menu",
+      contentType: "application/json; charset=UTF-8",
       beforeSend: function () {
         //AJAX请求完成时显示提示，防止表单重复提交
         App.blockUI($("body"));
@@ -31,26 +32,29 @@ var Account = function(){
         App.unblockUI($("body"));
       },
       success: function (resp) {
-        if(resp.success){
-          initTree("menuTreeDiv",function(event, treeId, treeNode){
-            $("#menu_pid").val(treeNode.pkid);
-          },resp.data);
-          initTree("userMenuTreeDiv",function(event, treeId, treeNode){
-            if(treeNode.path)
-              $("#MenuForm_menuId").val(treeNode.pkid);
-          },resp.data);
-        }else{
-          bootbox.alert(data.msg||"操作失败,请重试或联系管理员!");
+        if (resp.success) {
+          initTree("menuTreeDiv", function (event, treeId, treeNode) {
+            if (treeNode && treeNode.pkid)
+              $("#menu_pid").val(treeNode.pkid);
+          }, resp.data);
+          initTree("userMenuTreeDiv", function () {
+          }, resp.data, {
+            chkboxType: { "Y": "ps", "N": "ps" },
+            enable: true
+
+          });
+        } else {
+          bootbox.alert((data?data.msg:0) || "操作失败,请重试或联系管理员!");
         }
       }
     });
   };
 
   return {
-    saveUser:function(){
+    saveUser: function () {
       $.ajax({
         type: "POST",
-        url: ctx+"/user",
+        url: ctx + "/user",
         data: $('#userForm').serializeForm(),
         beforeSend: function () {
           //AJAX请求完成时显示提示，防止表单重复提交
@@ -65,18 +69,18 @@ var Account = function(){
             COMMONS.resetForm("userForm");
             bootbox.alert("保存成功");
           } else {
-            bootbox.alert(data.msg||"操作失败,请重试或联系管理员!");
+            bootbox.alert((data?data.msg:0)  || "操作失败,请重试或联系管理员!");
           }
         }
       });
     },
-    loadTree:function(){
+    loadTree: function () {
       loadTreeData();
     },
-    saveMenu:function(){
+    saveMenu: function () {
       $.ajax({
         type: "POST",
-        url: ctx+"/user/menu",
+        url: ctx + "/user/menu",
         data: $('#MenuForm').serializeForm(),
         beforeSend: function () {
           //AJAX请求完成时显示提示，防止表单重复提交
@@ -92,16 +96,29 @@ var Account = function(){
             loadTreeData();
             bootbox.alert("保存成功");
           } else {
-            bootbox.alert(data.msg||"操作失败,请重试或联系管理员!");
+            bootbox.alert((data?data.msg:0)  || "操作失败,请重试或联系管理员!");
           }
         }
       });
     },
-    saveUserMenu:function(){
+    saveUserMenu: function () {
+      var menuIds = [];
+      $.each($.fn.zTree.getZTreeObj("userMenuTreeDiv").getCheckedNodes(),
+        function (idx, n) {
+          if (n.path)
+            menuIds.push(n.pkid);
+        }
+      );
+
+
       $.ajax({
         type: "POST",
-        url: ctx+"/user/userMenu",
-        data: $('#UserMenuForm').serializeForm(),
+        traditional:true,
+        url: ctx + "/user/userMenu",
+        data: {
+          userName: $("#umf_userName").val(),
+          menuIds: menuIds
+        },
         beforeSend: function () {
           //AJAX请求完成时显示提示，防止表单重复提交
           App.blockUI($("body"));
@@ -115,7 +132,7 @@ var Account = function(){
             COMMONS.resetForm("UserMenuForm");
             bootbox.alert("保存成功");
           } else {
-            bootbox.alert(data.msg||"操作失败,请重试或联系管理员!");
+            bootbox.alert((data?data.msg:0)  || "操作失败,请重试或联系管理员!");
           }
         }
       });
@@ -123,6 +140,6 @@ var Account = function(){
   };
 }();
 
-$(function(){
+$(function () {
   Account.loadTree();
 });

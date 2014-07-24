@@ -29,17 +29,11 @@ public class RolesFilter extends RolesAuthorizationFilter {
 
         Set<String> roles = CollectionUtils.asSet(rolesArray);
 
-        boolean result = false;
         for (String role : roles) {
-            try {
-                subject.checkRole(role);
-                result = true;
-                break;
-            } catch (AuthorizationException e) {
-
-            }
+            if(subject.hasRole(role))
+                return true;
         }
-        return result;
+        return false;
     }
 
 }

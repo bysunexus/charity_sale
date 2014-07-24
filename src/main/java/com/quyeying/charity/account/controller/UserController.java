@@ -42,7 +42,7 @@ public class UserController {
     @ResponseBody
     public IResultDto saveUser(UserDto user) {
         try {
-            User u =  user.get();
+            User u = user.get();
             template.save(u);
             return ResultDto.getSuccess(u);
         } catch (Exception e) {
@@ -51,7 +51,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value="/menu",method = RequestMethod.GET)
+    @RequestMapping(value = "/menu", method = RequestMethod.GET)
     @ResponseBody
     public IResultDto menuTree() {
         try {
@@ -61,7 +61,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="/menu",method = RequestMethod.POST)
+    @RequestMapping(value = "/menu", method = RequestMethod.POST)
     @ResponseBody
     public IResultDto saveMenu(Menu menu) {
         try {
@@ -72,7 +72,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="/userMenu",method = RequestMethod.POST)
+    @RequestMapping(value = "/userMenu", method = RequestMethod.POST)
     @ResponseBody
     public IResultDto savUserMenu(UserMenuDto dto) {
         try {
@@ -82,26 +82,30 @@ public class UserController {
                 User.class
             );
 
-            if(null == u)
-                return ResultDto.get("没有找到用户名为["+dto.getUserName()+"]的用户,添加失败!");
+            if (null == u)
+                return ResultDto.get("没有找到用户名为[" + dto.getUserName() + "]的用户,添加失败!");
 
             UserMenu userMenu = template.findOne(
                 new Query(Criteria.where("userId").is(u.getPkid())),
                 UserMenu.class
             );
 
-            if(null == userMenu)
+            if (null == userMenu)
                 userMenu = new UserMenu();
             userMenu.setUserId(u.getPkid());
-            if(null == userMenu.getMenus())
-                userMenu.setMenus(new ArrayList<Menu>());
 
-            Menu menu = template.findOne(
-                new Query(Criteria.where("pkid").is(dto.getMenuId())),
-                Menu.class
-            );
+            userMenu.setMenus(new ArrayList<Menu>());
 
-            userMenu.getMenus().add(menu);
+            for (String menuId : dto.getMenuIds()) {
+
+                Menu menu = template.findOne(
+                    new Query(Criteria.where("pkid").is(menuId)),
+                    Menu.class
+                );
+
+                userMenu.getMenus().add(menu);
+            }
+
             template.save(userMenu);
             return ResultDto.getSuccess(userMenu);
         } catch (Exception e) {

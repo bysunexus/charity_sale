@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * charity_sale
  * com.quyeying.charity.login.controller
@@ -34,11 +38,10 @@ public class LoginController {
      * @return 返回首页
      */
     @RequestMapping(method = RequestMethod.POST)
-    public String login(LoginDto dto , RedirectAttributes attr) {
+    public String login(LoginDto dto , RedirectAttributes attr,HttpServletResponse resp) {
 
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(dto.getUserName(), dto.getPassword());
-        token.setRememberMe(true);
         try {
             subject.login(token);
 
