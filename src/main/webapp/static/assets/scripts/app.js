@@ -28,7 +28,7 @@ var App = function () {
   };
 
   var initMenuDatas = function(){
-    var url = CTX + "/user/menu";
+    var url = CTX + "/main/menu";
     $.ajax({
       type: "GET",
       url: url,

@@ -1,6 +1,7 @@
 package com.quyeying.security;
 
 import com.quyeying.charity.domain.Menu;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.config.Ini;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,11 @@ public class ShiroMetaSource implements FactoryBean<Ini.Section> {
 
         Ini ini = new Ini();
         //加载默认的url
-        ini.load("/static/**=anon\n/static/**=anon\n/login=anon\n/logout=anon\n/unauthorized=authc\n/=authc\n");
+        ini.load("/static/**=anon\n/static/**=anon\n/login=anon\n/logout=anon\n/main/menu=anon\n/unauthorized=authc\n/=authc\n");
         Ini.Section section = ini.getSection(Ini.DEFAULT_SECTION_NAME);
         for (Menu menu : list) {
-            section.put(menu.getPath(), MessageFormat.format(PREMISSION_STRING, menu.getSign()));
+            if(StringUtils.isNotBlank(menu.getPath()))
+                section.put(menu.getPath(), MessageFormat.format(PREMISSION_STRING, menu.getSign()));
         }
         return section;
     }
