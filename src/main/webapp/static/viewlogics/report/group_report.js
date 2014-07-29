@@ -71,7 +71,6 @@ var GroupReport = function () {
       ],
       //服务器端，数据回调处理
       "fnServerData": function (sSource, aDataSet, fnCallback) {
-        alert($("#gpTable_wrapper input").val());
         $.ajax({
           "dataType": 'json',
           "type": "post",
