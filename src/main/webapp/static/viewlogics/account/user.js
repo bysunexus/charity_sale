@@ -105,8 +105,7 @@ var Account = function () {
       var menuIds = [];
       $.each($.fn.zTree.getZTreeObj("userMenuTreeDiv").getCheckedNodes(),
         function (idx, n) {
-          if (n.path)
-            menuIds.push(n.pkid);
+          menuIds.push(n.pkid);
         }
       );
 

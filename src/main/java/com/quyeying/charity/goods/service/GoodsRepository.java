@@ -15,7 +15,7 @@ import java.util.List;
  * Time: 21:15
  */
 @Repository("goodsRepository")
-public interface GoodsRepository extends MongoRepository<Goods,String> {
+public interface GoodsRepository extends GoodsRepositoryCustom,MongoRepository<Goods,String> {
 
     @Query("{'goodsNum':?0}")
     Goods findByNum(String num);
