@@ -11,9 +11,14 @@ var GroupReport = function () {
       "sDom": "<'row'<'col-md-6 col-sm-12'l><'col-md-12 col-sm-12'f>r>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", //default layout without horizontal scroll(remove this setting to enable horizontal scroll for the table)
       "iDisplayLength": 10,
       'bLengthChange': false,
-      "bInfo" : false,
-      "bPaginate" : true,
-      "bFilter" : false,
+      "bInfo": false,
+      "bPaginate": true,
+      "bFilter": true,
+      //"bStateSave": true,
+      "processing": true,
+      "serverSide": true,
+      "bSort" : false,
+      "sAjaxSource": ctx + "/groupReport/findTotalTable",
       "sPaginationType": "bootstrap",
       "oLanguage": {
         "sProcessing": "正在获取数据，请稍后...",
@@ -33,9 +38,9 @@ var GroupReport = function () {
         {
           "aTargets": [ 4 ],
           "mData": "saleMoney",
-          "mRender": function ( data, type, full ) {
+          "mRender": function (data, type, full) {
             var saleMoney = 0;
-            $(data).each(function(idx, item){
+            $(data).each(function (idx, item) {
               saleMoney += item.saleMoney;
             });
             return saleMoney + " 元";
@@ -44,9 +49,9 @@ var GroupReport = function () {
         {
           "aTargets": [ 6 ],
           "mData": "saleCount",
-          "mRender": function ( data, type, full ) {
+          "mRender": function (data, type, full) {
             var saleCount = 0;
-            $(data).each(function(idx, item){
+            $(data).each(function (idx, item) {
               saleCount += item.saleCount;
             });
             return saleCount + " 件";
@@ -55,23 +60,18 @@ var GroupReport = function () {
         {
           "aTargets": [ 7 ],
           "mData": "saleInfos",
-          "mRender": function ( data, type, full ) {
+          "mRender": function (data, type, full) {
             var saleCount = 0;
-            $(data).each(function(idx, item){
+            $(data).each(function (idx, item) {
               saleCount += item.saleCount;
             });
             return full.goodsCount - saleCount + " 件";
           }
         }
       ],
-      "aaSorting": [
-        [1, 'asc']
-      ],
-      "processing": true,
-      "serverSide": true,
-      "sAjaxSource": ctx + "/groupReport/findTotalTable",
       //服务器端，数据回调处理
       "fnServerData": function (sSource, aDataSet, fnCallback) {
+        alert($("#gpTable_wrapper input").val());
         $.ajax({
           "dataType": 'json',
           "type": "post",
@@ -83,7 +83,7 @@ var GroupReport = function () {
         });
       },
       "columns": [
-        { "data": "goodsNum" },
+        { "data": "goodsNum"},
         { "data": "goodsName" },
         { "data": "personName" },
         { "data": "goodsPrice" },
@@ -94,9 +94,10 @@ var GroupReport = function () {
       ]
     });
 
-    jQuery('#gpTable_wrapper .dataTables_filter input').addClass("form-control input-small"); // modify table search input
+    jQuery('#gpTable_wrapper .dataTables_filter input').addClass("form-control input-medium"); // modify table search input
     jQuery('#gpTable_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
-    jQuery('#gpTable_wrapper .dataTables_length select').select2(); // initialize select2 dropdown
+    jQuery('#gpTable_wrapper .dataTables_length select').select2({
+    }); // initialize select2 dropdown
 
     $('#gpTable_column_toggler input[type="checkbox"]').change(function () {
       /* Get the DataTables object again - this is not a recreation, just a get of the object */

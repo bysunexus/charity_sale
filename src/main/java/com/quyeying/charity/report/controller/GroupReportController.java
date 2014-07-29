@@ -45,11 +45,11 @@ public class GroupReportController {
 
 
     @RequestMapping(value = "/findTotalTable", method = RequestMethod.POST)
-    public @ResponseBody ResultDto findTotalTable(Integer iDisplayLength, Integer iDisplayStart, @ModelAttribute("CURRENT_USER") User user) {
+    public @ResponseBody ResultDto findTotalTable(String sSearch, Integer iDisplayLength, Integer iDisplayStart, @ModelAttribute("CURRENT_USER") User user) {
         ResultDto result;
         DataTableResultDto tableResultDto = new DataTableResultDto();
 
-        Page<Goods> list = repo.findByGoodsType(user.getGroup(), new PageRequest((iDisplayStart / iDisplayLength), iDisplayLength));
+        Page<Goods> list = repo.findByGoodsType(user.getGroup(), sSearch.toUpperCase(), new PageRequest((iDisplayStart / iDisplayLength), iDisplayLength));
         tableResultDto.setData(list.getContent());
         tableResultDto.setiTotalRecords(list.getTotalPages());
         tableResultDto.setiTotalDisplayRecords(list.getTotalElements());
