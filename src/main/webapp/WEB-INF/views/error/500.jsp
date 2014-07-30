@@ -3,7 +3,7 @@
 <%@ page import="org.slf4j.Logger,org.slf4j.LoggerFactory" %>
 <%	
 	//设置返回码200，避免浏览器自带的错误页面
-	response.setStatus(200);
+	response.setStatus(500);
 	//记录日志
 	Logger logger = LoggerFactory.getLogger("500.jsp");
 	logger.error(exception.getMessage(), exception);

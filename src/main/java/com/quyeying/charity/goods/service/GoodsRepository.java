@@ -20,7 +20,7 @@ public interface GoodsRepository extends GoodsRepositoryCustom,MongoRepository<G
     @Query("{'goodsNum':?0}")
     Goods findByNum(String num);
 
-    @Query("{'goodsType':?0, 'goodsNum':?1}")
-    Page<Goods> findByGoodsType(String goodsType, String goodsNum, Pageable pageable);
+    @Query("{'goodsType':?0}")
+    Page<Goods> findByGoodsType(String goodsType, Pageable pageable);
 
 }

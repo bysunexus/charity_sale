@@ -15,9 +15,9 @@ public class GoodsRepositoryImpl implements GoodsRepositoryCustom {
     @Autowired
     protected MongoTemplate mongo;
 
-    Page<Goods> findByDto(XxxDto dto, Pageable pageable){
-
-        return null;
-    }
+//    Page<Goods> findByDto(XxxDto dto, Pageable pageable){
+//
+//        return null;
+//    }
 
 }

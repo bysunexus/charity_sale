@@ -8,17 +8,32 @@ var GroupReport = function () {
 
   var initTable = function () {
     var oTable = $('#gpTable').dataTable({
-      "sDom": "<'row'<'col-md-6 col-sm-12'l><'col-md-12 col-sm-12'f>r>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", //default layout without horizontal scroll(remove this setting to enable horizontal scroll for the table)
+      "autoWidth": false, // 自适应宽度
+      "deferRender":false, // 是否延时渲染(前端分页)
+      "info": true, // 分页详细信息说明
+      "lengthChange":true,//是否允许分页数选择
+      "lengthMenu": [ 10, 25, 50, 75, 100 ], // 分页条数选择工具
+      "ordering":true, // 是否开启排序功能
+      "paging":true, // 是否分页
+      "processing": true,// 是否显示加载ing
+      "scrollX":false,//是否允许水平滚动
+      "scrollY":false,//是否允许垂直滚动
+      "searching": true,//是否显示搜索框
+      "serverSide": true,//是否是服务端数据
+      stateSave: false,//启用或禁用状态保存
+      ajax:{
+        "url": ctx + "/groupReport/findTotalTable",
+        "type": "post",
+
+        "data": {
+          "user_id": 451
+        }
+
+      },// 服务器请求
+
       "iDisplayLength": 10,
-      'bLengthChange': false,
-      "bInfo": false,
-      "bPaginate": true,
-      "bFilter": true,
       //"bStateSave": true,
-      "processing": true,
-      "serverSide": true,
-      "bSort" : false,
-      "sAjaxSource": ctx + "/groupReport/findTotalTable",
+//      "sAjaxSource": ctx + "/groupReport/findTotalTable",
       "sPaginationType": "bootstrap",
       "oLanguage": {
         "sProcessing": "正在获取数据，请稍后...",
@@ -69,7 +84,7 @@ var GroupReport = function () {
           }
         }
       ],
-      //服务器端，数据回调处理
+/*      //服务器端，数据回调处理
       "fnServerData": function (sSource, aDataSet, fnCallback) {
         $.ajax({
           "dataType": 'json',
@@ -80,7 +95,7 @@ var GroupReport = function () {
             fnCallback(resp.data);
           }
         });
-      },
+      },*/
       "columns": [
         { "data": "goodsNum"},
         { "data": "goodsName" },

@@ -12,9 +12,10 @@ public class DataTableResultDto {
 
     private Object data;
 
-    private int iTotalRecords;
+    private long recordsTotal;
+    private long recordsFiltered;
+    private int draw = 1;
 
-    private long iTotalDisplayRecords;
 
     public Object getData() {
         return data;
@@ -24,19 +25,27 @@ public class DataTableResultDto {
         this.data = data;
     }
 
-    public int getiTotalRecords() {
-        return iTotalRecords;
+    public long getRecordsTotal() {
+        return recordsTotal;
     }
 
-    public void setiTotalRecords(int iTotalRecords) {
-        this.iTotalRecords = iTotalRecords;
+    public void setRecordsTotal(long recordsTotal) {
+        this.recordsTotal = recordsTotal;
     }
 
-    public long getiTotalDisplayRecords() {
-        return iTotalDisplayRecords;
+    public long getRecordsFiltered() {
+        return recordsFiltered;
     }
 
-    public void setiTotalDisplayRecords(long iTotalDisplayRecords) {
-        this.iTotalDisplayRecords = iTotalDisplayRecords;
+    public void setRecordsFiltered(long recordsFiltered) {
+        this.recordsFiltered = recordsFiltered;
+    }
+
+    public int getDraw() {
+        return draw;
+    }
+
+    public void setDraw(int draw) {
+        this.draw = draw;
     }
 }

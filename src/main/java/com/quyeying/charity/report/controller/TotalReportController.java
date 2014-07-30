@@ -48,8 +48,8 @@ public class TotalReportController {
         }
 
         tableResultDto.setData(list);
-        tableResultDto.setiTotalRecords(1);
-        tableResultDto.setiTotalDisplayRecords(20);
+/*        tableResultDto.setiTotalRecords(1);
+        tableResultDto.setiTotalDisplayRecords(20);*/
 
 
         result = ResultDto.getSuccess(tableResultDto);

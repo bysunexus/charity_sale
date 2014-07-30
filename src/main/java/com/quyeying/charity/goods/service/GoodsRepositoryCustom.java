@@ -17,5 +17,5 @@ public interface GoodsRepositoryCustom {
      * @param pageable 分页信息
      * @return 捐品列表
      */
-    Page<Goods> findByDto(XxxDto dto, Pageable pageable);
+   // Page<Goods> findByDto(XxxDto dto, Pageable pageable);
 }

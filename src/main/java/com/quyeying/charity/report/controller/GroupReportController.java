@@ -1,5 +1,7 @@
 package com.quyeying.charity.report.controller;
 
+import com.quyeying.charity.base.dto.DataTablesReq;
+import com.quyeying.charity.base.dto.DataTablesResp;
 import com.quyeying.charity.commons.ResultDto;
 import com.quyeying.charity.domain.Goods;
 import com.quyeying.charity.domain.User;
@@ -45,17 +47,17 @@ public class GroupReportController {
 
 
     @RequestMapping(value = "/findTotalTable", method = RequestMethod.POST)
-    public @ResponseBody ResultDto findTotalTable(String sSearch, Integer iDisplayLength, Integer iDisplayStart, @ModelAttribute("CURRENT_USER") User user) {
-        ResultDto result;
-        DataTableResultDto tableResultDto = new DataTableResultDto();
-
-        Page<Goods> list = repo.findByGoodsType(user.getGroup(), sSearch.toUpperCase(), new PageRequest((iDisplayStart / iDisplayLength), iDisplayLength));
-        tableResultDto.setData(list.getContent());
-        tableResultDto.setiTotalRecords(list.getTotalPages());
-        tableResultDto.setiTotalDisplayRecords(list.getTotalElements());
+    public @ResponseBody DataTablesResp findTotalTable(DataTablesReq dto, @ModelAttribute("CURRENT_USER") User user) {
 
 
-        result = ResultDto.getSuccess(tableResultDto);
+        DataTablesResp result = new DataTablesResp();
+
+        Page<Goods> list = repo.findByGoodsType(user.getGroup(), dto.getPageRequest());
+        result.setData(list.getContent());
+        int total = Long.valueOf(list.getTotalElements()).intValue();
+        result.setRecordsTotal(total);
+        result.setRecordsFiltered(total);
+
         return result;
     }
 
