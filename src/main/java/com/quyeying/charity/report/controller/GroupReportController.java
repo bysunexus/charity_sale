@@ -1,28 +1,16 @@
 package com.quyeying.charity.report.controller;
 
-import com.quyeying.charity.base.dto.DataTablesReq;
 import com.quyeying.charity.base.dto.DataTablesResp;
-import com.quyeying.charity.commons.ResultDto;
 import com.quyeying.charity.domain.Goods;
 import com.quyeying.charity.domain.User;
 import com.quyeying.charity.goods.service.GoodsRepository;
-import com.quyeying.charity.report.dto.DataTableResultDto;
 import com.quyeying.charity.report.dto.GroupReportDto;
-import com.quyeying.charity.report.dto.TotalReportDto;
-import com.quyeying.security.CharitySecurityUtils;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * charity_sale
@@ -47,8 +35,11 @@ public class GroupReportController {
 
 
     @RequestMapping(value = "/findTotalTable", method = RequestMethod.POST)
-    public @ResponseBody DataTablesResp findTotalTable(DataTablesReq dto, @ModelAttribute("CURRENT_USER") User user) {
+    public
+    @ResponseBody
+    DataTablesResp findTotalTable(@RequestBody GroupReportDto dto, @ModelAttribute("CURRENT_USER") User user) {
 
+        dto.setGoodsType(user.getGroup());
 
         DataTablesResp result = new DataTablesResp();
 

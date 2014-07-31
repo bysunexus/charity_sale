@@ -1,6 +1,7 @@
 package com.quyeying.charity.goods.service;
 
 import com.quyeying.charity.domain.Goods;
+import com.quyeying.charity.report.dto.GroupReportDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -17,5 +18,5 @@ public interface GoodsRepositoryCustom {
      * @param pageable 分页信息
      * @return 捐品列表
      */
-   // Page<Goods> findByDto(XxxDto dto, Pageable pageable);
+   Page<Goods> findByDto(GroupReportDto dto, Pageable pageable);
 }

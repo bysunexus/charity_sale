@@ -84,16 +84,11 @@
 
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script type="text/javascript" src="${ctx}/static/assets/plugins/select2/select2.min.js"></script>
-<script type="text/javascript" src="${ctx}/static/assets/plugins/data-tables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/assets/plugins/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="${ctx}/static/assets/plugins/data-tables/dataTables.bootstrap.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="${ctx}/static/viewlogics/report/group_report.js"></script>
-<script>
-  jQuery(document).ready(function () {
-    GroupReport.init();
-  });
-</script>
 </body>
 </html>
 

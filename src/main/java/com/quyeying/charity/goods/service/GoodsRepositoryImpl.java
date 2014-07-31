@@ -1,6 +1,7 @@
 package com.quyeying.charity.goods.service;
 
 import com.quyeying.charity.domain.Goods;
+import com.quyeying.charity.report.dto.GroupReportDto;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,14 +23,14 @@ public class GoodsRepositoryImpl implements GoodsRepositoryCustom {
     @Autowired
     protected MongoTemplate mongo;
 
-/*    Page<Goods> findByDto(XxxDto dto, Pageable pageable) {
+    public Page<Goods> findByDto(GroupReportDto dto, Pageable pageable) {
         Query query = new Query();
         Criteria criteria = new Criteria();
 
-        Criteria.where("goodsType").is("dto.getGoodsType");
+        Criteria.where("goodsType").is(dto.getGoodsType());
 
-        if (StringUtils.isNotEmpty(dto.getSearch())) {
-            criteria.and("goodsNum").is("dto.getSearch()");
+        if (null != dto.getSearch() && StringUtils.isNotBlank(dto.getSearch().getValue())) {
+            criteria.and("goodsNum").is(dto.getSearch().getValue());
         }
         query.addCriteria(criteria);
         query.skip(pageable.getPageNumber());// skip相当于从那条记录开始
@@ -37,6 +38,6 @@ public class GoodsRepositoryImpl implements GoodsRepositoryCustom {
 
         //noinspection unchecked
         return new GeoPage(new GeoResults(mongo.find(query, Goods.class)), pageable, mongo.count(query, Goods.class));
-    }*/
+    }
 
 }
