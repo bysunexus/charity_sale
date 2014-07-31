@@ -42,6 +42,7 @@ public class GroupReportController {
         dto.setGoodsType(user.getGroup());
 
         DataTablesResp result = new DataTablesResp();
+        result.setDraw(dto.getDraw());
 
         Page<Goods> list = repo.findByGoodsType(user.getGroup(), dto.getPageRequest());
         result.setData(list.getContent());

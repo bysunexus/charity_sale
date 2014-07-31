@@ -2429,11 +2429,7 @@
 		else
 		{
 			// Object to extend the base settings
-      baseAjax = $.extend( baseAjax, ajax );
-      if(baseAjax.traditional){
-        baseAjax.data = JSON.stringify(baseAjax.data);
-      }
-			oSettings.jqXHR = $.ajax( baseAjax );
+			oSettings.jqXHR = $.ajax( $.extend( baseAjax, ajax ) );
 	
 			// Restore for next time around
 			ajax.data = ajaxData;

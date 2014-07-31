@@ -24,9 +24,34 @@ var GroupReport = function () {
       ajax: {
         "url": ctx + "/groupReport/findTotalTable",
         "type": "post",
-        traditional:true,
-        contentType:"application/json; charset=UTF-8"
+        traditional: true,
+        contentType: "application/json; charset=UTF-8",
+        data: function (d) {
+          return JSON.stringify(d);
+        }
 
+      },
+      language: {
+        processing:     "处理中...",
+        search:         "搜索:",
+        lengthMenu:    "显示 _MENU_ 项结果",
+        info:           "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+        infoEmpty:      "显示第 0 至 0 项结果，共 0 项",
+        infoFiltered:   "(由 _MAX_ 项结果过滤)",
+        infoPostFix:    "",
+        loadingRecords: "载入中...",
+        zeroRecords:    "没有匹配结果",
+        emptyTable:     "表中数据为空",
+        paginate: {
+          first:      "首页",
+          previous:   "上页",
+          next:       "下页",
+          last:       "末页"
+        },
+        aria: {
+          sortAscending:  ": 以升序排列此列",
+          sortDescending: ": 以降序排列此列"
+        }
       },
       // 服务器请求
 
@@ -136,8 +161,7 @@ var GroupReport = function () {
 }();
 
 
-
-$(function(){
+$(function () {
   GroupReport.init();
 });
 
