@@ -32,103 +32,70 @@ var GroupReport = function () {
 
       },
       language: {
-        processing:     "处理中...",
-        search:         "搜索:",
-        lengthMenu:    "显示 _MENU_ 项结果",
-        info:           "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
-        infoEmpty:      "显示第 0 至 0 项结果，共 0 项",
-        infoFiltered:   "(由 _MAX_ 项结果过滤)",
-        infoPostFix:    "",
+        processing: "处理中...",
+        search: "搜索:",
+        lengthMenu: "显示 _MENU_ 项结果",
+        info: "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+        infoEmpty: "显示第 0 至 0 项结果，共 0 项",
+        infoFiltered: "(由 _MAX_ 项结果过滤)",
+        infoPostFix: "",
         loadingRecords: "载入中...",
-        zeroRecords:    "没有匹配结果",
-        emptyTable:     "表中数据为空",
+        zeroRecords: "没有匹配结果",
+        emptyTable: "表中数据为空",
         paginate: {
-          first:      "首页",
-          previous:   "上页",
-          next:       "下页",
-          last:       "末页"
+          first: "首页",
+          previous: "上页",
+          next: "下页",
+          last: "末页"
         },
         aria: {
-          sortAscending:  ": 以升序排列此列",
+          sortAscending: ": 以升序排列此列",
           sortDescending: ": 以降序排列此列"
         }
       },
-      // 服务器请求
-
-//      "iDisplayLength": 10,
-      //"bStateSave": true,
-//      "sAjaxSource": ctx + "/groupReport/findTotalTable",
-      /*      "sPaginationType": "bootstrap",
-       "oLanguage": {
-       "sProcessing": "正在获取数据，请稍后...",
-       "sLengthMenu": "显示 _MENU_ 条",
-       "sZeroRecords": "没有您要搜索的内容",
-       "sInfo": "从 _START_ 到  _END_ 条记录 总显示记录数为 _TOTAL_ 条",
-       "sInfoEmpty": "记录数为0",
-       "sInfoPostFix": "",
-       "oPaginate": {
-       "sFirst": "第一页",
-       "sPrevious": "上一页",
-       "sNext": "下一页",
-       "sLast": "最后一页"
-       }
-       },
-       "aoColumnDefs": [
-       {
-       "aTargets": [ 4 ],
-       "mData": "saleMoney",
-       "mRender": function (data, type, full) {
-       var saleMoney = 0;
-       $(data).each(function (idx, item) {
-       saleMoney += item.saleMoney;
-       });
-       return saleMoney + " 元";
-       }
-       },
-       {
-       "aTargets": [ 6 ],
-       "mData": "saleCount",
-       "mRender": function (data, type, full) {
-       var saleCount = 0;
-       $(data).each(function (idx, item) {
-       saleCount += item.saleCount;
-       });
-       return saleCount + " 件";
-       }
-       },
-       {
-       "aTargets": [ 7 ],
-       "mData": "saleInfos",
-       "mRender": function (data, type, full) {
-       var saleCount = 0;
-       $(data).each(function (idx, item) {
-       saleCount += item.saleCount;
-       });
-       return full.goodsCount - saleCount + " 件";
-       }
-       }
-       ],
-       //服务器端，数据回调处理
-       "fnServerData": function (sSource, aDataSet, fnCallback) {
-       $.ajax({
-       "dataType": 'json',
-       "type": "post",
-       "url": sSource,
-       "data": aDataSet,
-       "success": function (resp) {
-       fnCallback(resp.data);
-       }
-       });
-       },*/
       "columns": [
-        { "data": "goodsNum"},
+        {
+          "data": "goodsNum"
+        },
         { "data": "goodsName" },
         { "data": "personName" },
         { "data": "goodsPrice" },
-        { "data": "saleInfos" },
-        { "data": "goodsCount" },
-        { "data": "saleInfos" },
-        { "data": "saleInfos" }
+        {
+          "data": "saleInfos",
+          render: function (data, type, row, meta) {
+            var saleCount = 0;
+            $(data).each(function (idx, item) {
+              saleCount += item.saleMoney;
+            });
+            return saleCount + " 元";
+          }
+        },
+        {
+          "data": "goodsCount",
+          render: function (data, type, row, meta) {
+            return data + " 件";
+          }
+        },
+        {
+          "data": "saleInfos" ,
+          render: function (data, type, row, meta) {
+            var saleCount = 0;
+            $(data).each(function (idx, item) {
+              saleCount += item.saleCount;
+            });
+            return saleCount + " 件";
+          }
+        },
+        {
+          "data": "saleInfos",
+          render: function (data, type, row, meta) {
+            var saleCount = 0;
+            $(data).each(function (idx, item) {
+              saleCount += item.saleCount;
+            });
+            return row.goodsCount - saleCount + " 件";
+          }
+        }
       ]
     });
 
