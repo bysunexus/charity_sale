@@ -130,7 +130,7 @@
   </div>
 </div>
 <div class="row">
-  <form action="/order" method="post" id="orderForm">
+  <form action="${ctx}/order" method="post" id="orderForm">
     <input type="hidden" name="salesStr" id="salesStr" />
   </form>
   <div class="col-md-12">

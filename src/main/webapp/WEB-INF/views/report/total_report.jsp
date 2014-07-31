@@ -13,7 +13,7 @@
   <meta name="menu" content="MAIN_REPORT_LIST">
   <!-- BEGIN PAGE LEVEL STYLES -->
   <link rel="stylesheet" type="text/css" href="${ctx}/static/assets/plugins/select2/select2_metro.css"/>
-  <link rel="stylesheet" href="${ctx}/static/assets/plugins/data-tables/DT_bootstrap.css"/>
+  <link rel="stylesheet" href="${ctx}/static/assets/plugins/data-tables/dataTables.bootstrap.css"/>
   <!-- END PAGE LEVEL STYLES -->
 </head>
 <body>
@@ -94,7 +94,7 @@
   <!-- BEGIN PAGE LEVEL PLUGINS -->
   <script type="text/javascript" src="${ctx}/static/assets/plugins/select2/select2.min.js"></script>
   <script type="text/javascript" src="${ctx}/static/assets/plugins/data-tables/jquery.dataTables.min.js"></script>
-  <script type="text/javascript" src="${ctx}/static/assets/plugins/data-tables/DT_bootstrap.js"></script>
+  <script type="text/javascript" src="${ctx}/static/assets/plugins/data-tables/dataTables.bootstrap.js"></script>
   <!-- END PAGE LEVEL PLUGINS -->
   <!-- BEGIN PAGE LEVEL SCRIPTS -->
   <script src="${ctx}/static/viewlogics/report/total_report.js"></script>

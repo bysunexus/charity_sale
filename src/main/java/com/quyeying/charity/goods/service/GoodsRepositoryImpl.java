@@ -22,7 +22,7 @@ public class GoodsRepositoryImpl implements GoodsRepositoryCustom {
     @Autowired
     protected MongoTemplate mongo;
 
-    Page<Goods> findByDto(XxxDto dto, Pageable pageable) {
+/*    Page<Goods> findByDto(XxxDto dto, Pageable pageable) {
         Query query = new Query();
         Criteria criteria = new Criteria();
 
@@ -37,6 +37,6 @@ public class GoodsRepositoryImpl implements GoodsRepositoryCustom {
 
         //noinspection unchecked
         return new GeoPage(new GeoResults(mongo.find(query, Goods.class)), pageable, mongo.count(query, Goods.class));
-    }
+    }*/
 
 }

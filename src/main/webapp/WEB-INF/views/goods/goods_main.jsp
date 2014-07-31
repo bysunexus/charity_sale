@@ -4,7 +4,7 @@
 <html>
 <head>
   <meta name="menu" content="priceTag">
-  <link href="${ctx}/static/assets/plugins/data-tables/DT_bootstrap.css" type="text/css"/>
+  <link href="${ctx}/static/assets/plugins/data-tables/dataTables.bootstrap.css" type="text/css"/>
 </head>
 <body>
 <!-- BEGIN PAGE HEADER-->
@@ -50,7 +50,7 @@
 </div>
 <!-- END PAGE CONTENT-->
 <script src="${ctx}/static/assets/plugins/data-tables/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="${ctx}/static/assets/plugins/data-tables/DT_bootstrap.js" type="text/javascript"></script>
+<script src="${ctx}/static/assets/plugins/data-tables/dataTables.bootstrap.js" type="text/javascript"></script>
 <script src="${ctx}/static/assets/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/viewlogics/goods/goods.js" type="text/javascript"></script>
 </body>
