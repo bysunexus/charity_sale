@@ -44,7 +44,7 @@ public class GroupReportController {
         DataTablesResp result = new DataTablesResp();
         result.setDraw(dto.getDraw());
 
-        Page<Goods> list = repo.findByGoodsType(user.getGroup(), dto.getPageRequest());
+        Page<Goods> list = repo.findByDto(dto);
         result.setData(list.getContent());
         int total = Long.valueOf(list.getTotalElements()).intValue();
         result.setRecordsTotal(total);

@@ -680,17 +680,20 @@ Fancy box fix overlay fix(in v1.2.4)
 /***
 Datatables Plugin(in v1.3)
 ***/
-.dataTable {  
-  width: 100% !important;
+.dataTable {
+  width: 100%;
   clear: both;
   margin-top: 5px;
 }
 
+.dataTables_filter .form-control {
+  margin-left: 4px;
+}
 .dataTables_filter label {
-  line-height: 32px ;
+  line-height: 32px;
 }
 
-.dataTable .row-details {  
+.dataTable .row-details {
   margin-top: 3px;
   display: inline-block;
   cursor: pointer;
@@ -702,47 +705,47 @@ Datatables Plugin(in v1.3)
   background: url("../img/datatable-row-openclose.png") no-repeat 0 0;
 }
 
-.dataTable .row-details.row-details-open {  
-  background: url("../img/datatable-row-openclose.png") no-repeat 0 -23px ;
+.dataTable .row-details.row-details-open {
+  background: url("../img/datatable-row-openclose.png") no-repeat 0 -23px;
 }
 
 .dataTable .details {
-  background-color: #eee ;
+  background-color: #eeeeee;
 }
 
 .dataTable .details td,
 .dataTable .details th {
   padding: 4px;
-  background: none ;
+  background: none;
   border: 0;
 }
 
 .dataTable .details tr:hover td,
 .dataTable .details tr:hover th {
-  background: none ;
+  background: none;
 }
 
 .dataTable .details tr:nth-child(odd) td,
 .dataTable .details tr:nth-child(odd) th {
-  background-color: #eee ;
+  background-color: #eeeeee;
 }
 
 .dataTable .details tr:nth-child(even) td,
 .dataTable .details tr:nth-child(even) th {
-  background-color: #eee ;
+  background-color: #eeeeee;
 }
 
 .dataTable > thead > tr > th.sorting,
 .dataTable > thead > tr > th.sorting_asc,
 .dataTable > thead > tr > th.sorting_desc {
-   padding-right: 18px;
+  padding-right: 18px;
 }
 
 .dataTable .table-checkbox {
   width: 8px !important;
 }
 
-@media (max-width: 768px) {  
+@media (max-width: 768px) {
   .dataTables_wrapper .dataTables_length .form-control,
   .dataTables_wrapper .dataTables_filter .form-control {
     display: inline-block;
@@ -756,8 +759,7 @@ Datatables Plugin(in v1.3)
     margin-top: -15px;
   }
 }
-
-@media (max-width: 480px) {  
+@media (max-width: 480px) {
   .dataTables_wrapper .dataTables_filter .form-control {
     width: 175px !important;
   }
@@ -766,6 +768,180 @@ Datatables Plugin(in v1.3)
     float: left;
     margin-top: 20px;
   }
+}
+.dataTables_processing {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 125px;
+  margin-left: 0;
+  padding: 7px;
+  text-align: center;
+  color: #333;
+  font-size: 13px;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  vertical-align: middle;
+  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dataTables_processing span {
+  line-height: 15px;
+  vertical-align: middle;
+}
+
+.dataTables_empty {
+  text-align: center;
+}
+
+/***
+TableTools
+***/
+.tabletools-btn-group {
+  margin: 0 0 10px 0;
+}
+.tabletools-btn-group > .btn {
+  margin-right: 5px;
+}
+.tabletools-btn-group > .btn:last-child {
+  margin-right: 0;
+}
+
+.tabletools-dropdown-on-portlet {
+  margin-top: -45px;
+  float: right;
+}
+.tabletools-dropdown-on-portlet > .btn {
+  margin-right: 5px;
+}
+.tabletools-dropdown-on-portlet > .btn:last-child {
+  margin-right: 0;
+}
+
+.DTTT_Print {
+  background-color: #fff;
+}
+.DTTT_Print .DTTT_PrintMessage {
+  display: none;
+}
+@media print {
+  .DTTT_Print .DTTT_PrintMessage {
+    display: inline-block;
+  }
+}
+.DTTT_Print .DTTT_Print_Info {
+  display: block;
+  position: fixed;
+  top: 35px;
+  font-size: 18px;
+  width: 700px;
+  left: 50%;
+  margin-left: -350px;
+  text-align: center;
+}
+.DTTT_Print .page-sidebar,
+.DTTT_Print .page-header,
+.DTTT_Print .page-footer {
+  display: none;
+}
+.DTTT_Print .page-content-wrapper {
+  float: none;
+}
+.DTTT_Print .row,
+.DTTT_Print [class*="col-"] {
+  padding: 0;
+  margin: 0;
+}
+.DTTT_Print .page-content {
+  margin: 50px auto !important;
+  border: 0 !important;
+  width: 800px !important;
+  padding: 0 !important;
+}
+.DTTT_Print .page-content .portlet {
+  border: 0;
+  padding: 0;
+}
+.DTTT_Print .page-content .portlet .portlet-body {
+  padding: 0;
+}
+.DTTT_Print .page-content .dataTables_wrapper {
+  padding: 0;
+  margin: 0;
+  box-shadow: 5px 5px rgba(102, 102, 102, 0.1);
+}
+@media print {
+  .DTTT_Print .page-content .dataTables_wrapper {
+    box-shadow: none;
+  }
+}
+
+/***
+Extended pagination
+***/
+.paging_bootstrap_extended {
+  margin: 0 !important;
+  padding: 0 !important;
+  float: none !important;
+  font-size: 13px;
+}
+
+.dataTables_extended_wrapper .seperator {
+  padding: 0 2px;
+}
+
+.dataTables_extended_wrapper div.dataTables_paginate,
+.dataTables_extended_wrapper div.dataTables_length,
+.dataTables_extended_wrapper div.dataTables_info {
+  display: inline-block;
+  float: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  position: static !important;
+}
+
+@media (max-width: 480px) {
+  .dataTables_extended_wrapper div.dataTables_paginate,
+  .dataTables_extended_wrapper div.dataTables_length,
+  .dataTables_extended_wrapper div.dataTables_info {
+    display: block;
+    margin-bottom: 10px !important;
+  }
+
+  .dataTables_extended_wrapper .seperator {
+    display: none !important;
+  }
+}
+.dataTables_extended_wrapper div.dataTables_length label {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 13px;
+  float: none !important;
+  display: inline-block !important;
+}
+
+.table-container .table-actions-wrapper {
+  display: none;
+}
+
+/***
+Scroller Extension
+***/
+.dataTables_scroll {
+  margin-bottom: 10px;
+}
+
+.dataTables_scrollHead {
+  border-bottom: 2px solid #ddd !important;
+}
+.dataTables_scrollHead thead th {
+  border-bottom: 0 !important;
+}
+
+.dataTables_scrollBody {
+  border-bottom: 1px solid #ddd !important;
 }
 
 /***

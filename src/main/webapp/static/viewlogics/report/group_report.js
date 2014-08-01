@@ -20,7 +20,7 @@ var GroupReport = function () {
       "scrollY": false,//是否允许垂直滚动
       "searching": true,//是否显示搜索框
       "serverSide": true,//是否是服务端数据
-      stateSave: false,//启用或禁用状态保存
+      stateSave: true,//启用或禁用状态保存
       ajax: {
         "url": ctx + "/groupReport/findTotalTable",
         "type": "post",
@@ -55,13 +55,23 @@ var GroupReport = function () {
       },
       "columns": [
         {
-          "data": "goodsNum"
-        },
-        { "data": "goodsName" },
-        { "data": "personName" },
-        { "data": "goodsPrice" },
-        {
+          "data": "goodsNum",
+          name: "goodsNum"
+
+        }, {
+          "data": "goodsName",
+          name: "goodsName"
+        }, {
+          "data": "personName",
+          name: "personName"
+        }, {
+          "data": "goodsPrice",
+          "orderable": false,
+          name: "goodsPrice"
+        }, {
           "data": "saleInfos",
+          name: "saleInfos.saleMoney",
+          "orderable": false,
           render: function (data, type, row, meta) {
             var saleCount = 0;
             $(data).each(function (idx, item) {
@@ -69,15 +79,16 @@ var GroupReport = function () {
             });
             return saleCount + " 元";
           }
-        },
-        {
+        }, {
           "data": "goodsCount",
+          name: "goodsCount",
           render: function (data, type, row, meta) {
             return data + " 件";
           }
-        },
-        {
-          "data": "saleInfos" ,
+        }, {
+          "data": "saleInfos",
+          name: "saleInfos.saleCount",
+          "orderable": false,
           render: function (data, type, row, meta) {
             var saleCount = 0;
             $(data).each(function (idx, item) {
@@ -85,9 +96,10 @@ var GroupReport = function () {
             });
             return saleCount + " 件";
           }
-        },
-        {
+        }, {
           "data": "saleInfos",
+          name: "saleInfos.saleCount",
+          "orderable": false,
           render: function (data, type, row, meta) {
             var saleCount = 0;
             $(data).each(function (idx, item) {
@@ -99,17 +111,10 @@ var GroupReport = function () {
       ]
     });
 
-    jQuery('#gpTable_wrapper .dataTables_filter input').addClass("form-control input-medium"); // modify table search input
     jQuery('#gpTable_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
     jQuery('#gpTable_wrapper .dataTables_length select').select2({
     }); // initialize select2 dropdown
 
-    $('#gpTable_column_toggler input[type="checkbox"]').change(function () {
-      /* Get the DataTables object again - this is not a recreation, just a get of the object */
-      var iCol = parseInt($(this).attr("data-column"));
-      var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
-      oTable.fnSetColumnVis(iCol, (bVis ? false : true));
-    });
   }
 
   return {
