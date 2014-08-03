@@ -56,8 +56,10 @@ var GroupReport = function () {
       "columns": [
         {
           "data": "goodsNum",
-          name: "goodsNum"
-
+          name: "goodsNum",
+          render: function (data, type, row, meta) {
+            return '<a class="goodsInfoShow" onclick="GroupReport.showInfo(\'#gpTable\',\''+meta.row +'\');">'+data+'</a>';
+          }
         }, {
           "data": "goodsName",
           name: "goodsName"
@@ -126,6 +128,11 @@ var GroupReport = function () {
       }
 
       initTable();
+    },
+    showInfo:function(dt,rowIdx){
+      $.goodsInfo({
+        data:$(dt).DataTable().row(rowIdx).data()
+      });
     }
 
   };

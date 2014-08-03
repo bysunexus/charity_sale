@@ -79,6 +79,7 @@
 <script type="text/javascript" src="${ctx}/static/assets/plugins/select2/select2.min.js"></script>
 <script type="text/javascript" src="${ctx}/static/assets/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="${ctx}/static/assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="${ctx}/static/viewlogics/goods/goodsInfo.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="${ctx}/static/viewlogics/report/group_report.js"></script>
