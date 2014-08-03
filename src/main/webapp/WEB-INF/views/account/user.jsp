@@ -53,10 +53,10 @@
           密码<input name="password" type="text" class="form-control"/><br/>
           组:
           <label>A<input name="group" value="A" type="radio" class="form-control"/></label>
-          <label>B<input name="group" value="A" type="radio" class="form-control"/></label>
-          <label>C<input name="group" value="A" type="radio" class="form-control"/></label>
-          <label>D<input name="group" value="A" type="radio" class="form-control"/></label>
-          <label>E<input name="group" value="A" type="radio" class="form-control"/></label><br/>
+          <label>B<input name="group" value="B" type="radio" class="form-control"/></label>
+          <label>C<input name="group" value="C" type="radio" class="form-control"/></label>
+          <label>D<input name="group" value="D" type="radio" class="form-control"/></label>
+          <label>E<input name="group" value="E" type="radio" class="form-control"/></label><br/>
           级别:
           <label>管理员<input name="level" value="A" type="radio" class="form-control"/></label>
           <label>销售<input name="level" value="S" type="radio" class="form-control"/></label>

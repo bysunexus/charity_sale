@@ -71,11 +71,7 @@ var COMMONS = function(){
       return COMMONS.randomEle(colors);
     },
     resetForm:function(formId){
-      $(':input',"#"+formId)
-        .not(':button, :submit, :reset, :hidden')
-        .val('')
-        .removeAttr('checked')
-        .removeAttr('selected');
+      $("#"+formId).find('input:text, input:password, input:file, select, textarea').val('');
     }
   };
 }();

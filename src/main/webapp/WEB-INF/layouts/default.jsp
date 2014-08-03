@@ -88,6 +88,18 @@
       </a>
       <!-- 导航条菜单 -->
       <ul class="nav navbar-nav pull-right">
+
+        <!-- BEGIN USER LOGIN DROPDOWN -->
+        <li class="dropdown user">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+            <span class="username">${sessionScope.CURRENT_USER.nickName}</span>
+            <i class="fa fa-angle-down"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="${ctx}/logout"><i class="fa fa-key"></i>退出登录</a></li>
+          </ul>
+        </li>
+        <!-- END USER LOGIN DROPDOWN -->
       </ul>
     </div>
   </div>
