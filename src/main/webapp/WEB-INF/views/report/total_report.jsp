@@ -10,99 +10,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="menu" content="MAIN_REPORT_LIST">
+  <meta name="menu" content="BIZ_OPT_STORAGE_TOTALREPORT">
   <!-- BEGIN PAGE LEVEL STYLES -->
   <link rel="stylesheet" type="text/css" href="${ctx}/static/assets/plugins/select2/select2_metro.css"/>
-  <link rel="stylesheet" href="${ctx}/static/assets/plugins/data-tables/dataTables.bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="${ctx}/static/assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
   <!-- END PAGE LEVEL STYLES -->
 </head>
 <body>
-  <!-- BEGIN PAGE HEADER-->
-  <div class="row">
-    <div class="col-md-12">
-      <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-      <h3 class="page-title">
-        总报表查询
-      </h3>
-      <ul class="page-breadcrumb breadcrumb">
-        <li>
-          <i class="fa fa-home"></i>
-          <a href="${ctx}/">主页</a>
-          <i class="fa fa-angle-right"></i>
-          <a>管理员功能</a>
-          <i class="fa fa-angle-right"></i>
-          <a href="${ctx}/totalReport">总报表查询</a>
-        </li>
-        <li><a href="#"></a></li>
-      </ul>
-      <!-- END PAGE TITLE & BREADCRUMB-->
-    </div>
+<!-- BEGIN PAGE HEADER-->
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+    <h3 class="page-title">
+      总报表查询
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <a href="${ctx}/">主页</a>
+        <i class="fa fa-angle-right"></i>
+        <a>管理员功能</a>
+        <i class="fa fa-angle-right"></i>
+        <a href="${ctx}/groupReport">总报表查询</a>
+      </li>
+      <li><a href="#"></a></li>
+    </ul>
+    <!-- END PAGE TITLE & BREADCRUMB-->
   </div>
-  <!-- END PAGE HEADER-->
+</div>
+<!-- END PAGE HEADER-->
 
-  <!-- BEGIN EXAMPLE TABLE PORTLET-->
-  <div class="portlet box blue">
-    <div class="portlet-title">
-      <div class="caption"><i class="fa fa-globe"></i>总报表查询</div>
-      <div class="actions">
-        <div class="btn-group">
-          <a class="btn default" href="#" data-toggle="dropdown">
-            列选择
-            <i class="fa fa-angle-down"></i>
-          </a>
-
-          <div id="sample_2_column_toggler" class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
-            <label><input type="checkbox" checked data-column="0">Rendering engine</label>
-            <label><input type="checkbox" checked data-column="1">Browser</label>
-            <label><input type="checkbox" checked data-column="2">Platform(s)</label>
-            <label><input type="checkbox" checked data-column="3">Engine version</label>
-            <label><input type="checkbox" checked data-column="4">CSS grade</label>
-          </div>
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-globe"></i>总报表查询
         </div>
-        <div class="btn-group">
-          <a class="btn default" href="#" data-toggle="dropdown">
-            工具
-            <i class="fa fa-angle-down"></i>
-          </a>
-          <div id="sample_2_column_toggler_tools" class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
-            <label><a href="#">打印</a></label>
-            <label><a href="#">保存为 PDF</a></label>
-            <label><a href="#">保存为 Excel</a></label>
-          </div>
+        <div class="tools">
         </div>
       </div>
+      <div class="portlet-body">
+        <table class="table table-striped table-bordered table-hover" id="tpTable">
+          <thead>
+          <tr>
+            <th>商品编号</th>
+            <th>商品名称</th>
+            <th>捐赠人</th>
+            <th>商品单价</th>
+            <th>售出总价</th>
+            <th>捐品数量</th>
+            <th>已售</th>
+            <th>库存</th>
+          </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
-    <div class="portlet-body">
-      <table class="table table-striped table-bordered table-hover table-full-width" id="sample_2">
-        <thead>
-        <tr>
-          <th>pkid</th>
-          <th>bscode</th>
-          <th>amount</th>
-          <th>name</th>
-          <th>sex</th>
-          <th>age</th>
-          <th>tel</th>
-        </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
   </div>
-  <!-- END EXAMPLE TABLE PORTLET-->
+</div>
+<!-- END PAGE CONTENT-->
 
-  <!-- BEGIN PAGE LEVEL PLUGINS -->
-  <script type="text/javascript" src="${ctx}/static/assets/plugins/select2/select2.min.js"></script>
-  <script type="text/javascript" src="${ctx}/static/assets/plugins/data-tables/jquery.dataTables.min.js"></script>
-  <script type="text/javascript" src="${ctx}/static/assets/plugins/data-tables/dataTables.bootstrap.js"></script>
-  <!-- END PAGE LEVEL PLUGINS -->
-  <!-- BEGIN PAGE LEVEL SCRIPTS -->
-  <script src="${ctx}/static/viewlogics/report/total_report.js"></script>
-  <script>
-    jQuery(document).ready(function() {
-      TotalReport.init();
-    });
-  </script>
-
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script type="text/javascript" src="${ctx}/static/assets/plugins/select2/select2.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/assets/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="${ctx}/static/viewlogics/goods/goodsInfo.js"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="${ctx}/static/viewlogics/report/total_report.js"></script>
 </body>
 </html>
