@@ -1,12 +1,18 @@
 package com.quyeying.charity.report.controller;
 
+import com.quyeying.charity.base.dto.DataTablesResp;
 import com.quyeying.charity.commons.ResultDto;
+import com.quyeying.charity.domain.Goods;
+import com.quyeying.charity.domain.User;
+import com.quyeying.charity.goods.service.GoodsRepository;
+import com.quyeying.charity.report.dto.GroupReportDto;
 import com.quyeying.charity.report.dto.TotalReportDto;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,39 +28,31 @@ import java.util.List;
 @RequestMapping("/totalReport")
 public class TotalReportController {
 
-//    @RequestMapping
-//    public ModelAndView goTotalReport() {
-//        return new ModelAndView("report/total_report");
-//    }
-//
-//    @RequestMapping("/findTotalTable")
-//    public
-//    @ResponseBody
-//    ResultDto findTotalTable(String iDisplayLength, String iDisplayStart) {
-//        ResultDto result;
-//        List<TotalReportDto> list = new ArrayList<>();
-//
-//        DataTableResultDto tableResultDto = new DataTableResultDto();
-//
-//        for (int i = 0; i <= 10; i++) {
-//            TotalReportDto totalReportDto = new TotalReportDto();
-//            totalReportDto.setBscode("A0" + i);
-//            totalReportDto.setAge(String.valueOf(i));
-//            totalReportDto.setAmount(String.valueOf(i));
-//            totalReportDto.setName("金砖");
-//            totalReportDto.setPkid(String.valueOf(i));
-//            totalReportDto.setSex("男");
-//            totalReportDto.setTel("010-" + i);
-//            list.add(totalReportDto);
-//        }
-//
-//        tableResultDto.setData(list);
-///*        tableResultDto.setiTotalRecords(1);
-//        tableResultDto.setiTotalDisplayRecords(20);*/
-//
-//
-//        result = ResultDto.getSuccess(tableResultDto);
-//        return result;
-//    }
+    @Resource(name = "goodsRepository")
+    private GoodsRepository repo;
+
+    @RequestMapping
+    public ModelAndView goTotalReport() {
+        return new ModelAndView("report/total_report");
+    }
+
+    @RequestMapping(value = "/findTotalTable", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    DataTablesResp findTotalTable(@RequestBody GroupReportDto dto) {
+
+        dto.setGoodsType("");
+
+        DataTablesResp result = new DataTablesResp();
+        result.setDraw(dto.getDraw());
+
+        Page<Goods> list = repo.findByDto(dto);
+        result.setData(list.getContent());
+        int total = Long.valueOf(list.getTotalElements()).intValue();
+        result.setRecordsTotal(total);
+        result.setRecordsFiltered(total);
+
+        return result;
+    }
 
 }

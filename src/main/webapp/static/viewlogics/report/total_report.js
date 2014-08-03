@@ -7,90 +7,147 @@
 var TotalReport = function () {
 
   var initTable = function () {
-    var oTable = $('#sample_2').dataTable({
-      "sDom" : "<'row'<'col-md-6 col-sm-12'l><'col-md-12 col-sm-12'f>r>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", //default layout without horizontal scroll(remove this setting to enable horizontal scroll for the table)
-      "bProcessing": true,
-      "bServerSide": true,
-      "iDisplayLength": 10,
-      "sPaginationType": "bootstrap",
-      "oLanguage": {
-        "sProcessing": "正在获取数据，请稍后...",
-        "sLengthMenu": "显示 _MENU_ 条",
-        "sZeroRecords": "没有您要搜索的内容",
-        "sInfo": "从 _START_ 到  _END_ 条记录 总显示记录数为 _TOTAL_ 条",
-        "sInfoEmpty": "记录数为0",
-        "sInfoFiltered": "(共显示 _MAX_ 条数据)",
-        "sInfoPostFix": "",
-        "oPaginate": {
-          "sFirst": "第一页",
-          "sPrevious": "上一页",
-          "sNext": "下一页",
-          "sLast": "最后一页"
+    var oTable = $('#tpTable').dataTable({
+      "autoWidth": false, // 自适应宽度
+      "deferRender": false, // 是否延时渲染(前端分页)
+      "info": true, // 分页详细信息说明
+      "lengthChange": true,//是否允许分页数选择
+      "lengthMenu": [ 10, 25, 50, 75, 100 ], // 分页条数选择工具
+      "pageLength": 10,
+      "ordering": true, // 是否开启排序功能
+      "paging": true, // 是否分页
+      "processing": true,// 是否显示加载ing
+      "scrollX": false,//是否允许水平滚动
+      "scrollY": false,//是否允许垂直滚动
+      "searching": true,//是否显示搜索框
+      "serverSide": true,//是否是服务端数据
+      stateSave: true,//启用或禁用状态保存
+      ajax: {
+        "url": ctx + "/totalReport/findTotalTable",
+        "type": "post",
+        traditional: true,
+        contentType: "application/json; charset=UTF-8",
+        data: function (d) {
+          return JSON.stringify(d);
         }
+
       },
-      "aoColumnDefs": [
-        {
-          'bSortable': false,
-          "aTargets": [ 0 ]
+      language: {
+        processing: "处理中...",
+        search: "搜索:",
+        lengthMenu: "显示 _MENU_ 项结果",
+        info: "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+        infoEmpty: "显示第 0 至 0 项结果，共 0 项",
+        infoFiltered: "(由 _MAX_ 项结果过滤)",
+        infoPostFix: "",
+        loadingRecords: "载入中...",
+        zeroRecords: "没有匹配结果",
+        emptyTable: "表中数据为空",
+        paginate: {
+          first: "首页",
+          previous: "上页",
+          next: "下页",
+          last: "末页"
+        },
+        aria: {
+          sortAscending: ": 以升序排列此列",
+          sortDescending: ": 以降序排列此列"
         }
-      ],
-      "aaSorting": [
-        [1, 'asc']
-      ],
-      "aLengthMenu": [
-        [5, 15, 20, -1],
-        [5, 15, 20, "All"] // change per page values here
-      ],
-      "processing": true,
-      "serverSide": true,
-      "sAjaxSource": ctx + "/totalReport/findTotalTable",
-      //服务器端，数据回调处理
-      "fnServerData": function (sSource, aDataSet, fnCallback) {
-        $.ajax({
-          "dataType": 'json',
-          "type": "post",
-          "url": sSource,
-          "data": aDataSet,
-          "success": function (resp) {
-            fnCallback(resp.data);
-          }
-        });
       },
       "columns": [
-        { "data": "pkid" },
-        { "data": "bscode" },
-        { "data": "amount" },
-        { "data": "name" },
-        { "data": "sex" },
-        { "data": "age" },
-        { "data": "tel" }
+        {
+          "data": "goodsNum",
+          name: "goodsNum",
+          render: function (data, type, row, meta) {
+            return '<a class="goodsInfoShow" onclick="GroupReport.showInfo(\'#tpTable\',\'' + meta.row + '\');">' + data + '</a>';
+          }
+        },
+        {
+          "data": "goodsName",
+          name: "goodsName"
+        },
+        {
+          "data": "personName",
+          name: "personName"
+        },
+        {
+          "data": "goodsPrice",
+          "orderable": false,
+          name: "goodsPrice"
+        },
+        {
+          "data": "saleInfos",
+          name: "saleInfos.saleMoney",
+          "orderable": false,
+          render: function (data, type, row, meta) {
+            var saleCount = 0;
+            $(data).each(function (idx, item) {
+              saleCount += item.saleMoney;
+            });
+            return saleCount + " 元";
+          }
+        },
+        {
+          "data": "goodsCount",
+          name: "goodsCount",
+          render: function (data, type, row, meta) {
+            return data + " 件";
+          }
+        },
+        {
+          "data": "saleInfos",
+          name: "saleInfos.saleCount",
+          "orderable": false,
+          render: function (data, type, row, meta) {
+            var saleCount = 0;
+            $(data).each(function (idx, item) {
+              saleCount += item.saleCount;
+            });
+            return saleCount + " 件";
+          }
+        },
+        {
+          "data": "saleInfos",
+          name: "saleInfos.saleCount",
+          "orderable": false,
+          render: function (data, type, row, meta) {
+            var saleCount = 0;
+            $(data).each(function (idx, item) {
+              saleCount += item.saleCount;
+            });
+            return row.goodsCount - saleCount + " 件";
+          }
+        }
       ]
     });
 
-    jQuery('#sample_2_wrapper .dataTables_filter input').addClass("form-control input-small"); // modify table search input
-    jQuery('#sample_2_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
-    jQuery('#sample_2_wrapper .dataTables_length select').select2(); // initialize select2 dropdown
+    jQuery('#tpTable_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
+    jQuery('#tpTable_wrapper .dataTables_length select').select2({
+    }); // initialize select2 dropdown
 
-    $('#sample_2_column_toggler input[type="checkbox"]').change(function () {
-      /* Get the DataTables object again - this is not a recreation, just a get of the object */
-      var iCol = parseInt($(this).attr("data-column"));
-      var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
-      oTable.fnSetColumnVis(iCol, (bVis ? false : true));
-    });
   }
 
   return {
 
     //main function to initiate the module
     init: function () {
-
       if (!jQuery().dataTable) {
         return;
       }
 
       initTable();
+    },
+    showInfo: function (dt, rowIdx) {
+      $.goodsInfo({
+        data: $(dt).DataTable().row(rowIdx).data()
+      });
     }
 
   };
 
 }();
+
+
+$(function () {
+  TotalReport.init();
+});
