@@ -117,7 +117,7 @@ var GroupReport = function () {
     jQuery('#gpTable_wrapper .dataTables_length select').select2({
     }); // initialize select2 dropdown
 
-  }
+  };
 
   return {
 

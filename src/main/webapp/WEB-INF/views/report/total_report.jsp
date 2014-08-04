@@ -44,14 +44,20 @@
 <div class="row">
   <div class="col-md-12">
     <!-- BEGIN EXAMPLE TABLE PORTLET-->
-    <div class="portlet box blue">
+    <div class="portlet box grey">
+
+
       <div class="portlet-title">
         <div class="caption">
           <i class="fa fa-globe"></i>总报表查询
         </div>
-        <div class="tools">
+        <div class="actions">
+          <div class="btn"></div>
+          <a id="exportExcel" class="btn blue"><i class="fa fa-cloud-download"></i> 导出为 Excel</a>
         </div>
       </div>
+
+
       <div class="portlet-body">
         <table class="table table-striped table-bordered table-hover" id="tpTable">
           <thead>
@@ -74,7 +80,8 @@
   </div>
 </div>
 <!-- END PAGE CONTENT-->
-
+<form id="exportExcelForm" target="_blank" method="get">
+</form>
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script type="text/javascript" src="${ctx}/static/assets/plugins/select2/select2.min.js"></script>
 <script type="text/javascript" src="${ctx}/static/assets/plugins/datatables/media/js/jquery.dataTables.min.js"></script>

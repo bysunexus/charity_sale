@@ -11,9 +11,11 @@ import com.quyeying.charity.base.dto.DataTablesReq;
  * Time: 14:57
  */
 @SuppressWarnings("ALL")
-public class GroupReportDto extends DataTablesReq{
+public class ReportDto extends DataTablesReq{
 
     private String goodsType;
+
+    private String goodsNum;
 
     public String getGoodsType() {
         return goodsType;
@@ -21,5 +23,13 @@ public class GroupReportDto extends DataTablesReq{
 
     public void setGoodsType(String goodsType) {
         this.goodsType = goodsType;
+    }
+
+    public String getGoodsNum() {
+        return goodsNum;
+    }
+
+    public void setGoodsNum(String goodsNum) {
+        this.goodsNum = goodsNum;
     }
 }

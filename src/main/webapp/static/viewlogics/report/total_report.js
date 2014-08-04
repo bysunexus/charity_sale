@@ -59,7 +59,7 @@ var TotalReport = function () {
           "data": "goodsNum",
           name: "goodsNum",
           render: function (data, type, row, meta) {
-            return '<a class="goodsInfoShow" onclick="GroupReport.showInfo(\'#tpTable\',\'' + meta.row + '\');">' + data + '</a>';
+            return '<a class="goodsInfoShow" onclick="TotalReport.showInfo(\'#tpTable\',\'' + meta.row + '\');">' + data + '</a>';
           }
         },
         {
@@ -125,7 +125,28 @@ var TotalReport = function () {
     jQuery('#tpTable_wrapper .dataTables_length select').select2({
     }); // initialize select2 dropdown
 
-  }
+  };
+
+  /**
+   * 导出Excel监听器
+   */
+  var exportExcelListener = function () {
+    $("#exportExcel").click(function () {
+
+      var goodsNum = null;
+      if($("#tpTable_filter").find("input").val() != "") {
+        goodsNum = $("#tpTable_filter").find("input").val();
+      }
+
+      var exportUrl = ctx + "/totalReport/exportExcel/" + goodsNum;
+      //noinspection JSJQueryEfficiency
+      $("#exportExcelForm").attr("action", exportUrl);
+      //noinspection JSJQueryEfficiency
+      $("#exportExcelForm").attr("target", "_blank");
+      //noinspection JSJQueryEfficiency
+      $("#exportExcelForm").submit();
+    });
+  };
 
   return {
 
@@ -136,6 +157,7 @@ var TotalReport = function () {
       }
 
       initTable();
+      exportExcelListener();
     },
     showInfo: function (dt, rowIdx) {
       $.goodsInfo({

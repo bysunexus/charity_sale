@@ -4,7 +4,7 @@ import com.quyeying.charity.base.dto.DataTablesResp;
 import com.quyeying.charity.domain.Goods;
 import com.quyeying.charity.domain.User;
 import com.quyeying.charity.goods.service.GoodsRepository;
-import com.quyeying.charity.report.dto.GroupReportDto;
+import com.quyeying.charity.report.dto.ReportDto;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +37,7 @@ public class GroupReportController {
     @RequestMapping(value = "/findTotalTable", method = RequestMethod.POST)
     public
     @ResponseBody
-    DataTablesResp findTotalTable(@RequestBody GroupReportDto dto, @ModelAttribute("CURRENT_USER") User user) {
+    DataTablesResp findTotalTable(@RequestBody ReportDto dto, @ModelAttribute("CURRENT_USER") User user) {
 
         dto.setGoodsType(user.getGroup());
 

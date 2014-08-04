@@ -15,12 +15,15 @@ import java.util.List;
  * Time: 21:15
  */
 @Repository("goodsRepository")
-public interface GoodsRepository extends GoodsRepositoryCustom,MongoRepository<Goods,String> {
+public interface GoodsRepository extends GoodsRepositoryCustom, MongoRepository<Goods, String> {
 
     @Query("{'goodsNum':?0}")
     Goods findByNum(String num);
 
     @Query("{'goodsType':?0}")
     Page<Goods> findByGoodsType(String goodsType, Pageable pageable);
+
+    @Query("{'goodsNum':{$regex : ?0}} ")
+    List<Goods> findByGoodsNum(String goodsNum);
 
 }

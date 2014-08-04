@@ -1,19 +1,13 @@
 package com.quyeying.charity.goods.service;
 
 import com.quyeying.charity.domain.Goods;
-import com.quyeying.charity.report.dto.GroupReportDto;
+import com.quyeying.charity.report.dto.ReportDto;
 import com.quyeying.framework.db.BaseRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.geo.GeoPage;
-import org.springframework.data.geo.GeoResults;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 
 
 /**
@@ -23,7 +17,7 @@ import org.springframework.data.mongodb.core.query.Query;
  */
 public class GoodsRepositoryImpl extends BaseRepository implements GoodsRepositoryCustom {
 
-    public Page<Goods> findByDto(GroupReportDto dto) {
+    public Page<Goods> findByDto(ReportDto dto) {
 
         Criteria criteria = new Criteria();
 
