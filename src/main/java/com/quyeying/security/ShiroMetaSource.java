@@ -26,7 +26,7 @@ public class ShiroMetaSource implements FactoryBean<Ini.Section> {
 
         Ini ini = new Ini();
         //加载默认的url
-        ini.load("/static/**=anon\n/static/**=anon\n/login=anon\n/logout=anon\n/main/menu=anon\n/unauthorized=authc\n/=authc\n");
+        ini.load("/static/**=anon\n/static/**=anon\n/login=anon\n/logout=anon\n/main/menu=anon\n/unauthorized=authc\n/=authc\n/saleMoney/**=authc\n");
         Ini.Section section = ini.getSection(Ini.DEFAULT_SECTION_NAME);
         for (Menu menu : list) {
             if(StringUtils.isNotBlank(menu.getPath()))

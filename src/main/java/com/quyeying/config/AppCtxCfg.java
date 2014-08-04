@@ -20,4 +20,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 @PropertySource(name = "appProperties", value = "classpath:app.properties")
 public class AppCtxCfg {
 
+
+
 }
