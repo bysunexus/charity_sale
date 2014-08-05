@@ -3,7 +3,6 @@ package com.quyeying.charity.goods.service;
 import com.quyeying.charity.domain.Goods;
 import com.quyeying.charity.goods.dto.SaleMoneyDto;
 import com.quyeying.charity.goods.dto.ValueDto;
-import com.quyeying.charity.report.dto.GroupReportDto;
 import com.quyeying.charity.report.dto.ReportDto;
 import com.quyeying.framework.db.BaseRepository;
 import org.apache.commons.lang3.StringUtils;

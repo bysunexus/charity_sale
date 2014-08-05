@@ -4,6 +4,10 @@ import com.quyeying.charity.base.dto.DataTablesResp;
 import com.quyeying.charity.domain.Goods;
 import com.quyeying.charity.goods.service.GoodsRepository;
 import com.quyeying.charity.report.dto.ReportDto;
+import org.apache.commons.io.IOUtils;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.io.File;
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -76,42 +80,144 @@ public class TotalReportController {
      * @throws IOException
      */
     @RequestMapping(value = "/exportExcel/{goodsNum}", method = RequestMethod.GET)
-    public ResponseEntity<byte[]> exportExcel(@PathVariable("goodsNum") String goodsNum) throws IOException {
+    public ResponseEntity<byte[]> exportExcel(@PathVariable("goodsNum") String goodsNum) throws IOException, InvalidFormatException {
+        List<Goods> list = repo.findByGoodsNum((null == goodsNum || "null".equals(goodsNum)) ? "" : goodsNum);
+        InputStream inp = new FileInputStream(TotalReportController.class.getClassLoader().getResource("template/totalTemplate.xlsx").getFile());
 
-        DataTablesResp result = new DataTablesResp();
+        XSSFWorkbook wb = new XSSFWorkbook(inp);
+        int a = 2, b = 2, c = 2, d = 2, e = 2;
 
-        List<Goods> list = repo.findByGoodsNum(null == goodsNum ? "" : goodsNum);
+        if (null != list && list.size() > 0) {
+            for (Goods item : list) {
+                Row row = null;
 
-        if(null != list && list.size() > 0) {
+                switch (item.getGoodsType()) {
+                    case "A":
+                        row = getRow(wb, 1, a);
+                        break;
+                    case "B":
+                        row = getRow(wb, 2, b);
+                        break;
+                    case "C":
+                        row = getRow(wb, 3, c);
+                        break;
+                    case "D":
+                        row = getRow(wb, 4, d);
+                        break;
+                    case "E":
+                        row = getRow(wb, 5, d);
+                        break;
+                }
 
+                if (null == row)
+                    continue;
+
+                int idx = 0;
+
+                Cell cell = row.getCell(idx);
+                if (null == cell)
+                    cell = row.createCell(idx);
+                cell.setCellType(Cell.CELL_TYPE_STRING);
+                cell.setCellValue(item.getGoodsNum());
+                idx++;
+
+                cell = row.getCell(idx);
+                if (null == cell)
+                    cell = row.createCell(idx);
+                cell.setCellType(Cell.CELL_TYPE_STRING);
+                cell.setCellValue(item.getPersonName());
+                idx++;
+
+                cell = row.getCell(idx);
+                if (null == cell)
+                    cell = row.createCell(idx);
+                cell.setCellType(Cell.CELL_TYPE_STRING);
+                cell.setCellValue(item.getPersonPhone());
+                idx++;
+
+                cell = row.getCell(idx);
+                if (null == cell)
+                    cell = row.createCell(idx);
+                cell.setCellType(Cell.CELL_TYPE_STRING);
+                cell.setCellValue(item.getGoodsName());
+                idx++;
+
+                cell = row.getCell(idx);
+                if (null == cell)
+                    cell = row.createCell(idx);
+                cell.setCellType(Cell.CELL_TYPE_STRING);
+                cell.setCellValue(item.getGoodsCount());
+                idx++;
+
+                if ("E".equals(item.getGoodsType())) {
+                    cell = row.getCell(idx);
+                    if (null == cell)
+                        cell = row.createCell(idx);
+                    cell.setCellType(Cell.CELL_TYPE_STRING);
+                    cell.setCellValue(item.getGoodsPrice());
+                    idx++;
+                }
+
+                cell = row.getCell(idx);
+                if (null == cell)
+                    cell = row.createCell(idx);
+                cell.setCellType(Cell.CELL_TYPE_STRING);
+                int saleCount = 0;
+                for (Goods.SaleInfo saleInfo : item.getSaleInfos()) {
+                    saleCount += saleInfo.getSaleCount();
+                }
+                cell.setCellValue(saleCount);
+                idx++;
+
+                cell = row.getCell(idx);
+                if (null == cell)
+                    cell = row.createCell(idx);
+                cell.setCellType(Cell.CELL_TYPE_STRING);
+                int saleMoney = 0;
+                for (Goods.SaleInfo saleInfo : item.getSaleInfos()) {
+                    saleMoney += saleInfo.getSaleMoney();
+                }
+                cell.setCellValue(saleMoney);
+                idx++;
+
+                cell = row.getCell(idx);
+                if (null == cell)
+                    cell = row.createCell(idx);
+                cell.setCellType(Cell.CELL_TYPE_STRING);
+                cell.setCellValue(item.getRemark());
+                idx++;
+
+                cell = row.getCell(idx);
+                if (null == cell)
+                    cell = row.createCell(idx);
+                cell.setCellType(Cell.CELL_TYPE_STRING);
+                cell.setCellValue(item.getGoodsCount() - saleCount);
+                idx++;
+
+            }
         }
 
-        String filepath="/static/template/totalTemplate.xls";
-        InputStream inp = new FileInputStream(filepath);
-//        Workbook wb = WorkbookFactory.create(inp);
-//        Sheet sheet = wb.getSheetAt(0);
-
-
-
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        wb.write(stream);
+        stream.flush();
 
         HttpHeaders headers = new HttpHeaders();
-        String fileName = new String("爱心义卖销售报表.xls".getBytes("UTF-8"), "iso-8859-1");
+        String fileName = new String("爱心义卖销售报表.xlsx".getBytes("UTF-8"), "iso-8859-1");
         headers.setContentDispositionFormData("attachment", fileName);
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-        byte[] data = new byte[2];//要下载的数据流
+        byte[] data = stream.toByteArray();
+        IOUtils.closeQuietly(stream);
         return new ResponseEntity<byte[]>(data, headers, HttpStatus.CREATED);
 
-
     }
 
-    public static void print(Object o) {
-        System.out.println(o);
+    private Row getRow(Workbook wb, int idx, int a) {
+        Row row = wb.getSheetAt(idx).getRow(a);
+        if (null == row) {
+            row = wb.getSheetAt(idx).createRow(a);
+        }
+        a++;
+        return row;
     }
-
-    public static void main(String[] args) {
-
-
-    }
-
 
 }
