@@ -42,7 +42,7 @@ public class GoodsRepositoryImpl extends BaseRepository implements GoodsReposito
         SaleMoneyDto dto = new SaleMoneyDto();
 
         Query query = new Query();
-        if (null != goodsType) query.addCriteria(Criteria.where("goodsType").in(goodsType));
+        if (goodsType.length >0) query.addCriteria(Criteria.where("goodsType").in(goodsType));
 
         MapReduceResults<ValueDto> result = mongo.mapReduce(
             query,
