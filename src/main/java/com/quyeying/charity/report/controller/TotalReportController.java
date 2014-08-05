@@ -6,7 +6,9 @@ import com.quyeying.charity.goods.service.GoodsRepository;
 import com.quyeying.charity.report.dto.ReportDto;
 import org.apache.commons.io.IOUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +25,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -82,7 +83,7 @@ public class TotalReportController {
     @RequestMapping(value = "/exportExcel/{goodsNum}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> exportExcel(@PathVariable("goodsNum") String goodsNum) throws IOException, InvalidFormatException {
         List<Goods> list = repo.findByGoodsNum((null == goodsNum || "null".equals(goodsNum)) ? "" : goodsNum);
-        InputStream inp = new FileInputStream(TotalReportController.class.getClassLoader().getResource("template/totalTemplate.xlsx").getFile());
+        InputStream inp = this.getClass().getClassLoader().getResourceAsStream("template/totalTemplate.xlsx");
 
         XSSFWorkbook wb = new XSSFWorkbook(inp);
         int a = 2, b = 2, c = 2, d = 2, e = 2;
@@ -94,18 +95,23 @@ public class TotalReportController {
                 switch (item.getGoodsType()) {
                     case "A":
                         row = getRow(wb, 1, a);
+                        a++;
                         break;
                     case "B":
                         row = getRow(wb, 2, b);
+                        b++;
                         break;
                     case "C":
                         row = getRow(wb, 3, c);
+                        c++;
                         break;
                     case "D":
                         row = getRow(wb, 4, d);
+                        d++;
                         break;
                     case "E":
-                        row = getRow(wb, 5, d);
+                        row = getRow(wb, 5, e);
+                        e++;
                         break;
                 }
 
@@ -163,8 +169,10 @@ public class TotalReportController {
                     cell = row.createCell(idx);
                 cell.setCellType(Cell.CELL_TYPE_STRING);
                 int saleCount = 0;
-                for (Goods.SaleInfo saleInfo : item.getSaleInfos()) {
-                    saleCount += saleInfo.getSaleCount();
+                if (null != item.getSaleInfos()) {
+                    for (Goods.SaleInfo saleInfo : item.getSaleInfos()) {
+                        saleCount += saleInfo.getSaleCount();
+                    }
                 }
                 cell.setCellValue(saleCount);
                 idx++;
@@ -174,8 +182,10 @@ public class TotalReportController {
                     cell = row.createCell(idx);
                 cell.setCellType(Cell.CELL_TYPE_STRING);
                 int saleMoney = 0;
-                for (Goods.SaleInfo saleInfo : item.getSaleInfos()) {
-                    saleMoney += saleInfo.getSaleMoney();
+                if (null != item.getSaleInfos()) {
+                    for (Goods.SaleInfo saleInfo : item.getSaleInfos()) {
+                        saleMoney += saleInfo.getSaleMoney();
+                    }
                 }
                 cell.setCellValue(saleMoney);
                 idx++;
@@ -216,7 +226,6 @@ public class TotalReportController {
         if (null == row) {
             row = wb.getSheetAt(idx).createRow(a);
         }
-        a++;
         return row;
     }
 
