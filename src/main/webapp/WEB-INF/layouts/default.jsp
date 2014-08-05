@@ -35,8 +35,8 @@
   <script src="${ctx}/static/assets/plugins/respond.min.js"></script>
   <script src="${ctx}/static/assets/plugins/excanvas.min.js"></script>
   <![endif]-->
-  <script src="${ctx}/static/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
-  <script src="${ctx}/static/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+  <script src="${ctx}/static/jquery/jquery-2.1.1.js" type="text/javascript"></script>
+  <script src="${ctx}/static/jquery/jquery-migrate-1.2.1.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript" ></script>
@@ -52,11 +52,11 @@
   <script type="text/javascript">
     var ctx = '${ctx}',CTX = '${ctx}';
     var ACTIVE_MENU = '${menu}';
-    jQuery(document).ready(function() {
+    $(function(){
       // 页面初始化
       App.init('${ctx}/static');
-      $("#saleMoneyShow").salesMoney({
-        goodsType:JSON_USER.group&&JSON_USER.group.length==1?JSON_USER.group:"ALL"
+      $("#saleMoneyShow").showSaleMoney({
+        goodsType:((JSON_USER.group&&JSON_USER.group.length==1)?JSON_USER.group:"ALL")
       });
     });
   </script>
@@ -92,7 +92,7 @@
       </a>
       <!-- 导航条菜单 -->
       <ul class="nav navbar-nav pull-right">
-        <li><h4 id="saleMoneyShow"></h4></li>
+        <li><a><span id="saleMoneyShow" class="label label-success"></span></a></li>
         <!-- BEGIN USER LOGIN DROPDOWN -->
         <li class="dropdown user">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
