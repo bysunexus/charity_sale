@@ -27,6 +27,7 @@
   <link href="${ctx}/static/assets/css/plugins.css" rel="stylesheet" type="text/css"/>
   <link href="${ctx}/static/assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
   <link href="${ctx}/static/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+  <sitemesh:head/>
   <!-- 主题css -->
   <!-- 引入js文件 -->
   <!-- 核心插件 -->
@@ -47,13 +48,16 @@
   <!-- 页面插件 -->
   <script src="${ctx}/static/assets/scripts/app.js" type="text/javascript"></script>
   <script src="${ctx}/static/commons/commons.js" type="application/javascript"></script>
-  <sitemesh:head/>
+  <script src="${ctx}/static/viewlogics/goods/saleMoney.js" type="application/javascript"></script>
   <script type="text/javascript">
     var ctx = '${ctx}',CTX = '${ctx}';
     var ACTIVE_MENU = '${menu}';
     jQuery(document).ready(function() {
       // 页面初始化
       App.init('${ctx}/static');
+      $("#saleMoneyShow").salesMoney({
+        goodsType:JSON_USER.group&&JSON_USER.group.length==1?JSON_USER.group:"ALL"
+      });
     });
   </script>
   <script id="addParentMenu" type="text/html">
@@ -88,7 +92,7 @@
       </a>
       <!-- 导航条菜单 -->
       <ul class="nav navbar-nav pull-right">
-
+        <li><h4 id="saleMoneyShow"></h4></li>
         <!-- BEGIN USER LOGIN DROPDOWN -->
         <li class="dropdown user">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">

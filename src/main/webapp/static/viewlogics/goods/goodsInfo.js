@@ -7,7 +7,7 @@
  * Time: 11:53
  */
 
-(function($){
+(function ($) {
   ich.addTemplate(
     "GOODS_INFO_TMPLATE",
     [
@@ -21,37 +21,37 @@
     ].join('')
   );
 
-  $.goodsInfo = function(options){
+  $.goodsInfo = function (options) {
     var opts = $.extend({}, $.goodsInfo.defaults, options);
     $.blockUI({
       message: ich.GOODS_INFO_TMPLATE({
-        data:opts.data,
-        salesCount:function(){
+        data: opts.data,
+        salesCount: function () {
           var saleCount = 0;
           $(this.data.saleInfos).each(function (idx, item) {
             saleCount += item.saleCount;
           });
           return saleCount;
         },
-        salesMoney:function(){
+        salesMoney: function () {
           var saleMoney = 0;
           $(this.data.saleInfos).each(function (idx, item) {
             saleMoney += item.saleMoney;
           });
           return saleMoney;
         },
-        color:"bg-blue"//COMMONS.randomColorStyle()
+        color: "bg-blue"//COMMONS.randomColorStyle()
       }),
       css: {
         border: 'none',
-        backgroundColor:'none',
-        cursor:'default'
+        backgroundColor: 'none',
+        cursor: 'default'
       }
     });
-    $('.blockOverlay').attr('title','Click to unblock').click($.unblockUI);
+    $('.blockOverlay').attr('title', 'Click to unblock').click($.unblockUI);
   };
 
   $.goodsInfo.defaults = {
-    data:{}
+    data: {}
   };
 })(jQuery);

@@ -15,6 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SaleMoneyPoster {
 
     private volatile Map<String, DeferredResult<Integer>> saleMoneyMap = new ConcurrentHashMap<>();
+    private volatile Map<String, Integer> smMap = new ConcurrentHashMap<>();
     public final static String ALL = "ALL";
     public final static String NULL = "NULL";
 
@@ -26,6 +27,14 @@ public class SaleMoneyPoster {
 
     public static SaleMoneyPoster getInstance() {
         return instance;
+    }
+
+
+    public Integer getSaleMoney(String type){
+        if (StringUtils.isBlank(type))
+            return smMap.get(NULL);
+
+        return smMap.get(type.toUpperCase());
     }
 
 
@@ -45,18 +54,21 @@ public class SaleMoneyPoster {
                 saleMoneyMap.put(entry.getKey().toUpperCase(), result);
             }
             result.setResult(entry.getValue());
+            smMap.put(entry.getKey().toUpperCase(),entry.getValue());
         }
 
         DeferredResult<Integer> result = saleMoneyMap.get(ALL);
         if (null == result) {
             result = new DeferredResult<>();
             saleMoneyMap.put(ALL, result);
+            smMap.put(ALL,dto.getTotalSaleMoney());
         }
         result.setResult(dto.getTotalSaleMoney());
         result = saleMoneyMap.get(NULL);
         if (null == result) {
             result = new DeferredResult<>();
             saleMoneyMap.put(NULL, result);
+            smMap.put(NULL,0);
         }
     }
 
