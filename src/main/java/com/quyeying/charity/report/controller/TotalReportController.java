@@ -46,9 +46,6 @@ public class TotalReportController {
     @Resource(name = "goodsRepository")
     private GoodsRepository repo;
 
-    @Autowired
-    private Environment appProperties;
-
     @RequestMapping
     public ModelAndView goTotalReport() {
         return new ModelAndView("report/total_report");
