@@ -38,8 +38,8 @@ public abstract class BaseRepository {
                 Column column = columns.get(order.getColumn());
                 if (null != column) {
                     Sort.Direction dir = "ASC".equalsIgnoreCase(order.getDir()) ? Sort.Direction.ASC : Sort.Direction.DESC;
-                    if (StringUtils.isNotBlank(column.getData())) {
-                        orderList.add(new Sort.Order(dir, column.getData()));
+                    if (StringUtils.isNotBlank(column.getName())) {
+                        orderList.add(new Sort.Order(dir, column.getName()));
                     }
                 }
             }

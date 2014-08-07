@@ -1,5 +1,13 @@
 var Account = function () {
-
+  var checkedRadio = function(radio,isChecked){
+    if(isChecked){
+      radio.attr('checked', 'checked');
+      $(radio.parent()).addClass("checked");
+    }else{
+      radio.attr('checked', '');
+      $(radio.parent()).removeClass("checked");
+    }
+  };
   var initTree = function (treeId, mouseFn, data, check) {
     var tree = $.fn.zTree.init($("#" + treeId), {
       data: {
@@ -16,7 +24,7 @@ var Account = function () {
       check: check
     }, data);
     tree.expandAll(true);
-  }
+  };
 
   var loadTreeData = function () {
     $.ajax({
@@ -67,6 +75,7 @@ var Account = function () {
         success: function (data) {
           if (data.success) {
             COMMONS.resetForm("userForm");
+            checkedRadio($("#userForm :radio"));
             bootbox.alert("保存成功");
           } else {
             bootbox.alert((data?data.msg:0)  || "操作失败,请重试或联系管理员!");

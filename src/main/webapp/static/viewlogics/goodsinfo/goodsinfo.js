@@ -4,7 +4,73 @@
  * Date: 2014/6/16
  * Time: 15:32
  */
-var TotalReport = function () {
+var GoodsInfo = function () {
+
+  var checkedRadio = function(radio,isChecked){
+    if(isChecked){
+      radio.attr('checked', 'checked');
+      $(radio.parent()).addClass("checked");
+    }else{
+      radio.attr('checked', '');
+      $(radio.parent()).removeClass("checked");
+    }
+  };
+
+  var resetForm = function(){
+    COMMONS.resetForm("storage");
+    checkedRadio($("input[type='radio'][name='goodsReturn']"));
+    checkedRadio($("#goodsReturn_0"),true);
+  };
+
+  var mainBtnToggle ={
+    totalTable:function(){
+      resetForm();
+      $("#addNewBtn").removeClass("blue").addClass("green");
+      $("#addNewBtn span").text("总表");
+      $("#collapse_1").collapse("hide");
+      $("#collapse_2").collapse("show");
+    },
+    goodsInfo:function(){
+      resetForm();
+      $("#addNewBtn").removeClass("green").addClass("blue");
+      $("#addNewBtn span").text("维护");
+      $("#collapse_2").collapse("hide");
+      $("#collapse_1").collapse("show");
+      // 刷新表格
+      $('#tpTable').DataTable().ajax.reload();;
+    }
+  };
+
+  var initBtn = function(){
+    $("#addNewBtn").toggle(function(){
+      mainBtnToggle.totalTable();
+    },function(){
+      mainBtnToggle.goodsInfo();
+    });
+  };
+
+  var initForm = function(goodsNum){
+    if(!goodsNum)
+      return;
+    $.ajax({
+      type: "GET",
+      url: ctx + "/goodsRecord/check/" + goodsNum,
+      success: function (data) {
+        if (data.success&&data.data) {
+          $.each(data.data,function(key,value){
+
+            if("goodsReturn"===key){
+              checkedRadio($("input[type=radio][name=goodsReturn]:checked"));
+              checkedRadio($("input[type=radio][name=goodsReturn][value="+value+"]"),true);
+            }else {
+              $("#"+key).val(value);
+            }
+
+          });
+        }
+      }
+    });
+  };
 
   var initTable = function () {
     var oTable = $('#tpTable').dataTable({
@@ -59,7 +125,7 @@ var TotalReport = function () {
           "data": "goodsNum",
           name: "goodsNumOrder",
           render: function (data, type, row, meta) {
-            return '<a class="goodsInfoShow" onclick="TotalReport.showInfo(\'#tpTable\',\'' + meta.row + '\');">' + data + '</a>';
+            return '<a class="goodsInfoShow" onclick="GoodsInfo.editGoodsInfoLink(\'' + data + '\');">' + data + '</a>';
           }
         },
         {
@@ -121,55 +187,63 @@ var TotalReport = function () {
       ]
     });
 
-    jQuery('#tpTable_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
-    jQuery('#tpTable_wrapper .dataTables_length select').select2({
-    }); // initialize select2 dropdown
+    $('#tpTable_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
+    $('#tpTable_wrapper .dataTables_length select').select2({}); // initialize select2 dropdown
 
   };
 
-  /**
-   * 导出Excel监听器
-   */
-  var exportExcelListener = function () {
-    $("#exportExcel").click(function () {
-
-      var goodsNum = null;
-      if($("#tpTable_filter").find("input").val() != "") {
-        goodsNum = $("#tpTable_filter").find("input").val();
+  var saveGoods = function(){
+    $.ajax({
+      type: "POST",
+      data:$('#storage').serializeForm(),
+      url: ctx + "/goodsRecord",
+      success: function (data) {
+        if (data.success) {
+          toastr.success(data.data, '操作成功');
+        }else{
+          bootbox.alert("数据错误保存失败");
+        }
       }
-
-      var exportUrl = ctx + "/totalReport/exportExcel/" + goodsNum;
-      //noinspection JSJQueryEfficiency
-      $("#exportExcelForm").attr("action", exportUrl);
-      //noinspection JSJQueryEfficiency
-      $("#exportExcelForm").attr("target", "_blank");
-      //noinspection JSJQueryEfficiency
-      $("#exportExcelForm").submit();
     });
-  };
+  }
 
   return {
-
-    //main function to initiate the module
-    init: function () {
-      if (!jQuery().dataTable) {
-        return;
-      }
-
+    init:function(){
       initTable();
-      exportExcelListener();
+      initBtn();
+      $("#goodsNum").keyup(GoodsInfo.goodsNumKeyUp);
+      toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "positionClass": "toast-top-right",
+        "onclick": null,
+        "showDuration": "500",
+        "hideDuration": "500",
+        "timeOut": "1500",
+        "extendedTimeOut": "500",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      };
     },
-    showInfo: function (dt, rowIdx) {
-      $.goodsInfo({
-        data: $(dt).DataTable().row(rowIdx).data()
-      });
+    goodsNumKeyUp:function(){
+      initForm($("#goodsNum").val());
+    },
+    saveGoodsInfoBtn:function(){
+      saveGoods();
+      $("#addNewBtn").trigger("click");
+    },
+    saveAndContinueGoodsInfoBtn:function(){
+      saveGoods();
+      resetForm();
+    },
+    editGoodsInfoLink:function(goodsNum){
+      $("#addNewBtn").trigger("click");
+      initForm(goodsNum);
     }
-
-  };
-
+  }
 }();
-
-
 $(function () {
-  TotalReport.init();
+  GoodsInfo.init();
 });

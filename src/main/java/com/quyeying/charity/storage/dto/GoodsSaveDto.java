@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.Collections;
 
 /**
  * User: bysun
@@ -79,6 +80,13 @@ public class GoodsSaveDto {
         BeanMapper.copy(this,g);
         g.setGoodsType(this.goodsNum.toUpperCase().substring(0,1));
         return g;
+    }
+
+    public Goods build(Goods source){
+        this.pkid = source.getPkid();
+        BeanMapper.copy(this,source);
+        source.setGoodsType(this.goodsNum.toUpperCase().substring(0,1));
+        return source;
     }
 
     @Override

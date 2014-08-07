@@ -56,7 +56,7 @@ var GroupReport = function () {
       "columns": [
         {
           "data": "goodsNum",
-          name: "goodsNum",
+          name: "goodsNumOrder",
           render: function (data, type, row, meta) {
             return '<a class="goodsInfoShow" onclick="GroupReport.showInfo(\'#gpTable\',\''+meta.row +'\');">'+data+'</a>';
           }

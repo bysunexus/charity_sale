@@ -122,6 +122,8 @@ public class Goods {
      */
     private String remark;
 
+    private long goodsNumOrder;
+
     public Goods() {
     }
 
@@ -213,6 +215,14 @@ public class Goods {
         this.goodsReturn = goodsReturn;
     }
 
+    public long getGoodsNumOrder() {
+        return goodsNumOrder;
+    }
+
+    public void setGoodsNumOrder(long goodsNumOrder) {
+        this.goodsNumOrder = goodsNumOrder;
+    }
+
     /**
      * User: bysun
      * Date: 2014/5/28 0028
@@ -273,7 +283,32 @@ public class Goods {
             this.remark = remark;
         }
 
+        @Override
+        public String toString() {
+            return "SaleInfo{" +
+                "saleCount=" + saleCount +
+                ", saleMoney=" + saleMoney +
+                ", saleType=" + saleType +
+                ", remark='" + remark + '\'' +
+                '}';
+        }
+    }
 
+    @Override
+    public String toString() {
+        return "Goods{" +
+            "pkid='" + pkid + '\'' +
+            ", goodsType='" + goodsType + '\'' +
+            ", goodsNum='" + goodsNum + '\'' +
+            ", personName='" + personName + '\'' +
+            ", personPhone='" + personPhone + '\'' +
+            ", goodsName='" + goodsName + '\'' +
+            ", goodsCount=" + goodsCount +
+            ", goodsPrice=" + goodsPrice +
+            ", goodsReturn=" + goodsReturn +
+            ", saleInfos=" + saleInfos +
+            ", remark='" + remark + '\'' +
+            '}';
     }
 
     /**
