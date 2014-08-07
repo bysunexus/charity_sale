@@ -19,6 +19,7 @@ import org.springframework.data.mongodb.core.query.Query;
  * Date: 2014/7/29
  * Time: 17:20
  */
+@SuppressWarnings("UnusedDeclaration")
 public class GoodsRepositoryImpl extends BaseRepository implements GoodsRepositoryCustom {
 
     public Page<Goods> findByDto(ReportDto dto) {
