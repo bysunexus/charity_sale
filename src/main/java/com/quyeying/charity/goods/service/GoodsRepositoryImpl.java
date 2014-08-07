@@ -26,11 +26,11 @@ public class GoodsRepositoryImpl extends BaseRepository implements GoodsReposito
         Criteria criteria = new Criteria();
 
         if (StringUtils.isNotBlank(dto.getGoodsType())) {
-            Criteria.where("goodsType").is(dto.getGoodsType());
+            criteria.andOperator(Criteria.where("goodsType").is(dto.getGoodsType()));
         }
 
         if (null != dto.getSearch() && StringUtils.isNotBlank(dto.getSearch().getValue())) {
-            criteria.and("goodsNum").regex("^" + dto.getGoodsType() + dto.getSearch().getValue().toUpperCase() + ".*");
+            criteria.andOperator(Criteria.where("goodsNum").regex("^" + dto.getGoodsType() + dto.getSearch().getValue().toUpperCase() + ".*"));
         }
 
         return super.baseQuery(Goods.class, criteria, dto);
@@ -41,7 +41,7 @@ public class GoodsRepositoryImpl extends BaseRepository implements GoodsReposito
         SaleMoneyDto dto = new SaleMoneyDto();
 
         Query query = new Query();
-        if (goodsType.length >0) query.addCriteria(Criteria.where("goodsType").in(goodsType));
+        if (goodsType.length > 0) query.addCriteria(Criteria.where("goodsType").in(goodsType));
 
         MapReduceResults<ValueDto> result = mongo.mapReduce(
             query,
