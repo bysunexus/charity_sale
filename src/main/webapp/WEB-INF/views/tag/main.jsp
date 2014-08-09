@@ -44,7 +44,7 @@
               <label class="col-lg-3 control-label">数量</label>
 
               <div class="col-lg-9">
-                <input id="total" name="total" type="text" class="form-control input-lg" placeholder="生成价签的数量" value="200">
+                <input id="total" name="total" type="text" class="form-control input-lg charity_input ime_disabled" placeholder="生成价签的数量" value="200">
               </div>
             </div>
             <div class="form-group">

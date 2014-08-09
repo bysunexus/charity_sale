@@ -96,7 +96,7 @@
                     <div class="col-md-4">
                       <div class="input-icon right input-group">
                         <i class="fa"></i>
-                        <input id="goodsNum" name="goodsNum" type="text" class="form-control" placeholder="如:A01">
+                        <input id="goodsNum" name="goodsNum" type="text" class="form-control charity_input ime_disabled" placeholder="如:A01">
                       </div>
                     </div>
                   </div>
@@ -108,7 +108,7 @@
                       <div class="col-md-4">
                         <div class="input-icon right">
                           <i class="fa"></i>
-                          <input id="paddedPostValue" name="paddedPostValue" type="text" class="form-control" placeholder="不能为空">
+                          <input id="paddedPostValue" name="paddedPostValue" type="text" class="form-control charity_input ime_disabled" placeholder="不能为空">
                         </div>
                       </div>
                     </div>

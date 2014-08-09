@@ -20,6 +20,9 @@ var GoodsInfo = function () {
     COMMONS.resetForm("storage");
     checkedRadio($("input[type='radio'][name='goodsReturn']"));
     checkedRadio($("#goodsReturn_0"),true);
+    setTimeout(function(){
+      $("#goodsNum")[0].focus();
+    },500);
   };
 
   var mainBtnToggle ={
@@ -186,7 +189,7 @@ var GoodsInfo = function () {
         }
       ]
     });
-
+    $('.dataTables_filter input').addClass("charity_input ime_disabled");
     $('#tpTable_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
     $('#tpTable_wrapper .dataTables_length select').select2({}); // initialize select2 dropdown
 

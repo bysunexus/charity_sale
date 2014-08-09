@@ -57,7 +57,7 @@
 
         <div class="input-icon">
           <i class="fa fa-user"></i>
-          <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="账号" name="userName"/>
+          <input class="form-control placeholder-no-fix charity_input ime_disabled" type="text" autocomplete="off" placeholder="账号" name="userName"/>
         </div>
       </div>
       <div class="form-group">

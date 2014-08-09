@@ -1,1 +1,49 @@
 /* here you can put your own css to customize and override the theme */
+
+.ime_auto {
+  -webkit-ime-mode: auto;
+  /*Mozilla Firefox*/
+  -moz-ime-mode: auto;
+  /*Opera*/
+  -o-ime-mode: auto;
+  /*Internet Explorer*/
+  -ms-ime-mode: auto;
+  /*CSS3 Standard*/
+  ime-mode: auto;
+}
+
+.ime_active {
+  -webkit-ime-mode: active;
+  /*Mozilla Firefox*/
+  -moz-ime-mode: active;
+  /*Opera*/
+  -o-ime-mode: active;
+  /*Internet Explorer*/
+  -ms-ime-mode: active;
+  /*CSS3 Standard*/
+  ime-mode: active;
+}
+
+.ime_inactive {
+  -webkit-ime-mode: inactive;
+  /*Mozilla Firefox*/
+  -moz-ime-mode: inactive;
+  /*Opera*/
+  -o-ime-mode: inactive;
+  /*Internet Explorer*/
+  -ms-ime-mode: inactive;
+  /*CSS3 Standard*/
+  ime-mode: inactive;
+}
+
+.ime_disabled {
+  -webkit-ime-mode: disabled;
+  /*Mozilla Firefox*/
+  -moz-ime-mode: disabled;
+  /*Opera*/
+  -o-ime-mode: disabled;
+  /*Internet Explorer*/
+  -ms-ime-mode: disabled;
+  /*CSS3 Standard*/
+  ime-mode: disabled;
+}

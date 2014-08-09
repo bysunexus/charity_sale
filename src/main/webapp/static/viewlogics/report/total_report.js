@@ -120,9 +120,9 @@ var TotalReport = function () {
         }
       ]
     });
-
-    jQuery('#tpTable_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
-    jQuery('#tpTable_wrapper .dataTables_length select').select2({
+    $('.dataTables_filter input').addClass("charity_input ime_disabled");
+    $('#tpTable_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
+    $('#tpTable_wrapper .dataTables_length select').select2({
     }); // initialize select2 dropdown
 
   };

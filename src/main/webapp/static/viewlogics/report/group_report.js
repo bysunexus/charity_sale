@@ -112,7 +112,7 @@ var GroupReport = function () {
         }
       ]
     });
-
+    $('.dataTables_filter input').addClass("charity_input ime_disabled");
     jQuery('#gpTable_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
     jQuery('#gpTable_wrapper .dataTables_length select').select2({
     }); // initialize select2 dropdown

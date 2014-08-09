@@ -48,9 +48,9 @@
 
       <h2>添加用户</h2>
         <div id="userForm">
-          用户名<input name="userName" type="text" class="form-control"/><br/>
+          用户名<input name="userName" type="text" class="form-control charity_input ime_disabled"/><br/>
           昵称<input name="nickName" type="text" class="form-control"/><br/>
-          密码<input name="password" type="text" class="form-control"/><br/>
+          密码<input name="password" type="text" class="form-control charity_input ime_disabled"/><br/>
           组:
           <label>A<input name="group" value="A" type="radio" class="form-control"/></label>
           <label>B<input name="group" value="B" type="radio" class="form-control"/></label>
@@ -70,9 +70,9 @@
         <div class="col-md-8" id="MenuForm">
               父id<input id="menu_pid" name="pid" type="text" class="form-control"/><br/>
               名称<input name="name" type="text" class="form-control"/><br/>
-              标记<input name="sign" type="text" class="form-control"/><br/>
-              路径<input name="path" type="text" class="form-control"/><br/>
-              排序<input name="order" type="text" class="form-control"/><br/>
+              标记<input name="sign" type="text" class="form-control charity_input ime_disabled"/><br/>
+              路径<input name="path" type="text" class="form-control charity_input ime_disabled"/><br/>
+              排序<input name="order" type="text" class="form-control charity_input ime_disabled"/><br/>
               <button type="button" class="btn green" onclick="Account.saveMenu();">保存</button>
             <!-- END FORM-->
           </div>

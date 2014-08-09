@@ -78,7 +78,7 @@
                       <div class="input-icon right input-group">
                         <span class="input-group-addon">${CURRENT_USER.group}</span>
                         <i class="fa"></i>
-                        <input id="goodsNum" onkeyup="Storage.checkVW();" name="goodsNum" type="text" class="form-control" placeholder="如:A01">
+                        <input id="goodsNum" onkeyup="Storage.checkVW();" name="goodsNum" type="text" class="form-control charity_input ime_disabled" placeholder="如:A01">
                       </div>
                     </div>
                   </div>
@@ -88,7 +88,7 @@
                     <div class="col-md-4">
                       <div class="input-icon right" id="entryCount">
                         <i class="fa"></i>
-                        <input id="goodsCount" name="goodsCount" type="text" class="form-control" placeholder="只能为数字">
+                        <input id="goodsCount" name="goodsCount" type="text" class="form-control charity_input ime_disabled" placeholder="只能为数字">
                       </div>
                       <div class="input-icon right btn-toolbar" style="display: none;" id="soldCount">
                         <div class="btn-group" id="soldCountGroup" data-toggle="buttons">
@@ -104,7 +104,7 @@
                     <div class="col-md-4">
                       <div class="input-icon right">
                         <i class="fa"></i>
-                        <input id="goodsPrice" name="goodsPrice" type="text" class="form-control" placeholder="以元为单位">
+                        <input id="goodsPrice" name="goodsPrice" type="text" class="form-control charity_input ime_disabled" placeholder="以元为单位">
                       </div>
                     </div>
                   </div>

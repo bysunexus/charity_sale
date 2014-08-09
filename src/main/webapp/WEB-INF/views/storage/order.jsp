@@ -101,10 +101,10 @@
     <td style="padding: 0;vertical-align: middle;">
       <input type="hidden" class="form-control sale_id" value="{{id}}" />
       <input type="hidden" class="form-control sale_singlePrice" value="{{goods.goodsPrice}}" />
-      <input style="border: 0;" type="text" class="form-control sale_count" value="{{saleCount}}" />
+      <input style="border: 0;" type="text" class="form-control sale_count charity_input ime_disabled" value="{{saleCount}}" />
     </td>
     <td style="padding: 0;vertical-align: middle;">
-      <input style="border: 0;" type="text" class="form-control sale_price" value="{{price}}" />
+      <input style="border: 0;" type="text" class="form-control sale_price charity_input ime_disabled" value="{{price}}" />
     </td>
   </tr>
   {{/goods}}
