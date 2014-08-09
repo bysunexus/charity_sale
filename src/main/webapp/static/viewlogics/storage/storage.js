@@ -236,8 +236,8 @@ var Cart = function () {
     $("#cartDiv").append(ich.addCart(data));
     //noinspection JSJQueryEfficiency
     $("#cart_" + data.id).data("goods", data);
-    $("#cart_" + data.id + " button").click(function () {
-      Cart.removeCart($(this).parent());
+    $("#cart_" + data.id).click(function () {
+      Cart.removeCart($(this));
     });
   };
 
