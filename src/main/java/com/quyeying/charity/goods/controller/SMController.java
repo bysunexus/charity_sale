@@ -18,35 +18,8 @@ import org.springframework.web.context.request.async.DeferredResult;
 @RequestMapping("/saleMoney")
 public class SMController {
 
-/*
-     * TODO 暂时废弃这个接口 找不到理想的前端comet方式
-     * @param goodsType 卷品类型
-     * @return 销售额
-
-    @RequestMapping("/{goodsType}")
-    @ResponseBody
-    public DeferredResult<Integer> poll(@PathVariable("goodsType") String goodsType) {
-        switch (goodsType) {
-            case "A":
-                break;
-            case "B":
-                break;
-            case "C":
-                break;
-            case "D":
-                break;
-            case "E":
-                break;
-            case "ALL":
-                break;
-            default:
-                goodsType = SaleMoneyPoster.NULL;
-        }
-        return SaleMoneyPoster.getInstance().register(goodsType);
-    }*/
 
     /**
-     * TODO 暂时废弃这个接口 找不到理想的前端comet方式
      * @param goodsType 卷品类型
      * @return 销售额
      */
@@ -55,20 +28,15 @@ public class SMController {
     public ResultDto poll(@PathVariable("goodsType") String goodsType) {
         switch (goodsType) {
             case "A":
-                break;
             case "B":
-                break;
             case "C":
-                break;
             case "D":
-                break;
             case "E":
-                break;
+                return ResultDto.getSuccess(SaleMoneyPoster.getInstance().getSaleMoney(goodsType));
             case "ALL":
-                break;
+                return ResultDto.getSuccess(SaleMoneyPoster.getInstance().getSmMap());
             default:
-                goodsType = SaleMoneyPoster.NULL;
+                return ResultDto.getSuccess(SaleMoneyPoster.getInstance().getSaleMoney(SaleMoneyPoster.NULL));
         }
-        return ResultDto.getSuccess(SaleMoneyPoster.getInstance().getSaleMoney(goodsType));
     }
 }

@@ -2,6 +2,7 @@ package com.quyeying.charity.account.dto;
 
 import com.quyeying.charity.domain.User;
 import com.quyeying.framework.utils.BeanMapper;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * User: bysun
@@ -20,7 +21,7 @@ public class UserDto {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.userName = StringUtils.trimToNull(userName);
     }
 
     public String getNickName() {
@@ -28,7 +29,7 @@ public class UserDto {
     }
 
     public void setNickName(String nickName) {
-        this.nickName = nickName;
+        this.nickName = StringUtils.trimToNull(nickName);
     }
 
     public String getPassword() {
@@ -36,7 +37,7 @@ public class UserDto {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = StringUtils.trimToNull(password);
     }
 
     public String getGroup() {
@@ -44,7 +45,7 @@ public class UserDto {
     }
 
     public void setGroup(String group) {
-        this.group = group;
+        this.group = StringUtils.trimToNull(group);
     }
 
     public String getLevel() {
@@ -52,7 +53,7 @@ public class UserDto {
     }
 
     public void setLevel(String level) {
-        this.level = level;
+        this.level = StringUtils.trimToNull(level);
     }
 
     public User get(){

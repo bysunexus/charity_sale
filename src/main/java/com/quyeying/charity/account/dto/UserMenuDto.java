@@ -1,5 +1,7 @@
 package com.quyeying.charity.account.dto;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ public class UserMenuDto {
     }
 
     public void setMenuId(String menuId) {
-        this.menuId = menuId;
+        this.menuId = StringUtils.trimToNull(menuId);
     }
 
     public String getUserName() {
@@ -25,7 +27,7 @@ public class UserMenuDto {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.userName = StringUtils.trimToNull(userName);
     }
 
 

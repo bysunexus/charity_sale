@@ -133,7 +133,7 @@ var Storage = function () {
         type: "POST",
         url: checkUrl,
         success: function (data) {
-          if (data.data) {
+          if (data.data && data.data.goodsNum && data.data.goodsCount) {
             $("#soldVW").show();
             $("#entryVW").hide();
             //noinspection JSJQueryEfficiency

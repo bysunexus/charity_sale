@@ -39,7 +39,13 @@ public class GoodsInfoController {
         ResultDto result;
 
         try {
-            result = ResultDto.getSuccess(repo.findByNum(goodsNum.toUpperCase()));
+            Goods goods = repo.findByNum(goodsNum.toUpperCase());
+            if(null == goods){
+                goods = new Goods();
+                goods.setGoodsNum(goodsNum.toUpperCase());
+            }
+            result = ResultDto.getSuccess(goods);
+
         } catch (Exception e) {
             logger.info("查询捐品信息时发生错误,goodsNum=" + goodsNum, e);
             result = ResultDto.get("查询捐品信息时发生错误");

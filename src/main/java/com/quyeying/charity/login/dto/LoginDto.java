@@ -1,5 +1,7 @@
 package com.quyeying.charity.login.dto;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * charity_sale
  * com.quyeying.charity.login.dto
@@ -19,7 +21,7 @@ public class LoginDto {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.userName = StringUtils.trimToNull(userName);
     }
 
     public String getPassword() {

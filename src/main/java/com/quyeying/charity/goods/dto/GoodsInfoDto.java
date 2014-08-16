@@ -23,7 +23,9 @@ public class GoodsInfoDto {
     }
 
     public void setGoodsNum(String goodsNum) {
-        this.goodsNum = goodsNum;
+        if(null == goodsNum)
+            return;
+        this.goodsNum = StringUtils.trimToNull(goodsNum.toUpperCase());
     }
 
     public String getGoodsName() {
@@ -31,7 +33,7 @@ public class GoodsInfoDto {
     }
 
     public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
+        this.goodsName = StringUtils.trimToNull(goodsName);
     }
 
     public String getPersonName() {
@@ -39,7 +41,7 @@ public class GoodsInfoDto {
     }
 
     public void setPersonName(String personName) {
-        this.personName = personName;
+        this.personName = StringUtils.trimToNull(personName);
     }
 
     public Integer getGoodsReturn() {
@@ -55,7 +57,7 @@ public class GoodsInfoDto {
     }
 
     public void setPersonPhone(String personPhone) {
-        this.personPhone = personPhone;
+        this.personPhone = StringUtils.trimToNull(personPhone);
     }
 
     public String getRemark() {
@@ -63,7 +65,7 @@ public class GoodsInfoDto {
     }
 
     public void setRemark(String remark) {
-        this.remark = remark;
+        this.remark = StringUtils.trimToNull(remark);
     }
 
 

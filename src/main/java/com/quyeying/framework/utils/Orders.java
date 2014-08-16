@@ -21,7 +21,7 @@ public class Orders {
     public static long longOrder(String key) {
 
         long order = 0;
-        if (null != key && key.length() < 4) {
+        if (null != key && key.length() < 5) {
             char[] chars = key.toCharArray();
             char[] tmp = new char[]{'0', '0', '0', '0'};
             tmp[0] = null == CHARS.get(chars[0]) ? '0' : CHARS.get(chars[0]);

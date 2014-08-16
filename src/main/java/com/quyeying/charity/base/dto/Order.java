@@ -1,5 +1,7 @@
 package com.quyeying.charity.base.dto;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * User: bysun
  * Date: 2014/7/29
@@ -18,7 +20,7 @@ public class Order {
     }
 
     public String getDir() {
-        return dir;
+        return StringUtils.trimToNull(dir);
     }
 
     public void setDir(String dir) {

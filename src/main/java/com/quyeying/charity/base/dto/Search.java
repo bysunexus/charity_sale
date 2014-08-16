@@ -1,5 +1,7 @@
 package com.quyeying.charity.base.dto;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * User: bysun
  * Date: 2014/7/29
@@ -14,7 +16,7 @@ public class Search {
     }
 
     public void setValue(String value) {
-        this.value = value;
+        this.value = StringUtils.trimToNull(value);
     }
 
     public boolean isRegex() {

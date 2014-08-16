@@ -82,7 +82,7 @@ public class ResultDto<T> implements IResultDto<T> {
      * @return ResultDto{success:true,msg:null,data:#data}
      */
     public static <T> ResultDto<T> getSuccess(T data){
-        return new ResultDto(data);
+        return new ResultDto<>(data);
     }
 
     /**
@@ -93,7 +93,7 @@ public class ResultDto<T> implements IResultDto<T> {
      * @return ResultDto{success:#success,msg:#msg,data:#data}
      */
     public static <T> ResultDto<T> get(boolean success,String msg,T data){
-        return new ResultDto(success,msg,data);
+        return new ResultDto<>(success,msg,data);
     }
 
 }

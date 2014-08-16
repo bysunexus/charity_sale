@@ -1,5 +1,7 @@
 package com.quyeying.charity.goods.dto;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * User: bysun
  * Date: 2014/8/3
@@ -14,7 +16,7 @@ public class ValueDto {
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = StringUtils.trimToNull(id);
     }
 
     public Integer getValue() {

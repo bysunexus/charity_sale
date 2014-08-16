@@ -41,6 +41,15 @@ public class GoodsRepositoryImpl extends BaseRepository implements GoodsReposito
     public SaleMoneyDto findSaleMoney(String... goodsType) {
         SaleMoneyDto dto = new SaleMoneyDto();
 
+        if(0== mongo.count(new Query(),Goods.class)){
+            dto.setTotalSaleMoney(0);
+            dto.getGroupSaleMoney().put("A", 0);
+            dto.getGroupSaleMoney().put("B", 0);
+            dto.getGroupSaleMoney().put("C", 0);
+            dto.getGroupSaleMoney().put("D", 0);
+            dto.getGroupSaleMoney().put("E", 0);
+            return dto;
+        }
         Query query = new Query();
         if (goodsType.length > 0) query.addCriteria(Criteria.where("goodsType").in(goodsType));
 

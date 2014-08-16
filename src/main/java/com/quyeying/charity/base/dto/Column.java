@@ -1,5 +1,7 @@
 package com.quyeying.charity.base.dto;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * User: bysun
  * Date: 2014/7/29
@@ -17,7 +19,7 @@ public class Column {
     }
 
     public void setData(String data) {
-        this.data = data;
+        this.data = StringUtils.trimToNull(data);
     }
 
     public String getName() {
@@ -25,7 +27,7 @@ public class Column {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = StringUtils.trimToNull(name);
     }
 
     public boolean isSearchable() {

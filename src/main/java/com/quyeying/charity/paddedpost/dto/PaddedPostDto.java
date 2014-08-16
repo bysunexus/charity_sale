@@ -24,7 +24,7 @@ public class PaddedPostDto {
 
     @NotNull(message = "不能为空")
     private Integer paddedPostValue;
-
+    @NotNull(message = "不能为空")
     private Integer paddedPostRadios;
 
     public String getGoodsNum() {
@@ -40,7 +40,7 @@ public class PaddedPostDto {
     }
 
     public void setPaddedPostValue(Integer paddedPostValue) {
-        this.paddedPostValue = paddedPostValue;
+        this.paddedPostValue = paddedPostValue*-1;
     }
 
     public Integer getPaddedPostRadios() {

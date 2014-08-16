@@ -35,8 +35,8 @@
   <script src="${ctx}/static/assets/plugins/respond.min.js"></script>
   <script src="${ctx}/static/assets/plugins/excanvas.min.js"></script>
   <![endif]-->
-  <script src="${ctx}/static/jquery/jquery-2.1.1.js" type="text/javascript"></script>
-  <script src="${ctx}/static/jquery/jquery-migrate-1.2.1.js" type="text/javascript"></script>
+  <script src="${ctx}/static/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+  <script src="${ctx}/static/jquery/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="${ctx}/static/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript" ></script>

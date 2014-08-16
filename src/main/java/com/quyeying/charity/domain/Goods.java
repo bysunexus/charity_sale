@@ -1,5 +1,6 @@
 package com.quyeying.charity.domain;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -132,7 +133,7 @@ public class Goods {
     }
 
     public void setPkid(String pkid) {
-        this.pkid = pkid;
+        this.pkid = StringUtils.trimToNull(pkid);
     }
 
     public String getGoodsType() {
@@ -140,7 +141,9 @@ public class Goods {
     }
 
     public void setGoodsType(String goodsType) {
-        this.goodsType = goodsType;
+        if(null == goodsType)
+            return;
+        this.goodsType = StringUtils.trimToNull(goodsType.toUpperCase());
     }
 
     public String getGoodsNum() {
@@ -148,7 +151,9 @@ public class Goods {
     }
 
     public void setGoodsNum(String goodsNum) {
-        this.goodsNum = goodsNum;
+        if(null == goodsNum)
+            return;
+        this.goodsNum = StringUtils.trimToNull(goodsNum.toUpperCase());
     }
 
     public String getPersonName() {
@@ -156,7 +161,7 @@ public class Goods {
     }
 
     public void setPersonName(String personName) {
-        this.personName = personName;
+        this.personName = StringUtils.trimToNull(personName);
     }
 
     public String getPersonPhone() {
@@ -164,7 +169,7 @@ public class Goods {
     }
 
     public void setPersonPhone(String personPhone) {
-        this.personPhone = personPhone;
+        this.personPhone = StringUtils.trimToNull(personPhone);
     }
 
     public String getGoodsName() {
@@ -172,7 +177,7 @@ public class Goods {
     }
 
     public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
+        this.goodsName = StringUtils.trimToNull(goodsName);
     }
 
     public Integer getGoodsCount() {
@@ -204,7 +209,7 @@ public class Goods {
     }
 
     public void setRemark(String remark) {
-        this.remark = remark;
+        this.remark = StringUtils.trimToNull(remark);
     }
 
     public Integer getGoodsReturn() {

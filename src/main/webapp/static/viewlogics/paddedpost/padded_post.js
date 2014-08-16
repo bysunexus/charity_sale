@@ -97,39 +97,45 @@ var PaddedPost = function () {
         return;
 
       var dataForm = $('#paddedPost').serializeForm();
+      var vStr = Number(dataForm.paddedPostValue) > 0 ?"增加":"减少";
+      vStr += Math.abs(Number(dataForm.paddedPostValue));
 
-      //noinspection JSUnresolvedVariable
-      var saveUrl = ctx + "/paddedPost/save";
-      $.ajax({
-        type: "POST",
-        url: saveUrl,
-        data: dataForm,
-        beforeSend: function () {
-          //AJAX请求完成时显示提示，防止表单重复提交
-          App.blockUI($("body"));
-        },
-        complete: function () {
-          //AJAX请求完成时隐藏loading提示
-          App.unblockUI($("body"));
-        },
-        success: function (data) {
-          if (data.success) {
-            bootbox.alert("保存成功");
-            jsresetform();
-
-            $("input[name='paddedPostRadios']").removeAttr("checked");
-            $("#dftRadio").attr("checked");
-            $("#paddedPostDiv").find("label").html('补差金额:<span class="required">*</span>');
-
-          } else {
-            if(!$.isEmptyObject(data.data)) {
-              bootbox.alert(data.data.paddedPostDto[0]);
+      bootbox.confirm("确认对捐品["+dataForm.goodsNum+"]进行"+(dataForm.paddedPostRadios=="1"?"补件:<h3>"+vStr+"件":"补价:<h3>"+vStr+"元")+"</h3>", function (result) {
+        if (result) {
+          //noinspection JSUnresolvedVariable
+          var saveUrl = ctx + "/paddedPost/save";
+          $.ajax({
+            type: "POST",
+            url: saveUrl,
+            data: dataForm,
+            beforeSend: function () {
+              //AJAX请求完成时显示提示，防止表单重复提交
+              App.blockUI($("body"));
+            },
+            complete: function () {
+              //AJAX请求完成时隐藏loading提示
               App.unblockUI($("body"));
-            }else {
-              bootbox.alert(data.msg);
-              App.unblockUI($("body"));
+            },
+            success: function (data) {
+              if (data.success) {
+                bootbox.alert("保存成功");
+                jsresetform();
+
+                $("input[name='paddedPostRadios']").removeAttr("checked");
+                $("#dftRadio").attr("checked");
+                $("#paddedPostDiv").find("label").html('补差金额:<span class="required">*</span>');
+
+              } else {
+                if(!$.isEmptyObject(data.data)) {
+                  bootbox.alert(data.data.paddedPostDto[0]);
+                  App.unblockUI($("body"));
+                }else {
+                  bootbox.alert(data.msg);
+                  App.unblockUI($("body"));
+                }
+              }
             }
-          }
+          });
         }
       });
     },
