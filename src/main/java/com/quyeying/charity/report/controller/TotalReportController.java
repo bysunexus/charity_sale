@@ -12,8 +12,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -100,9 +98,12 @@ public class TotalReportController {
 
     /**
      * 获取XSSFWorkbook
+     *
      * @param list 数据源
-     * @param inp InputStream
+     * @param inp  InputStream
+     *
      * @return XSSFWorkbook
+     *
      * @throws IOException
      */
     @SuppressWarnings("ConstantConditions")
@@ -149,8 +150,9 @@ public class TotalReportController {
 
     /**
      * 构建单元格数据
+     *
      * @param item goods
-     * @param row row
+     * @param row  row
      */
     private void buildCell(Goods item, Row row) {
         int idx = 0;
@@ -242,9 +244,11 @@ public class TotalReportController {
 
     /**
      * 获取row
-     * @param wb Workbook
-     * @param idx idx
+     *
+     * @param wb     Workbook
+     * @param idx    idx
      * @param rowNum rowNum
+     *
      * @return
      */
     private Row getRow(Workbook wb, int idx, int rowNum) {
