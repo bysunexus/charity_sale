@@ -23,16 +23,16 @@
               $.each(data.data,function(k,v){
                 if("NULL" == k || "ALL" == k)
                   return;
-                result.push(getPrefix(k)+(v?v:0)+"元");
+                result.push("<i class='fa fa-thumbs-o-up'></i>"+getPrefix(k)+(v?v:0)+"元&nbsp;&nbsp;");
               });
-              result.push(getPrefix("ALL")+(data.data["ALL"]?data.data["ALL"]:0)+"元");
-              var resultStr = result.join("|");
+              result.push("<i class='fa fa-thumbs-o-up'></i>"+getPrefix("ALL")+(data.data["ALL"]?data.data["ALL"]:0)+"元&nbsp;&nbsp;");
+              var resultStr = result.join("");
               $(target).each(function () {
-                $(this).text(resultStr);
+                $(this).html(resultStr);
               });
             }else{
               $(target).each(function () {
-                $(this).text(getPrefix(opts.goodsType)+(data.data?data.data:0)+"元");
+                $(this).html(getPrefix(opts.goodsType)+(data.data?data.data:0)+"元");
               });
             }
         },
