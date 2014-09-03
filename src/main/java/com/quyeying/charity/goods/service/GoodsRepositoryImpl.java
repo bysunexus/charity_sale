@@ -26,10 +26,6 @@ public class GoodsRepositoryImpl extends BaseRepository implements GoodsReposito
 
         Criteria criteria = new Criteria();
 
-        if (StringUtils.isNotBlank(dto.getGoodsType())) {
-            criteria.andOperator(Criteria.where("goodsType").is(dto.getGoodsType()));
-        }
-
         if (null != dto.getSearch() && StringUtils.isNotBlank(dto.getSearch().getValue())) {
             criteria.andOperator(Criteria.where("goodsNum").regex("^" + dto.getGoodsType() + dto.getSearch().getValue().toUpperCase() + ".*"));
         }
