@@ -92,7 +92,7 @@
       </a>
       <!-- 导航条菜单 -->
       <ul class="nav navbar-nav pull-right">
-        <li><a><span id="saleMoneyShow" class="label label-success"></span></a></li>
+        <li><a><span id="saleMoneyShow" class="label label-primary"></span></a></li>
         <!-- BEGIN USER LOGIN DROPDOWN -->
         <li class="dropdown user">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">

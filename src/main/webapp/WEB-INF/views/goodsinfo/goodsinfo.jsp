@@ -101,6 +101,27 @@
               <form class="panel-body form-horizontal" id="storage">
                 <!-- BEGIN FORM-->
                 <div class="form-body">
+
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">捐品数量:<span class="required">*</span></label>
+
+                    <div class="col-md-4">
+                      <div class="input-icon right">
+                        <i class="fa"></i>
+                        <input id="goodsCount" name="goodsCount" type="text" disabled="disabled" readonly="readonly" class="form-control charity_input ime_disabled">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">捐品金额:<span class="required">*</span></label>
+
+                    <div class="col-md-4">
+                      <div class="input-icon right">
+                        <i class="fa"></i>
+                        <input id="goodsPrice" name="goodsPrice" type="text" disabled="disabled" readonly="readonly" class="form-control charity_input ime_disabled">
+                      </div>
+                    </div>
+                  </div>
                   <div class="form-group">
                     <label class="col-md-3 control-label">商品编号:<span class="required">*</span></label>
 

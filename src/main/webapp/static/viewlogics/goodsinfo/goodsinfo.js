@@ -55,11 +55,15 @@ var GoodsInfo = function () {
   var initForm = function(goodsNum){
     if(!goodsNum)
       return;
+    var regex = /^A\d+$/m;
     $.ajax({
       type: "GET",
       url: ctx + "/goodsRecord/check/" + goodsNum,
       success: function (data) {
         if (data.success&&data.data) {
+          if(regex.test(goodsNum) && !data.data.goodsName){
+            data.data.goodsName = "二元义卖品";
+          }
           $.each(data.data,function(key,value){
 
             if("goodsReturn"===key){
@@ -70,6 +74,10 @@ var GoodsInfo = function () {
             }
 
           });
+        }else{
+          if(regex.test(goodsNum)){
+            $("#goodsName").val("二元义卖品");
+          }
         }
       }
     });

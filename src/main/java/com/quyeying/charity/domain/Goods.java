@@ -31,7 +31,7 @@ public class Goods {
         A("A", "2元区",2),
         B("B", "5元区",5),
         C("C", "10元区",10),
-        D("D", "25元区",25),
+        D("D", "30元区",30),
         E("E", "50元及以上",true);
 
         GoodsType(String code, String name,int price) {
