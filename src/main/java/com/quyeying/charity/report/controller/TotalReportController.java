@@ -78,7 +78,7 @@ public class TotalReportController {
      */
     @RequestMapping(value = "/exportExcel/{goodsNum}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> exportExcel(@PathVariable("goodsNum") String goodsNum) throws IOException, InvalidFormatException {
-        List<Goods> list = repo.findByGoodsNum((null == goodsNum || "null".equals(goodsNum)) ? "" : goodsNum, new Sort(Sort.Direction.ASC, "goodsNumOrder"));
+        List<Goods> list = repo.findByGoodsNum("", new Sort(Sort.Direction.ASC, "goodsNumOrder"));
         InputStream inp = this.getClass().getClassLoader().getResourceAsStream("template/totalTemplate.xlsx");
 
         XSSFWorkbook wb = getXssfSheets(list, inp);
