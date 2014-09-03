@@ -98,7 +98,7 @@
                     </div>
                   </div>
                   <c:if test="${CURRENT_USER.group eq 'E'}">
-                  <div class="form-group">
+                  <div class="form-group" id="goodsPriceVW">
                     <label class="col-md-3 control-label">商品单价:<span class="required">*</span></label>
 
                     <div class="col-md-4">

@@ -13,6 +13,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -77,7 +78,7 @@ public class TotalReportController {
      */
     @RequestMapping(value = "/exportExcel/{goodsNum}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> exportExcel(@PathVariable("goodsNum") String goodsNum) throws IOException, InvalidFormatException {
-        List<Goods> list = repo.findByGoodsNum((null == goodsNum || "null".equals(goodsNum)) ? "" : goodsNum);
+        List<Goods> list = repo.findByGoodsNum((null == goodsNum || "null".equals(goodsNum)) ? "" : goodsNum, new Sort(Sort.Direction.ASC, "goodsNumOrder"));
         InputStream inp = this.getClass().getClassLoader().getResourceAsStream("template/totalTemplate.xlsx");
 
         XSSFWorkbook wb = getXssfSheets(list, inp);
@@ -92,7 +93,7 @@ public class TotalReportController {
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         byte[] data = stream.toByteArray();
         IOUtils.closeQuietly(stream);
-        return new ResponseEntity<byte[]>(data, headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(data, headers, HttpStatus.CREATED);
 
     }
 
@@ -142,7 +143,6 @@ public class TotalReportController {
                     continue;
 
                 buildCell(item, row);
-
             }
         }
         return wb;
@@ -155,6 +155,7 @@ public class TotalReportController {
      * @param row  row
      */
     private void buildCell(Goods item, Row row) {
+
         int idx = 0;
 
         Cell cell = row.getCell(idx);
@@ -189,7 +190,7 @@ public class TotalReportController {
         if (null == cell)
             cell = row.createCell(idx);
         cell.setCellType(Cell.CELL_TYPE_STRING);
-        cell.setCellValue(item.getGoodsCount());
+        cell.setCellValue((null == item.getGoodsCount()) ? 0 : item.getGoodsCount());
         idx++;
 
         if ("E".equals(item.getGoodsType())) {
@@ -227,19 +228,32 @@ public class TotalReportController {
         cell.setCellValue(saleMoney);
         idx++;
 
+        String remark = "";
         cell = row.getCell(idx);
-        if (null == cell)
+        if (null == cell) {
             cell = row.createCell(idx);
+        }
         cell.setCellType(Cell.CELL_TYPE_STRING);
-        cell.setCellValue(item.getRemark());
+        if(null != item.getSaleInfos()) {
+            for (Goods.SaleInfo saleInfo : item.getSaleInfos()) {
+                if(remark.length() <= 0) {
+                    remark += saleInfo.getSaleMoney();
+                }else {
+                    remark += "+" + saleInfo.getSaleMoney();
+                }
+            }
+        }
+        cell.setCellValue(remark);
         idx++;
 
         cell = row.getCell(idx);
         if (null == cell)
             cell = row.createCell(idx);
         cell.setCellType(Cell.CELL_TYPE_STRING);
-        cell.setCellValue(item.getGoodsCount() - saleCount);
+        cell.setCellValue((null == item.getGoodsCount()) ? 0 : (item.getGoodsCount() - saleCount));
+        //noinspection UnusedAssignment
         idx++;
+
     }
 
     /**
@@ -249,7 +263,7 @@ public class TotalReportController {
      * @param idx    idx
      * @param rowNum rowNum
      *
-     * @return
+     * @return Row
      */
     private Row getRow(Workbook wb, int idx, int rowNum) {
         Row row = wb.getSheetAt(idx).getRow(rowNum);

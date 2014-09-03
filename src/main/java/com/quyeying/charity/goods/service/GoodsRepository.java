@@ -3,6 +3,8 @@ package com.quyeying.charity.goods.service;
 import com.quyeying.charity.domain.Goods;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.query.Order;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -23,7 +25,10 @@ public interface GoodsRepository extends GoodsRepositoryCustom, MongoRepository<
     @Query("{'goodsType':?0}")
     Page<Goods> findByGoodsType(String goodsType, Pageable pageable);
 
-    @Query("{'goodsNum':{$regex : ?0}} ")
+    @Query("{'goodsNum':{$regex : ?0}}")
     List<Goods> findByGoodsNum(String goodsNum);
+
+    @Query("{'goodsNum':{$regex : ?0}}")
+    List<Goods> findByGoodsNum(String goodsNum, Sort orders);
 
 }

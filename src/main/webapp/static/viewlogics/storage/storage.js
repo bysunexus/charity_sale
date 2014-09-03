@@ -135,6 +135,7 @@ var Storage = function () {
         success: function (data) {
           if (data.data && data.data.goodsNum && data.data.goodsCount) {
             $("#soldVW").show();
+            $("#goodsPriceVW").hide();
             $("#entryVW").hide();
             //noinspection JSJQueryEfficiency
             $("#soldCountGroup").html("");
@@ -172,6 +173,7 @@ var Storage = function () {
           } else {
 
             $("#entryVW").show();
+            $("#goodsPriceVW").show();
             $("#soldVW").hide();
             $("#entryCount").show();
             //noinspection JSJQueryEfficiency
