@@ -40,7 +40,7 @@ public class PaddedPostDto {
     }
 
     public void setPaddedPostValue(Double paddedPostValue) {
-        this.paddedPostValue = paddedPostValue*-1;
+        this.paddedPostValue = paddedPostValue;
     }
 
     public Integer getPaddedPostRadios() {
@@ -70,7 +70,7 @@ public class PaddedPostDto {
         }
         if (this.paddedPostRadios == 1) {
             saleInfo.setSaleMoney(0.0);
-            saleInfo.setSaleCount(this.getPaddedPostValue().intValue());
+            saleInfo.setSaleCount(this.getPaddedPostValue().intValue()*(-1));
         }
 
         saleInfo.setSaleType(0);

@@ -87,7 +87,8 @@ var PaddedPost = function () {
   };
 
   var jsresetform = function () {
-    $("input").val("");
+    //$("input").val("");
+    COMMONS.resetForm("paddedPost");
   };
 
   return {
