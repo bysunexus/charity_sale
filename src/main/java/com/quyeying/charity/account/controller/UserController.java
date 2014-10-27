@@ -4,6 +4,7 @@ import com.quyeying.charity.account.dto.UserDto;
 import com.quyeying.charity.account.dto.UserMenuDto;
 import com.quyeying.charity.commons.IResultDto;
 import com.quyeying.charity.commons.ResultDto;
+import com.quyeying.charity.domain.Goods;
 import com.quyeying.charity.domain.Menu;
 import com.quyeying.charity.domain.User;
 import com.quyeying.charity.domain.UserMenu;
@@ -44,6 +45,29 @@ public class UserController {
         try {
             User u = user.get();
             template.save(u);
+            return ResultDto.getSuccess(u);
+        } catch (Exception e) {
+            return ResultDto.get("保存用户失败");
+        }
+    }
+
+    @RequestMapping(value = "/initadmin",method = RequestMethod.GET)
+    @ResponseBody
+    public IResultDto initAdmin() {
+        try {
+            // init user
+            User u = new User();
+            u.setUserName("admin");
+            u.setPassword("a1a2a3a4a5");
+            u.setNickName("超级管理员");
+            u.setGroup(Goods.GoodsType.A.getCode());
+            u.setLevel(User.UserLevel.ADMIN.getValue());
+            template.save(u);
+
+            // init menu
+
+
+
             return ResultDto.getSuccess(u);
         } catch (Exception e) {
             return ResultDto.get("保存用户失败");

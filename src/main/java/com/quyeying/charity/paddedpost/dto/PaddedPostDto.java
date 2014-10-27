@@ -23,7 +23,7 @@ public class PaddedPostDto {
     private String goodsNum;
 
     @NotNull(message = "不能为空")
-    private Integer paddedPostValue;
+    private Double paddedPostValue;
     @NotNull(message = "不能为空")
     private Integer paddedPostRadios;
 
@@ -35,11 +35,11 @@ public class PaddedPostDto {
         this.goodsNum = goodsNum;
     }
 
-    public Integer getPaddedPostValue() {
+    public Double getPaddedPostValue() {
         return paddedPostValue;
     }
 
-    public void setPaddedPostValue(Integer paddedPostValue) {
+    public void setPaddedPostValue(Double paddedPostValue) {
         this.paddedPostValue = paddedPostValue*-1;
     }
 
@@ -69,8 +69,8 @@ public class PaddedPostDto {
             saleInfo.setSaleMoney(this.getPaddedPostValue());
         }
         if (this.paddedPostRadios == 1) {
-            saleInfo.setSaleMoney(0);
-            saleInfo.setSaleCount(this.getPaddedPostValue());
+            saleInfo.setSaleMoney(0.0);
+            saleInfo.setSaleCount(this.getPaddedPostValue().intValue());
         }
 
         saleInfo.setSaleType(0);

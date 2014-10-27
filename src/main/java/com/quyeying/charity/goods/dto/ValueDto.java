@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class ValueDto {
     private String id;
-    private Integer value;
+    private Double value;
 
     public String getId() {
         return id;
@@ -19,11 +19,11 @@ public class ValueDto {
         this.id = StringUtils.trimToNull(id);
     }
 
-    public Integer getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 }

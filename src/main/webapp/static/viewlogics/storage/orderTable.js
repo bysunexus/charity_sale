@@ -45,7 +45,7 @@ var OrderTable = function () {
     calculateTotal: function () {
       var total = 0;
       $("#salesTable .sale_price").each(function(){
-        total+=parseInt($(this).val()||0);
+        total+=parseFloat($(this).val()||0);
       });
 
       $("#totalPrice").text("合计金额:"+total);

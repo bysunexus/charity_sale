@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class SaleMoneyPoster {
 
-    private volatile Map<String, Integer> smMap = new ConcurrentHashMap<>();
+    private volatile Map<String, Double> smMap = new ConcurrentHashMap<>();
     public final static String ALL = "ALL";
     public final static String NULL = "NULL";
 
@@ -29,24 +29,24 @@ public class SaleMoneyPoster {
     }
 
 
-    public Integer getSaleMoney(String type){
+    public Double getSaleMoney(String type){
         if (StringUtils.isBlank(type))
             return smMap.get(NULL);
 
         return smMap.get(type.toUpperCase());
     }
 
-    public Map<String, Integer> getSmMap() {
+    public Map<String, Double> getSmMap() {
         return smMap;
     }
 
     protected void publish(SaleMoneyDto dto) {
 
-        for (Map.Entry<String, Integer> entry : dto.getGroupSaleMoney().entrySet()) {
+        for (Map.Entry<String, Double> entry : dto.getGroupSaleMoney().entrySet()) {
             smMap.put(entry.getKey().toUpperCase(),entry.getValue());
         }
         smMap.put(ALL,dto.getTotalSaleMoney());
-        smMap.put(NULL,0);
+        smMap.put(NULL,0.0);
     }
 }
 

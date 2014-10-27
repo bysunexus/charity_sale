@@ -40,16 +40,16 @@ public class GoodsRepositoryImpl extends BaseRepository implements GoodsReposito
         SaleMoneyDto dto = new SaleMoneyDto();
 
         if(0== mongo.count(new Query(),Goods.class)){
-            dto.setTotalSaleMoney(0);
-            dto.getGroupSaleMoney().put("A", 0);
-            dto.getGroupSaleMoney().put("B", 0);
-            dto.getGroupSaleMoney().put("C", 0);
-            dto.getGroupSaleMoney().put("D", 0);
-            dto.getGroupSaleMoney().put("E", 0);
+            dto.setTotalSaleMoney(0.0);
+            dto.getGroupSaleMoney().put("A", 0.0);
+            dto.getGroupSaleMoney().put("B", 0.0);
+            dto.getGroupSaleMoney().put("C", 0.0);
+            dto.getGroupSaleMoney().put("D", 0.0);
+            dto.getGroupSaleMoney().put("E", 0.0);
             return dto;
         }
         Query query = new Query();
-        if (goodsType.length > 0) query.addCriteria(Criteria.where("goodsType").in(goodsType));
+        if (goodsType.length > 0) query.addCriteria(Criteria.where("goodsType").in((Object[])goodsType));
 
         MapReduceResults<ValueDto> result = mongo.mapReduce(
             query,
@@ -59,7 +59,7 @@ public class GoodsRepositoryImpl extends BaseRepository implements GoodsReposito
             ValueDto.class
         );
 
-        int total = 0;
+        double total = 0.0;
         for (ValueDto valueDto : result) {
             dto.getGroupSaleMoney().put(valueDto.getId(), valueDto.getValue());
             total += valueDto.getValue();
@@ -73,6 +73,6 @@ public class GoodsRepositoryImpl extends BaseRepository implements GoodsReposito
     @Override
     @Autowired
     public void setMongo(MongoTemplate mongo) {
-        super.mongo = mongo;
+        this.mongo = mongo;
     }
 }

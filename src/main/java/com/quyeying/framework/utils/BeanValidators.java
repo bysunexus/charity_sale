@@ -29,6 +29,7 @@ import com.google.common.collect.Maps;
  * 
  * @author calvin
  */
+@SuppressWarnings("unchecked")
 public class BeanValidators {
 
 	/**

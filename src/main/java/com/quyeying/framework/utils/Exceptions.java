@@ -15,6 +15,7 @@ import java.io.StringWriter;
  * 
  * @author calvin
  */
+@SuppressWarnings("unchecked")
 public class Exceptions {
 
 	/**

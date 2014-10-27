@@ -4,7 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -28,13 +27,13 @@ public class Goods {
     private String goodsType;
 
     public static enum GoodsType {
-        A("A", "2元区",2),
-        B("B", "5元区",5),
-        C("C", "10元区",10),
-        D("D", "30元区",30),
-        E("E", "50元及以上",true);
+        A("A", "2元区", 2),
+        B("B", "5元区", 5),
+        C("C", "10元区", 10),
+        D("D", "30元区", 30),
+        E("E", "50元及以上", true);
 
-        GoodsType(String code, String name,int price) {
+        GoodsType(String code, String name, int price) {
             this.code = code;
             this.name = name;
             this.price = price;
@@ -48,7 +47,7 @@ public class Goods {
 
         private String code;
         private String name;
-        private int price = 0;
+        private double price = 0.0;
         private boolean ext;
 
         public String getCode() {
@@ -59,7 +58,7 @@ public class Goods {
             return name;
         }
 
-        public int getPrice() {
+        public double getPrice() {
             return price;
         }
 
@@ -106,7 +105,7 @@ public class Goods {
     /**
      * 捐品单价
      */
-    private Integer goodsPrice;
+    private Double goodsPrice;
 
     /**
      * 是否退回  0-不退回  1-退回
@@ -141,7 +140,7 @@ public class Goods {
     }
 
     public void setGoodsType(String goodsType) {
-        if(null == goodsType)
+        if (null == goodsType)
             return;
         this.goodsType = StringUtils.trimToNull(goodsType.toUpperCase());
     }
@@ -151,7 +150,7 @@ public class Goods {
     }
 
     public void setGoodsNum(String goodsNum) {
-        if(null == goodsNum)
+        if (null == goodsNum)
             return;
         this.goodsNum = StringUtils.trimToNull(goodsNum.toUpperCase());
     }
@@ -188,11 +187,11 @@ public class Goods {
         this.goodsCount = goodsCount;
     }
 
-    public Integer getGoodsPrice() {
+    public Double getGoodsPrice() {
         return goodsPrice;
     }
 
-    public void setGoodsPrice(Integer goodsPrice) {
+    public void setGoodsPrice(Double goodsPrice) {
         this.goodsPrice = goodsPrice;
     }
 
@@ -244,7 +243,7 @@ public class Goods {
         /**
          * 售出总价
          */
-        private Integer saleMoney;
+        private Double saleMoney;
 
         /**
          * 0-补差订单   1-正常订单
@@ -264,11 +263,11 @@ public class Goods {
             this.saleCount = saleCount;
         }
 
-        public Integer getSaleMoney() {
+        public Double getSaleMoney() {
             return saleMoney;
         }
 
-        public void setSaleMoney(Integer saleMoney) {
+        public void setSaleMoney(Double saleMoney) {
             this.saleMoney = saleMoney;
         }
 
@@ -319,8 +318,8 @@ public class Goods {
     /**
      * 订单类型
      */
-    public static enum SaleType{
-        NORMAL(1),MAKEUP(0);
+    public static enum SaleType {
+        NORMAL(1), MAKEUP(0);
         private int value;
 
         SaleType(int value) {

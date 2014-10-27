@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
  * 
  * @author calvin
  */
+@SuppressWarnings("unchecked")
 public class Reflections {
 	private static final String SETTER_PREFIX = "set";
 

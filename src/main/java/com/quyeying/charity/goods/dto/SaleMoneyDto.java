@@ -10,23 +10,23 @@ import java.util.Map;
  */
 public class SaleMoneyDto {
 
-    private Map<String,Integer> groupSaleMoney = new HashMap<>();
+    private Map<String,Double> groupSaleMoney = new HashMap<>();
 
-    private Integer totalSaleMoney;
+    private Double totalSaleMoney;
 
-    public Map<String, Integer> getGroupSaleMoney() {
+    public Map<String, Double> getGroupSaleMoney() {
         return groupSaleMoney;
     }
 
-    public void setGroupSaleMoney(Map<String, Integer> groupSaleMoney) {
+    public void setGroupSaleMoney(Map<String, Double> groupSaleMoney) {
         this.groupSaleMoney = groupSaleMoney;
     }
 
-    public Integer getTotalSaleMoney() {
+    public Double getTotalSaleMoney() {
         return totalSaleMoney;
     }
 
-    public void setTotalSaleMoney(Integer totalSaleMoney) {
+    public void setTotalSaleMoney(Double totalSaleMoney) {
         this.totalSaleMoney = totalSaleMoney;
     }
 }

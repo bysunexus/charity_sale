@@ -26,7 +26,7 @@ public class GoodsRepositoryTest {
         SaleMoneyDto sm = repo.findSaleMoney();
         System.out.println(sm.getTotalSaleMoney());
 
-        for (Map.Entry<String, Integer> entry : sm.getGroupSaleMoney().entrySet()) {
+        for (Map.Entry<String, Double> entry : sm.getGroupSaleMoney().entrySet()) {
             System.out.println(entry.getKey()+"    "+entry.getValue());
         }
 

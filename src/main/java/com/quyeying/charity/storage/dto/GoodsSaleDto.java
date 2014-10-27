@@ -11,7 +11,7 @@ import com.quyeying.framework.utils.BeanMapper;
 public class GoodsSaleDto {
     private String id;
     private Integer saleCount;
-    private Integer saleMoney;
+    private Double saleMoney;
     private String remark;
     private Goods goods;
 
@@ -31,11 +31,11 @@ public class GoodsSaleDto {
         this.saleCount = saleCount;
     }
 
-    public Integer getSaleMoney() {
+    public Double getSaleMoney() {
         return saleMoney;
     }
 
-    public void setSaleMoney(Integer saleMoney) {
+    public void setSaleMoney(Double saleMoney) {
         this.saleMoney = saleMoney;
     }
 
