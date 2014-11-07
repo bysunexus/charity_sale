@@ -238,7 +238,7 @@ public class TotalReportController {
             for (Goods.SaleInfo saleInfo : item.getSaleInfos()) {
                 if(null == saleInfo.getSaleMoney() || null == saleInfo.getSaleCount() || 0 == saleInfo.getSaleCount())
                     continue;
-                remark.append(buildRemark(saleInfo.getSaleMoney(),saleInfo.getSaleCount())).append('+');
+                remark.append(buildRemark(saleInfo.getSaleMoney(), saleInfo.getSaleCount())).append('+');
             }
         }
         cell.setCellValue(remark.deleteCharAt(remark.length()-1).toString());
@@ -255,7 +255,7 @@ public class TotalReportController {
     }
 
     private String buildRemark(Double money,Integer count){
-        return 1==count?String.valueOf(money):String.valueOf(money/count+"*"+count);
+        return 1==count?String.valueOf(money):String.valueOf(Math.round(money/count*100)/100+"*"+count);
     }
 
     /**
