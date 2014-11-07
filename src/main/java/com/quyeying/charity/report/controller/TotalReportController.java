@@ -228,7 +228,7 @@ public class TotalReportController {
         cell.setCellValue(saleMoney);
         idx++;
 
-        String remark = "";
+        StringBuilder remark = new StringBuilder(' ');
         cell = row.getCell(idx);
         if (null == cell) {
             cell = row.createCell(idx);
@@ -236,14 +236,12 @@ public class TotalReportController {
         cell.setCellType(Cell.CELL_TYPE_STRING);
         if(null != item.getSaleInfos()) {
             for (Goods.SaleInfo saleInfo : item.getSaleInfos()) {
-                if(remark.length() <= 0) {
-                    remark += saleInfo.getSaleMoney();
-                }else {
-                    remark += "+" + saleInfo.getSaleMoney();
-                }
+                if(null == saleInfo.getSaleMoney() || null == saleInfo.getSaleCount() || 0 == saleInfo.getSaleCount())
+                    continue;
+                remark.append(buildRemark(saleInfo.getSaleMoney(),saleInfo.getSaleCount())).append('+');
             }
         }
-        cell.setCellValue(remark);
+        cell.setCellValue(remark.deleteCharAt(remark.length()-1).toString());
         idx++;
 
         cell = row.getCell(idx);
@@ -254,6 +252,10 @@ public class TotalReportController {
         //noinspection UnusedAssignment
         idx++;
 
+    }
+
+    private String buildRemark(Double money,Integer count){
+        return 1==count?String.valueOf(money):String.valueOf(money/count+"*"+count);
     }
 
     /**
