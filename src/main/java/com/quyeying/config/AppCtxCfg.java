@@ -1,8 +1,7 @@
 package com.quyeying.config;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import dns.hijacking.DnsHijacking;
+import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
@@ -20,6 +19,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 @PropertySource(name = "appProperties", value = "classpath:app.properties")
 public class AppCtxCfg {
 
-
+    @Bean
+    @Lazy(false)
+    public DnsHijacking initDnsHijacking(){
+        return DnsHijacking.getInstance();
+    }
 
 }
