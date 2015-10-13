@@ -241,7 +241,9 @@ public class TotalReportController {
                 remark.append(buildRemark(saleInfo.getSaleMoney(), saleInfo.getSaleCount())).append('+');
             }
         }
-        cell.setCellValue(remark.deleteCharAt(remark.length()-1).toString());
+        if(remark.length() > 0) {
+            cell.setCellValue(remark.deleteCharAt(remark.length()-1).toString());
+        }
         idx++;
 
         cell = row.getCell(idx);
